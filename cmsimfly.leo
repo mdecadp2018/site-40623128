@@ -2389,6 +2389,8 @@ window.location= 'https://' + location.host + location.pathname + location.searc
 &lt;li&gt;&lt;a href="./../reveal/index.html"&gt;投影片&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="./../reveal/index2.html"&gt;勵志短語&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="./../blog/index.html"&gt;部落格&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.onshape.com/"&gt; Onshape&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.merriam-webster.com/"&gt; Dictionary&lt;/a&gt;&lt;/li&gt;
 '''
     outstring += '''
 &lt;/ul&gt;

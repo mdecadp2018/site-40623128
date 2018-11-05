@@ -15,7 +15,7 @@
 </v>
 <v t="leo.20180827201621.1" a="E"><vh>編輯 reveal</vh>
 <v t="leo.20180827201621.2" a="E"><vh>@path ./../reveal</vh>
-<v t="leo.20180827201621.3" a="E"><vh>@clean index.html</vh>
+<v t="leo.20180827201621.3"><vh>@clean index.html</vh>
 <v t="leo.20180827201621.4" a="E"><vh>html</vh>
 <v t="leo.20180827201621.5"><vh>head</vh></v>
 <v t="leo.20180827201621.6" a="E"><vh>body</vh>
@@ -67,7 +67,7 @@
 </v>
 </v>
 </v>
-<v t="leo.20181105123829.1"><vh>@clean index2.html</vh>
+<v t="leo.20181105123829.1" a="E"><vh>@clean index2.html</vh>
 <v t="leo.20181105123829.2" a="E"><vh>html</vh>
 <v t="leo.20181105123829.3"><vh>head</vh></v>
 <v t="leo.20181105123829.4" a="E"><vh>body</vh>
@@ -662,24 +662,6 @@ When you pray for rain, you gotta deal with the mud too.
 						
 </t>
 <t tx="leo.20181105123829.8">## 勵志短語
-
-### 虎科大機械設計工程系
-
-&lt;small&gt;
-Created by [40623128](https://github.com/40623128)
-&lt;/small&gt;
-
-[倉儲](https://github.com/mdecadp2018/site-40623128)
-
-[網站](https://mdecadp2018.github.io/site-40623128)
-
-[部落格](https://mdecadp2018.github.io/site-40623128/blog)
-
-[投影片](https://mdecadp2018.github.io/site-40623128/reveal/index.html)
-
-[勵志短語](https://mdecadp2018.github.io/site-40623128/reveal/index2.html)
-
-
 </t>
 <t tx="leo.20181105124826.1">&lt;section&gt;
 @others
