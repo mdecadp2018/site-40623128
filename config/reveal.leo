@@ -24,11 +24,32 @@
 <v t="leo.20180827201621.9" a="E"><vh>封面投影片</vh>
 <v t="leo.20180827201621.10"><vh>封面投影片內容</vh></v>
 </v>
-<v t="leo.20180827201621.11"><vh>快捷鍵</vh>
-<v t="leo.20180827201621.12"><vh>投影片快捷鍵</vh></v>
+<v t="leo.20181105115201.1"><vh>第一列</vh>
+<v t="leo.20181105115201.2" a="E"><vh>上課內容整理及心得</vh>
+<v t="leo.20181105115201.3"><vh>LaTeX 格式方程式</vh></v>
 </v>
-<v t="leo.20181005095742.1" a="E"><vh>123</vh>
-<v t="leo.20181005095742.2"><vh>投影片快捷鍵</vh></v>
+</v>
+<v t="leo.20181105124826.1" a="E"><vh>第二列</vh>
+<v t="leo.20181105124826.2" a="E"><vh>OnshapeW1</vh>
+<v t="leo.20181105124826.3"><vh>操作影片</vh></v>
+</v>
+<v t="leo.20181105125156.1" a="E"><vh>OnshapeW2</vh>
+<v t="leo.20181105125156.2"><vh>操作影片</vh></v>
+</v>
+<v t="leo.20181105125158.1" a="E"><vh>OnshapeW3</vh>
+<v t="leo.20181105125158.2"><vh>操作影片</vh></v>
+</v>
+<v t="leo.20181105125201.1" a="E"><vh>OnshapeW4</vh>
+<v t="leo.20181105125201.2"><vh>操作影片</vh></v>
+</v>
+</v>
+<v t="leo.20181105123723.1" a="E"><vh>第三列</vh>
+<v t="leo.20181105123723.2" a="E"><vh>勵志短語</vh>
+<v t="leo.20181105123723.3"><vh>勵志短語</vh></v>
+</v>
+</v>
+<v t="leo.20180827201621.11" a="E"><vh>快捷鍵</vh>
+<v t="leo.20180827201621.12"><vh>投影片快捷鍵</vh></v>
 </v>
 <v t="leo.20180827201621.13"><vh>各式內容引用範例</vh>
 <v t="leo.20180827201621.14" a="E"><vh>導入數學符號與方程式</vh>
@@ -40,6 +61,44 @@
 <v t="leo.20180827201621.18" a="E"><vh>導入影片</vh>
 <v t="leo.20180827201621.19"><vh>iframe 導入影片</vh></v>
 </v>
+</v>
+</v>
+</v>
+</v>
+</v>
+</v>
+<v t="leo.20181105123829.1"><vh>@clean index2.html</vh>
+<v t="leo.20181105123829.2" a="E"><vh>html</vh>
+<v t="leo.20181105123829.3"><vh>head</vh></v>
+<v t="leo.20181105123829.4" a="E"><vh>body</vh>
+<v t="leo.20181105123829.5" a="E"><vh>reveal div</vh>
+<v t="leo.20181105123829.6" a="E"><vh>slides div</vh>
+<v t="leo.20181105123829.7" a="E"><vh>封面投影片</vh>
+<v t="leo.20181105123829.8"><vh>封面投影片內容</vh></v>
+</v>
+<v t="leo.20181105123829.15" a="E"><vh>激勵短語一</vh>
+<v t="leo.20181105123829.16"><vh>激勵短語一</vh></v>
+</v>
+<v t="leo.20181105123829.17" a="E"><vh>激勵短語二</vh>
+<v t="leo.20181105123829.18"><vh>激勵短語二</vh></v>
+</v>
+<v t="leo.20181105123829.19" a="E"><vh>激勵短語三</vh>
+<v t="leo.20181105123829.20"><vh>激勵短語三</vh></v>
+</v>
+<v t="leo.20181105123829.21" a="E"><vh>激勵短語四</vh>
+<v t="leo.20181105123829.22"><vh>激勵短語四</vh></v>
+</v>
+<v t="leo.20181105123829.23" a="E"><vh>激勵短語五</vh>
+<v t="leo.20181105123829.24"><vh>激勵短語五</vh></v>
+</v>
+<v t="leo.20181105123829.25"><vh>激勵短語六</vh>
+<v t="leo.20181105123829.26"><vh>激勵短語六</vh></v>
+</v>
+<v t="leo.20181105123829.27" a="E"><vh>激勵短語七</vh>
+<v t="leo.20181105123829.28"><vh>激勵短語七</vh></v>
+</v>
+<v t="leo.20181105123829.29" a="E"><vh>激勵短語八</vh>
+<v t="leo.20181105123829.30"><vh>激勵短語八</vh></v>
 </v>
 </v>
 </v>
@@ -132,10 +191,18 @@ vertical: body pane on the botton</t>
 ### 虎科大機械設計工程系
 
 &lt;small&gt;
-Created by [40623128](http://lab.kmol.info/)
+Created by [40623128](https://github.com/40623128)
 &lt;/small&gt;
 
-[2018 Fall 分組網誌](./../blog/index.html)
+[倉儲](https://github.com/mdecadp2018/site-40623128)
+
+[網站](https://mdecadp2018.github.io/site-40623128)
+
+[部落格](https://mdecadp2018.github.io/site-40623128/blog)
+
+[投影片](https://mdecadp2018.github.io/site-40623128/reveal/index.html)
+
+[勵志短語](https://mdecadp2018.github.io/site-40623128/reveal/index2.html)
 
 
 </t>
@@ -329,7 +396,263 @@ make.start()
 
 						
 </t>
-<t tx="leo.20181005095742.1">&lt;section data-markdown&gt;
+<t tx="leo.20181105115201.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="leo.20181105115201.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105115201.3"># 上課內容及心得
+
+[部落格](https://mdecadp2018.github.io/site-40623128/blog/index.html)
+
+
+
+</t>
+<t tx="leo.20181105123723.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="leo.20181105123723.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105123723.3"># [勵志短語](https://mdecadp2018.github.io/site-40623128/reveal/index2.html)
+
+
+</t>
+<t tx="leo.20181105123829.1">@language xml
+@tabwidth -4
+@others
+
+</t>
+<t tx="leo.20181105123829.15">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105123829.16">## 激勵短語一
+
+解決是進步的起點，放棄是進步的終點。
+
+</t>
+<t tx="leo.20181105123829.17">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105123829.18">## 激勵短語二
+
+有時因立場不同，是非對錯也不同。
+
+</t>
+<t tx="leo.20181105123829.19">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105123829.2">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+@others
+&lt;/html&gt;
+</t>
+<t tx="leo.20181105123829.20">## 激勵短語三
+
+When you pray for rain, you gotta deal with the mud too.
+
+取自電影(私刑教育)
+
+</t>
+<t tx="leo.20181105123829.21">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105123829.22">## 激勵短語四
+
+還未開始便否定，是不可能成功的。
+
+</t>
+<t tx="leo.20181105123829.23">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105123829.24">## 激勵短語五
+
+參考是激發自己創造力的道路之一，但抄襲是在扼殺自己的創造力。
+
+</t>
+<t tx="leo.20181105123829.25">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105123829.26">## 激勵短語六
+
+不管能力多優秀，如果沒有熱忱，一切是空談。
+
+</t>
+<t tx="leo.20181105123829.27">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105123829.28">## 激勵短語七
+
+學會如何學習，使一生受用無窮。
+</t>
+<t tx="leo.20181105123829.29">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105123829.3">&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+&lt;title&gt;
+2018 Fall 分組網際簡報
+&lt;/title&gt;
+    &lt;meta name="description" content="A framework for easily creating beautiful presentations using HTML"&gt;
+    &lt;meta name="author" content="Hakim El Hattab"&gt;
+    
+    &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+    &lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;
+    
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
+    
+    &lt;link rel="stylesheet" href="css/reveal.css"&gt;
+    &lt;link rel="stylesheet" href="css/theme/black.css" id="theme"&gt;
+    
+    &lt;!-- Theme used for syntax highlighting of code --&gt;
+    &lt;link rel="stylesheet" href="lib/css/zenburn.css"&gt;
+
+    &lt;!-- Printing and PDF exports --&gt;
+    &lt;script&gt;
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    &lt;/script&gt;
+
+    &lt;!--[if lt IE 9]&gt;
+    &lt;script src="lib/js/html5shiv.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+&lt;/head&gt;
+
+</t>
+<t tx="leo.20181105123829.30">## 激勵短語八
+
+日積月累，往往比臨時抱佛腳輕鬆的多。
+
+</t>
+<t tx="leo.20181105123829.4">&lt;body&gt;
+@others
+&lt;script src="lib/js/head.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/reveal.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true },
+                { src: 'plugin/notes/notes.js', async: true },
+                { src: 'plugin/math/math.js', async: true }
+            ]
+        });
+&lt;/script&gt;
+&lt;/body&gt;
+
+</t>
+<t tx="leo.20181105123829.5">&lt;div class="reveal"&gt;
+@others
+&lt;/div&gt;
+
+</t>
+<t tx="leo.20181105123829.6">&lt;!-- Any section element inside of this container is displayed as a slide --&gt;
+&lt;div class="slides"&gt;
+@others
+&lt;/div&gt;
+
+</t>
+<t tx="leo.20181105123829.7">&lt;section data-markdown&gt;
     &lt;script type="text/template"&gt;
 @others
     &lt;/script&gt;
@@ -338,16 +661,101 @@ make.start()
 
 						
 </t>
-<t tx="leo.20181005095742.2"># 投影片快捷鍵
-## 投影片快捷鍵
-### 投影片快捷鍵
+<t tx="leo.20181105123829.8">## 勵志短語
 
-* 利用箭頭上下前後換頁
-* 按 f 鍵進入全螢幕模式 (full screen)
-* 按 s 鍵可以顯示投影片筆記 (show)
-* 按 o 鍵可以切換單張或全域檢視 (overview)
-* 按 b 或 . 鍵可以切換螢幕黑屏 (black)
-* 按 Esc 可以退出全螢幕或全域檢視 (Escape)
+### 虎科大機械設計工程系
+
+&lt;small&gt;
+Created by [40623128](https://github.com/40623128)
+&lt;/small&gt;
+
+[倉儲](https://github.com/mdecadp2018/site-40623128)
+
+[網站](https://mdecadp2018.github.io/site-40623128)
+
+[部落格](https://mdecadp2018.github.io/site-40623128/blog)
+
+[投影片](https://mdecadp2018.github.io/site-40623128/reveal/index.html)
+
+[勵志短語](https://mdecadp2018.github.io/site-40623128/reveal/index2.html)
+
+
+</t>
+<t tx="leo.20181105124826.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="leo.20181105124826.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105124826.3"># Onshape W1
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/uoONqs_QQdY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+
+
+</t>
+<t tx="leo.20181105125156.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105125156.2"># Onshape W2
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/Qbu8EIs1Gos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+
+
+</t>
+<t tx="leo.20181105125158.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105125158.2"># Onshape W3
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/vanqfJZ5kp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+
+
+</t>
+<t tx="leo.20181105125201.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20181105125201.2"># Onshape W4
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/TZGAPkIk2e4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+
 
 </t>
 </tnodes>
