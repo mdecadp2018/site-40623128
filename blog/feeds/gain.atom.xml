@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>機械設計工程系 2018 Fall 分組網誌 - gain</title><link href="https://mdecadp2018.github.io/site-40623128/blog/" rel="alternate"></link><link href="https://mdecadp2018.github.io/site-40623128/blog/feeds/gain.atom.xml" rel="self"></link><id>https://mdecadp2018.github.io/site-40623128/blog/</id><updated>2018-11-02T11:00:00+08:00</updated><entry><title>第八週心得</title><link href="https://mdecadp2018.github.io/site-40623128/blog/40623128-w8-gain.html" rel="alternate"></link><published>2018-11-02T11:00:00+08:00</published><updated>2018-11-02T11:00:00+08:00</updated><author><name>40623128</name></author><id>tag:mdecadp2018.github.io,2018-11-02:/site-40623128/blog/40623128-w8-gain.html</id><summary type="html">&lt;p&gt;github無法使用時的備用方案&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>機械設計工程系 2018 Fall 分組網誌 - gain</title><link href="https://mdecadp2018.github.io/site-40623128/blog/" rel="alternate"></link><link href="https://mdecadp2018.github.io/site-40623128/blog/feeds/gain.atom.xml" rel="self"></link><id>https://mdecadp2018.github.io/site-40623128/blog/</id><updated>2018-11-02T11:00:00+08:00</updated><entry><title>第八週心得</title><link href="https://mdecadp2018.github.io/site-40623128/blog/40623128-w8-gain.html" rel="alternate"></link><published>2018-11-02T11:00:00+08:00</published><updated>2018-11-02T11:00:00+08:00</updated><author><name>40623128</name></author><id>tag:mdecadp2018.github.io,2018-11-02:/site-40623128/blog/40623128-w8-gain.html</id><summary type="html">&lt;p&gt;機電資整合設計專案流程所需的相關套件運用與技術&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;機電資整合設計專案流程所需的相關套件運用與技術&lt;/p&gt;
+
+
+&lt;h2&gt;上課內容&lt;/h2&gt;
+&lt;p&gt;人事時地物的結合&lt;/p&gt;
+&lt;p&gt;何謂雲端&lt;/p&gt;
+&lt;p&gt;機電資整合&lt;/p&gt;
+&lt;h2&gt;上課影片&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://youtu.be/yAzfQm2gBEQ"&gt;說明機電資整合設計專案流程所需的相關套件運用與技術&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;上課心得&lt;/h2&gt;
+&lt;p&gt;今天上課講解了機電資整合與期中後的協同作業，繪圖可能只佔了3成，畫好後要如何模擬分析，假如是用不同CAD軟體繪製，如何轉檔。之後會遇到的問題很多，但不解決就不會進步，所以我要不斷的解決問題與挖掘問題，這樣就不會原地踏步。&lt;/p&gt;</content><category term="gain"></category></entry><entry><title>第七週心得</title><link href="https://mdecadp2018.github.io/site-40623128/blog/40623128-w7-gain.html" rel="alternate"></link><published>2018-10-26T11:00:00+08:00</published><updated>2018-10-26T11:00:00+08:00</updated><author><name>40623128</name></author><id>tag:mdecadp2018.github.io,2018-10-26:/site-40623128/blog/40623128-w7-gain.html</id><summary type="html">&lt;p&gt;github無法使用時的備用方案&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;github無法使用時的備用方案&lt;/p&gt;
 
 
@@ -17,25 +28,11 @@
 &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=JA75HIMhIgk"&gt;利用 Virtualbox 安裝 Ubuntu 18.04.1 伺服器&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=nju615KXghM"&gt;啟動 https 協定下的 Fossil SCM 伺服器&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=hCyeqgfh02w"&gt;利用 Fossil SCM 建立區域網路中的分散式版次管理系統&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;上課心得&lt;/h2&gt;</content><category term="gain"></category></entry><entry><title>第七週心得</title><link href="https://mdecadp2018.github.io/site-40623128/blog/40623128-w7-gain.html" rel="alternate"></link><published>2018-10-26T11:00:00+08:00</published><updated>2018-10-26T11:00:00+08:00</updated><author><name>40623128</name></author><id>tag:mdecadp2018.github.io,2018-10-26:/site-40623128/blog/40623128-w7-gain.html</id><summary type="html">&lt;p&gt;github無法使用時的備用方案&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;github無法使用時的備用方案&lt;/p&gt;
-
-
-&lt;h2&gt;上課內容&lt;/h2&gt;
-&lt;p&gt;DNS server : 140.130.17.3   &lt;br&gt;
-其他DNS server : 140.130.1.2&lt;/p&gt;
-&lt;p&gt;系上IPv6 : 2001:288:6004:17::3&lt;/p&gt;
-&lt;p&gt;學校IPv6 : 2001:288:6004:1::2&lt;/p&gt;
-&lt;p&gt;HiNet IPv6 : 2001:b000:168::1&lt;/p&gt;
-&lt;p&gt;把Github倉儲同步到&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://about.gitlab.com/pricing/#gitlab-com"&gt;Gitlab&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://bitbucket.org/product/pricing"&gt;Bitbucket&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;自建&lt;a href="https://about.gitlab.com/pricing/#gitlab-com"&gt;Fossil SCM&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;上課影片&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=JA75HIMhIgk"&gt;利用 Virtualbox 安裝 Ubuntu 18.04.1 伺服器&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=nju615KXghM"&gt;啟動 https 協定下的 Fossil SCM 伺服器&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=hCyeqgfh02w"&gt;利用 Fossil SCM 建立區域網路中的分散式版次管理系統&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;上課心得&lt;/h2&gt;</content><category term="gain"></category></entry><entry><title>第六週心得</title><link href="https://mdecadp2018.github.io/site-40623128/blog/40623128-w6-gain.html" rel="alternate"></link><published>2018-10-19T11:00:00+08:00</published><updated>2018-10-19T11:00:00+08:00</updated><author><name>40623128</name></author><id>tag:mdecadp2018.github.io,2018-10-19:/site-40623128/blog/40623128-w6-gain.html</id><summary type="html">&lt;p&gt;如何更新CMSimfly&lt;/p&gt;
+&lt;h2&gt;上課心得&lt;/h2&gt;
+&lt;p&gt;今天上課時，我去看了乙班的影片，聽說他們上課那天Github出了問題，所以老師告訴了他們備用方案，把倉儲分別同步到&lt;a href="https://about.gitlab.com/pricing/#gitlab-com"&gt;Gitlab&lt;/a&gt;
+&lt;a href="https://bitbucket.org/product/pricing"&gt;Bitbucket&lt;/a&gt;
+與自建的&lt;a href="https://about.gitlab.com/pricing/#gitlab-com"&gt;Fossil SCM&lt;/a&gt;
+，多存一份多一份保障，萬一又故障才有替代方案。&lt;/p&gt;</content><category term="gain"></category></entry><entry><title>第六週心得</title><link href="https://mdecadp2018.github.io/site-40623128/blog/40623128-w6-gain.html" rel="alternate"></link><published>2018-10-19T11:00:00+08:00</published><updated>2018-10-19T11:00:00+08:00</updated><author><name>40623128</name></author><id>tag:mdecadp2018.github.io,2018-10-19:/site-40623128/blog/40623128-w6-gain.html</id><summary type="html">&lt;p&gt;如何更新CMSimfly&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;如何更新CMSimfly&lt;/p&gt;
 
 
