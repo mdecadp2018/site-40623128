@@ -1914,10 +1914,11 @@ window.location= 'https://' + location.host + location.pathname + location.searc
 </head><header><h1>''' + site_title + '''</h1> \
 <confmenu>
 <ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="sitemap.html">Site Map</a></li>
-<li><a href="./../reveal/index.html">reveal</a></li>
-<li><a href="./../blog/index.html">blog</a></li>
+<li><a href="index.html">主頁</a></li>
+<li><a href="sitemap.html"> 網站檢索</a></li>
+<li><a href="./../reveal/index.html">投影片</a></li>
+<li><a href="./../reveal/index2.html">勵志短語</a></li>
+<li><a href="./../blog/index.html">部落格</a></li>
 '''
     outstring += '''
 </ul>

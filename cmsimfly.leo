@@ -22,7 +22,7 @@
 <v t="leo.20180702145458.1"><vh>@button stop http.server</vh></v>
 </v>
 <v t="leo.20180703102027.1"><vh>@edit README.md</vh></v>
-<v t="amd.20160714225245.2"><vh>about cmsimfly</vh>
+<v t="amd.20160714225245.2" a="E"><vh>about cmsimfly</vh>
 <v t="amd.20160714230137.1"><vh>@edit .gitignore</vh></v>
 <v t="amd.20160714230155.1"><vh>@edit LICENSE</vh></v>
 <v t="amd.20160715000709.1"><vh>註解</vh>
@@ -63,8 +63,8 @@
 <v t="amd.20160714230058.1"><vh>@clean wsgi.py</vh>
 <v t="amd.20160714230122.1"><vh>wsgi declarations</vh></v>
 </v>
-<v t="amd.20160714230833.1"><vh>編輯 flaskapp.py</vh>
-<v t="leo.20181019112158.1"><vh>@clean flaskapp.py</vh>
+<v t="amd.20160714230833.1" a="E"><vh>編輯 flaskapp.py</vh>
+<v t="leo.20181019112158.1" a="E"><vh>@clean flaskapp.py</vh>
 <v t="leo.20181019112217.1"><vh>Declarations  </vh></v>
 <v t="leo.20181019112217.2"><vh>checkLogin  </vh></v>
 <v t="leo.20181019112217.3"><vh>delete_file  </vh></v>
@@ -2384,10 +2384,11 @@ window.location= 'https://' + location.host + location.pathname + location.searc
 &lt;/head&gt;&lt;header&gt;&lt;h1&gt;''' + site_title + '''&lt;/h1&gt; \
 &lt;confmenu&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="sitemap.html"&gt;Site Map&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="./../reveal/index.html"&gt;reveal&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="./../blog/index.html"&gt;blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="index.html"&gt;主頁&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="sitemap.html"&gt; 網站檢索&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="./../reveal/index.html"&gt;投影片&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="./../reveal/index2.html"&gt;勵志短語&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="./../blog/index.html"&gt;部落格&lt;/a&gt;&lt;/li&gt;
 '''
     outstring += '''
 &lt;/ul&gt;
