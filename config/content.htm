@@ -2,7 +2,7 @@
 <p>2018年四設計二甲40623128 張華倞 電腦輔助設計實習的倉儲.</p>
 <p>倉儲:<a href="https://github.com/mdecadp2018/site-40623128">https://github.com/mdecadp2018/site-40623128</a></p>
 <p>期末分組網站:<a href="https://mdecadp2018.github.io/finalproject-ag4">https://mdecadp2018.github.io/finalproject-ag4</a></p>
-<p>期末分組網站:<a href="https://github.com/mdecadp2018/finalproject-ag4">https://github.com/mdecadp2018/finalproject-ag4</a></p>
+<p>期末分組倉儲:<a href="https://github.com/mdecadp2018/finalproject-ag4">https://github.com/mdecadp2018/finalproject-ag4</a></p>
 <p></p><h1>OnShape操作內容</h1>
 <h2>W1</h2>
 <h3>W1操作影片</h3>
@@ -75,7 +75,46 @@
 <p>協助工具二:google瀏覽器F12功能</p>
 <p>背景圖來源:<a href="https://www.pexels.com/photo/silhouette-of-mountains-1323550/">https://www.pexels.com/photo/silhouette-of-mountains-1323550/</a></p>
 <p>顏色選擇:<a href="https://color.adobe.com/zh/create/color-wheel/">https://color.adobe.com/zh/create/color-wheel/</a></p>
-<h1>FeatureScript</h1>
+<h1>FeatureScript介紹</h1>
+<h2>如何使用自訂義的功能</h2>
+<p>在零件圖功能區的最右端處點選即可使用。</p>
+<p><img alt="" height="673" src="/images/開啟位置.png" width="880"/></p><h2>如何開啟新的Feature studio</h2>
+<p>首先至新的圖檔，左下角加號處</p>
+<p>如下圖</p>
+<p><img alt="" height="600" src="/images/程式開啟.png" width="839"/></p><h2>建立輸入表單介紹</h2>
+<p>快捷指令列</p>
+<p><img alt="" height="600" src="/images/快捷.png" width="839"/></p>
+<p>首先第一個New Feature</p>
+<p><img alt="" height="600" src="/images/新增特徵.png" width="839"/></p>
+<p>功能主要是建立一個特徵功能的架構如下圖</p>
+<p><img alt="" height="677" src="/images/特徵格式.png" width="947"/></p>
+<p>可以藉由輸入程式於下圖紅框處，製作輸入表單與繪畫功能</p>
+<p><img alt="" height="677" src="/images/特徵編輯.png" width="947"/></p>
+<p>建立表單的各項輸入項目，可以於下圖位置點選所需項目。</p>
+<p><img alt="" height="572" src="/images/表單功能1.png" width="800"/></p>
+<p>舉例如下圖使用第一個長度參數</p>
+<p><img alt="" height="433" src="/images/Length.png" width="791"/></p>
+<p>程式新增於表單輸入項目，如以下</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">FeatureScript 975;
+import(path : "onshape/std/geometry.fs", version : "975.0");
+
+
+annotation { "Feature Type Name" : "My Feature" }
+export const myFeature = defineFeature(function(context is Context, id is Id, definition is map)
+    precondition
+    {
+        annotation { "Name" : "My Length" }
+        isLength(definition.myLength, LENGTH_BOUNDS);
+        
+    }
+    {
+        
+    });</pre>
+<p>使用該功能就會出現長度輸入欄。</p>
+<p><img alt="" height="79" src="/images/長度表單.png" width="223"/></p>
+<p>程式最後寫的LENGHT_BOUNDS是限制輸入值</p>
+<p>詳細內容可至以下連結運用Ctrl+F尋找<a href="https://cad.onshape.com/FsDoc/library.html#module-valueBounds.fs">valueBounds</a>查詢</p>
+<p><a href="https://cad.onshape.com/FsDoc/library.html#category-Modeling">https://cad.onshape.com/FsDoc/library.html#category-Modeling</a></p><h1>FeatureScript</h1>
 <h2>六角填充</h2>
 <p>六角填充註解</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">FeatureScript 336;
