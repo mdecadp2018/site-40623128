@@ -115,7 +115,100 @@ export const myFeature = defineFeature(function(context is Context, id is Id, de
 <p>程式最後寫的LENGHT_BOUNDS是限制輸入值</p>
 <p>詳細內容可至以下連結運用Ctrl+F尋找<a href="https://cad.onshape.com/FsDoc/library.html#module-valueBounds.fs">valueBounds</a>查詢</p>
 <p><a href="https://cad.onshape.com/FsDoc/library.html#category-Modeling">https://cad.onshape.com/FsDoc/library.html#category-Modeling</a></p>
-<h2>繪圖功能範例-星星</h2><h1>FeatureScript</h1>
+<h2>自製繪圖功能練習-星星</h2>
+<p>測試影片:</p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/d2qZ1EtTdfU" width="560"></iframe></p>
+<p>原始碼:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">FeatureScript 975;
+import(path : "onshape/std/geometry.fs", version : "975.0");
+
+
+annotation { "Feature Type Name" : "star" }
+export const myFeature = defineFeature(function(context is Context, id is Id, definition is map)
+    precondition
+    {
+        annotation { "Name" : "Length" }
+        isLength(definition.myLength, LENGTH_BOUNDS);
+        
+        annotation { "Name" : "Number of sides" }
+        isInteger(definition.myCount, COUNT_BOUNDS);
+        
+        
+        
+        
+    }
+    {
+        var N = definition.myCount;         //星星角數
+        var InAngle = 180 * (N-2) / N;      //內角角度
+        var HalfInAngle = InAngle / 2;      //內半角角度
+        var OutAngle = 90 - HalfInAngle;    //外角角度
+        var HalfOutAngle = OutAngle / 2;    //外半角角度
+        var Angle = 360 / N ;               //多邊形中心至各角連線間隔角
+        var HalfAngle = Angle / 2 ;         //多邊形中心至各角連線間隔角的一半
+        
+        var L = definition.myLength / meter;    //邊長
+        var Length = L * cos(HalfOutAngle * degree) + (L * sin(HalfOutAngle * degree)) / tan(OutAngle * degree);//外頂點至中心距
+        var SmallLength = L * sin(HalfOutAngle * degree) / sin(OutAngle * degree);//內頂點至中心距
+        var xO = makeArray(N); //定義數列 xO (N個值)
+        var yO = makeArray(N); //定義數列 yO (N個值)
+        var xI = makeArray(N); //定義數列 xI (N個值)
+        var yI = makeArray(N); //定義數列 yI (N個值)
+        
+        for (var i = 0; i &lt; N; i += 1)      //for迴圈執行N次
+        {
+            var ang = i * Angle; //定義ang 第1次計算為Angle*1 第2次計算為Angle*2 ....
+            xO[i] = Length * cos((90 + ang) * degree); //星星外頂點x座標
+            yO[i] = Length * sin((90 + ang) * degree); //星星外頂點y座標
+            xI[i] = SmallLength * cos((90 - HalfAngle + ang) * degree); //星星內頂點x座標
+            yI[i] = SmallLength * sin((90- HalfAngle + ang) * degree);  //星星內頂點y座標
+        }
+
+        // create the plane on which to generate the sketch  用上視圖創建草圖 草圖名稱 sketchstar
+        var starsketch = newSketch(context, id + "sketchstar", {
+                "sketchPlane" : qCreatedBy(makeId("Top"), EntityType.FACE)
+        });
+        
+        for (var i = 0; i &lt; N; i += 1) //for迴圈執行N次
+        {
+            
+            var LineStart = vector([xO[i], yO[i]]) * meter; //定義線段起始點座標
+            var LineEnd = vector([xI[i],yI[i]]) * meter;    //定義線段結束點座標
+            var LineID = "line" ~ "-" ~ i;                  //線段名稱定義
+            
+            skLineSegment(starsketch, LineID, {             //繪製線段
+                "start" : LineStart,                        //線段開始點
+                "end" : LineEnd                             //線段結束點
+                });
+        }
+        for (var i = 0; i &lt; (N-1); i += 1) //for迴圈
+        {
+            
+            var LineStart = vector([xI[i+1], yI[i+1]]) * meter; //定義線段起始點座標
+            var LineEnd = vector([xO[i],yO[i]]) * meter;        //定義線段結束點座標
+            var LineID = "line2" ~ "-" ~ i;                     //線段名稱定義
+            
+            skLineSegment(starsketch, LineID, {                 //繪製線段
+                "start" : LineStart,                            //線段開始點
+                "end" : LineEnd                                 //線段結束點
+                });
+        }
+        skLineSegment(starsketch, "Line3", {                 //繪製線段
+                "start" : vector([xI[0], yI[0]]) * meter,    //線段開始點
+                "end" : vector([xO[(N-1)],yO[(N-1)]]) * meter//線段結束點
+                });
+                
+        skSolve(starsketch);            //結束草圖
+        
+            
+            
+    });
+    
+    const COUNT_BOUNDS =            //定義值域參數
+{
+    (unitless) : [4, 5, 1e2]        //限定最小4 預設5 最大100
+} as IntegerBoundSpec;
+</pre>
+<p></p><h1>FeatureScript</h1>
 <h2>六角填充</h2>
 <p>六角填充註解</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">FeatureScript 336;

@@ -1,0 +1,166 @@
+<!doctype html>
+<html><head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>計算機程式教材</title> <link rel="stylesheet" type="text/css" href="./../static/cmsimply.css">
+
+<script type="text/javascript" src="./../static/syntaxhighlighter/shCore.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushJScript.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushJava.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushPython.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushSql.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushXml.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushPhp.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushLua.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushCpp.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushCss.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushCSharp.js"></script>
+<link type="text/css" rel="stylesheet" href="./../static/syntaxhighlighter/css/shCoreDefault.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- for LaTeX equations 暫時不用
+<script src="https://scrum-3.github.io/web/math/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+<script type="text/javascript">
+init_mathjax = function() {
+    if (window.MathJax) {
+        // MathJax loaded
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+            },
+            displayAlign: 'left', // Change this to 'center' to center equations.
+            "HTML-CSS": {
+                styles: {'.MathJax_Display': {"margin": 0}}
+            }
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    }
+}
+init_mathjax();
+</script>
+-->
+<!-- 暫時不用
+<script src="./../static/fengari-web.js"></script>
+<script type="text/javascript" src="./../static/Cango-13v08-min.js"></script>
+<script type="text/javascript" src="./../static/CangoAxes-4v01-min.js"></script>
+<script type="text/javascript" src="./../static/gearUtils-05.js"></script>
+-->
+<!-- for Brython 暫時不用
+<script src="https://scrum-3.github.io/web/brython/brython.js"></script>
+<script src="https://scrum-3.github.io/web/brython/brython_stdlib.js"></script>
+-->
+
+<script src="./../static/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+    $("ul.topmenu> li:has(ul) > a").append('<div class="arrow-right"></div>');
+    $("ul.topmenu > li ul li:has(ul) > a").append('<div class="arrow-right"></div>');
+});
+</script>
+
+</head><header><h1>2018 電腦輔助設計實習 40623128</h1> <confmenu>
+<ul>
+<li><a href="index.html">主頁</a></li>
+<li><a href="sitemap.html"> 網站檢索</a></li>
+<li><a href="./../reveal/index.html">投影片</a></li>
+<li><a href="./../reveal/index2.html">勵志短語</a></li>
+<li><a href="./../blog/index.html">部落格</a></li>
+<li><a href="https://www.onshape.com/"> Onshape</a></li>
+<li><a href="https://www.merriam-webster.com/"> Dictionary</a></li>
+
+</ul>
+</confmenu></header>
+<div class='container'><nav><ul id='css3menu1' class='topmenu'><li><a href='簡介.html'>簡介</a><li><a href='OnShape操作內容.html'>OnShape操作內容</a><ul><li><a href='W1.html'>W1</a><ul><li><a href='W1操作影片.html'>W1操作影片</a><li><a href='單位設定.html'>單位設定</a><li><a href='W1單字.html'>W1單字</a></li></ul><li><a href='W2.html'>W2</a><ul><li><a href='W2操作影片.html'>W2操作影片</a></li></ul><li><a href='W3.html'>W3</a><ul><li><a href='W3操作影片.html'>W3操作影片</a></li></ul><li><a href='W4.html'>W4</a><ul><li><a href='W4操作影片.html'>W4操作影片</a><li><a href='W4單字.html'>W4單字</a></li></li></ul></ul><li><a href='git功能.html'>git功能</a><li><a href='CSS編輯.html'>CSS編輯</a><ul><li><a href='參考資料.html'>參考資料</a></li></ul><li><a href='FeatureScript介紹.html'>FeatureScript介紹</a><ul><li><a href='如何使用自訂義的功能.html'>如何使用自訂義的功能</a><li><a href='如何開啟新的Feature studio.html'>如何開啟新的Feature studio</a><li><a href='建立輸入表單介紹.html'>建立輸入表單介紹</a><li><a href='自製繪圖功能練習-星星.html'>自製繪圖功能練習-星星</a></li></ul><li><a href='FeatureScript.html'>FeatureScript</a><ul><li><a href='六角填充.html'>六角填充</a><li><a href='六角填充第二版.html'>六角填充第二版</a><ul><li><a href='表單.html'>表單</a><li><a href='繪圖功能長度版本.html'>繪圖功能長度版本</a><li><a href='繪圖功能外力版本.html'>繪圖功能外力版本</a></li></ul><li><a href='FeatureScript參考資料.html'>FeatureScript參考資料</a></li></ul></nav><section>建立輸入表單介紹 << <a href='建立輸入表單介紹.html'>Previous</a> <a href='FeatureScript.html'>Next</a> >> FeatureScript<br /><h1>自製繪圖功能練習-星星</h1>
+<p>測試影片:</p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/d2qZ1EtTdfU" width="560"></iframe></p>
+<p>原始碼:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">FeatureScript 975;
+import(path : "onshape/std/geometry.fs", version : "975.0");
+
+
+annotation { "Feature Type Name" : "star" }
+export const myFeature = defineFeature(function(context is Context, id is Id, definition is map)
+    precondition
+    {
+        annotation { "Name" : "Length" }
+        isLength(definition.myLength, LENGTH_BOUNDS);
+        
+        annotation { "Name" : "Number of sides" }
+        isInteger(definition.myCount, COUNT_BOUNDS);
+        
+        
+        
+        
+    }
+    {
+        var N = definition.myCount;         //星星角數
+        var InAngle = 180 * (N-2) / N;      //內角角度
+        var HalfInAngle = InAngle / 2;      //內半角角度
+        var OutAngle = 90 - HalfInAngle;    //外角角度
+        var HalfOutAngle = OutAngle / 2;    //外半角角度
+        var Angle = 360 / N ;               //多邊形中心至各角連線間隔角
+        var HalfAngle = Angle / 2 ;         //多邊形中心至各角連線間隔角的一半
+        
+        var L = definition.myLength / meter;    //邊長
+        var Length = L * cos(HalfOutAngle * degree) + (L * sin(HalfOutAngle * degree)) / tan(OutAngle * degree);//外頂點至中心距
+        var SmallLength = L * sin(HalfOutAngle * degree) / sin(OutAngle * degree);//內頂點至中心距
+        var xO = makeArray(N); //定義數列 xO (N個值)
+        var yO = makeArray(N); //定義數列 yO (N個值)
+        var xI = makeArray(N); //定義數列 xI (N個值)
+        var yI = makeArray(N); //定義數列 yI (N個值)
+        
+        for (var i = 0; i &lt; N; i += 1)      //for迴圈執行N次
+        {
+            var ang = i * Angle; //定義ang 第1次計算為Angle*1 第2次計算為Angle*2 ....
+            xO[i] = Length * cos((90 + ang) * degree); //星星外頂點x座標
+            yO[i] = Length * sin((90 + ang) * degree); //星星外頂點y座標
+            xI[i] = SmallLength * cos((90 - HalfAngle + ang) * degree); //星星內頂點x座標
+            yI[i] = SmallLength * sin((90- HalfAngle + ang) * degree);  //星星內頂點y座標
+        }
+
+        // create the plane on which to generate the sketch  用上視圖創建草圖 草圖名稱 sketchstar
+        var starsketch = newSketch(context, id + "sketchstar", {
+                "sketchPlane" : qCreatedBy(makeId("Top"), EntityType.FACE)
+        });
+        
+        for (var i = 0; i &lt; N; i += 1) //for迴圈執行N次
+        {
+            
+            var LineStart = vector([xO[i], yO[i]]) * meter; //定義線段起始點座標
+            var LineEnd = vector([xI[i],yI[i]]) * meter;    //定義線段結束點座標
+            var LineID = "line" ~ "-" ~ i;                  //線段名稱定義
+            
+            skLineSegment(starsketch, LineID, {             //繪製線段
+                "start" : LineStart,                        //線段開始點
+                "end" : LineEnd                             //線段結束點
+                });
+        }
+        for (var i = 0; i &lt; (N-1); i += 1) //for迴圈
+        {
+            
+            var LineStart = vector([xI[i+1], yI[i+1]]) * meter; //定義線段起始點座標
+            var LineEnd = vector([xO[i],yO[i]]) * meter;        //定義線段結束點座標
+            var LineID = "line2" ~ "-" ~ i;                     //線段名稱定義
+            
+            skLineSegment(starsketch, LineID, {                 //繪製線段
+                "start" : LineStart,                            //線段開始點
+                "end" : LineEnd                                 //線段結束點
+                });
+        }
+        skLineSegment(starsketch, "Line3", {                 //繪製線段
+                "start" : vector([xI[0], yI[0]]) * meter,    //線段開始點
+                "end" : vector([xO[(N-1)],yO[(N-1)]]) * meter//線段結束點
+                });
+                
+        skSolve(starsketch);            //結束草圖
+        
+            
+            
+    });
+    
+    const COUNT_BOUNDS =            //定義值域參數
+{
+    (unitless) : [4, 5, 1e2]        //限定最小4 預設5 最大100
+} as IntegerBoundSpec;
+</pre>
+<p></p><br />建立輸入表單介紹 << <a href='建立輸入表單介紹.html'>Previous</a> <a href='FeatureScript.html'>Next</a> >> FeatureScript</section></div></body></html>
