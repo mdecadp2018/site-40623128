@@ -15,7 +15,7 @@
 </v>
 <v t="leo.20180827201621.1" a="E"><vh>編輯 reveal</vh>
 <v t="leo.20180827201621.2" a="E"><vh>@path ./../reveal</vh>
-<v t="leo.20180827201621.3"><vh>@clean index.html</vh>
+<v t="leo.20180827201621.3" a="E"><vh>@clean index.html</vh>
 <v t="leo.20180827201621.4" a="E"><vh>html</vh>
 <v t="leo.20180827201621.5"><vh>head</vh></v>
 <v t="leo.20180827201621.6" a="E"><vh>body</vh>
@@ -29,7 +29,7 @@
 <v t="leo.20181105115201.3"><vh>LaTeX 格式方程式</vh></v>
 </v>
 </v>
-<v t="leo.20181105124826.1" a="E"><vh>第二列</vh>
+<v t="leo.20181105124826.1"><vh>第二列</vh>
 <v t="leo.20181105124826.2" a="E"><vh>OnshapeW1</vh>
 <v t="leo.20181105124826.3"><vh>操作影片</vh></v>
 </v>
@@ -43,15 +43,15 @@
 <v t="leo.20181105125201.2"><vh>操作影片</vh></v>
 </v>
 </v>
-<v t="leo.20181105123723.1" a="E"><vh>第三列</vh>
+<v t="leo.20181105123723.1"><vh>第三列</vh>
 <v t="leo.20181105123723.2" a="E"><vh>勵志短語</vh>
 <v t="leo.20181105123723.3"><vh>勵志短語</vh></v>
 </v>
 </v>
-<v t="leo.20180827201621.11" a="E"><vh>快捷鍵</vh>
+<v t="leo.20180827201621.11"><vh>快捷鍵</vh>
 <v t="leo.20180827201621.12"><vh>投影片快捷鍵</vh></v>
 </v>
-<v t="leo.20180827201621.13"><vh>各式內容引用範例</vh>
+<v t="leo.20180827201621.13" a="E"><vh>各式內容引用範例</vh>
 <v t="leo.20180827201621.14" a="E"><vh>導入數學符號與方程式</vh>
 <v t="leo.20180827201621.15"><vh>LaTeX 格式方程式</vh></v>
 </v>
@@ -67,7 +67,7 @@
 </v>
 </v>
 </v>
-<v t="leo.20181105123829.1" a="E"><vh>@clean index2.html</vh>
+<v t="leo.20181105123829.1"><vh>@clean index2.html</vh>
 <v t="leo.20181105123829.2" a="E"><vh>html</vh>
 <v t="leo.20181105123829.3"><vh>head</vh></v>
 <v t="leo.20181105123829.4" a="E"><vh>body</vh>
@@ -99,6 +99,65 @@
 </v>
 <v t="leo.20181105123829.29" a="E"><vh>激勵短語八</vh>
 <v t="leo.20181105123829.30"><vh>激勵短語八</vh></v>
+</v>
+</v>
+</v>
+</v>
+</v>
+</v>
+<v t="leo.20190107143503.1" a="E"><vh>@clean index3.html</vh>
+<v t="leo.20190107143503.2" a="E"><vh>html</vh>
+<v t="leo.20190107143503.3"><vh>head</vh></v>
+<v t="leo.20190107143503.4" a="E"><vh>body</vh>
+<v t="leo.20190107143503.5" a="E"><vh>reveal div</vh>
+<v t="leo.20190107143503.6" a="E"><vh>slides div</vh>
+<v t="leo.20190107143503.7"><vh>封面投影片</vh>
+<v t="leo.20190107143503.8"><vh>封面投影片內容</vh></v>
+</v>
+<v t="leo.20190107143917.1"><vh>第一頁</vh>
+<v t="leo.20190107143917.2" a="E"><vh>1-1</vh>
+<v t="leo.20190107143917.3"><vh>內容</vh></v>
+</v>
+<v t="leo.20190107143917.4" a="E"><vh>1-2</vh>
+<v t="leo.20190107143917.5"><vh>內容</vh></v>
+</v>
+</v>
+<v t="leo.20190107150229.1"><vh>第二頁</vh>
+<v t="leo.20190107150229.2" a="E"><vh>1-1</vh>
+<v t="leo.20190107150229.3"><vh>內容</vh></v>
+</v>
+<v t="leo.20190107150229.4" a="E"><vh>1-2</vh>
+<v t="leo.20190107150229.5"><vh>內容</vh></v>
+</v>
+<v t="leo.20190107150229.6"><vh>1-3</vh>
+<v t="leo.20190107150229.7"><vh>內容</vh></v>
+</v>
+<v t="leo.20190107151649.1" a="E"><vh>1-4</vh>
+<v t="leo.20190107151649.2"><vh>內容</vh></v>
+</v>
+</v>
+<v t="leo.20190107151132.1"><vh>第三頁</vh>
+<v t="leo.20190107151132.2" a="E"><vh>1-1</vh>
+<v t="leo.20190107151132.3"><vh>內容</vh></v>
+</v>
+<v t="leo.20190107151132.4" a="E"><vh>1-2</vh>
+<v t="leo.20190107151132.5"><vh>內容</vh></v>
+</v>
+<v t="leo.20190107152234.1" a="E"><vh>1-3</vh>
+<v t="leo.20190107152234.2"><vh>內容</vh></v>
+</v>
+<v t="leo.20190107151132.6" a="E"><vh>1-4</vh>
+<v t="leo.20190107151132.7"><vh>內容</vh></v>
+</v>
+<v t="leo.20190107152933.1" a="E"><vh>1-5</vh>
+<v t="leo.20190107152933.2"><vh>內容</vh></v>
+</v>
+<v t="leo.20190107153255.1" a="E"><vh>1-6</vh>
+<v t="leo.20190107153255.2"><vh>內容</vh></v>
+</v>
+</v>
+<v t="leo.20190107154640.1" a="E"><vh>心得</vh>
+<v t="leo.20190107154640.2"><vh>內容</vh></v>
 </v>
 </v>
 </v>
@@ -740,5 +799,330 @@ When you pray for rain, you gotta deal with the mud too.
 
 
 </t>
+<t tx="leo.20190107143503.1">@language xml
+@tabwidth -4
+@others
+
+</t>
+<t tx="leo.20190107143503.2">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+@others
+&lt;/html&gt;
+</t>
+<t tx="leo.20190107143503.3">&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+&lt;title&gt;
+2018 Fall 分組網際簡報
+&lt;/title&gt;
+    &lt;meta name="description" content="A framework for easily creating beautiful presentations using HTML"&gt;
+    &lt;meta name="author" content="Hakim El Hattab"&gt;
+    
+    &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+    &lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;
+    
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
+    
+    &lt;link rel="stylesheet" href="css/reveal.css"&gt;
+    &lt;link rel="stylesheet" href="css/theme/black.css" id="theme"&gt;
+    
+    &lt;!-- Theme used for syntax highlighting of code --&gt;
+    &lt;link rel="stylesheet" href="lib/css/zenburn.css"&gt;
+
+    &lt;!-- Printing and PDF exports --&gt;
+    &lt;script&gt;
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    &lt;/script&gt;
+
+    &lt;!--[if lt IE 9]&gt;
+    &lt;script src="lib/js/html5shiv.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+&lt;/head&gt;
+
+</t>
+<t tx="leo.20190107143503.4">&lt;body&gt;
+@others
+&lt;script src="lib/js/head.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/reveal.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true },
+                { src: 'plugin/notes/notes.js', async: true },
+                { src: 'plugin/math/math.js', async: true }
+            ]
+        });
+&lt;/script&gt;
+&lt;/body&gt;
+
+</t>
+<t tx="leo.20190107143503.5">&lt;div class="reveal"&gt;
+@others
+&lt;/div&gt;
+
+</t>
+<t tx="leo.20190107143503.6">&lt;!-- Any section element inside of this container is displayed as a slide --&gt;
+&lt;div class="slides"&gt;
+@others
+&lt;/div&gt;
+
+</t>
+<t tx="leo.20190107143503.7">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20190107143503.8">## 2018Fall 分組網際簡報
+
+### 虎科大機械設計工程系
+
+#### 四設二甲 張華倞 40623128
+
+&lt;small&gt;
+Created by [40623128](https://github.com/40623128)
+&lt;/small&gt;
+
+[小組倉儲](https://github.com/mdecadp2018/finalproject-ag4)
+
+[小組網站](https://mdecadp2018.github.io/finalproject-ag4/content/index.html)</t>
+<t tx="leo.20190107143917.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="leo.20190107143917.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190107143917.3">## 這堂課我學了什麼?</t>
+<t tx="leo.20190107143917.4">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190107143917.5">## 這些嗎?
+
+* onsape
+* FeatureScript
+* V-rep
+* V-rep Python Remote API
+</t>
+<t tx="leo.20190107150229.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="leo.20190107150229.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190107150229.3">## 先從期中前說起</t>
+<t tx="leo.20190107150229.4">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190107150229.5">## 期中前
+
+老師讓我們自行掌握每周進度看完
+
+Onshape教學 w1 - w12
+
+這或許就是在訓練我們
+
+自行閱讀原文書並學習</t>
+<t tx="leo.20190107150229.6">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20190107150229.7">## 期中後 - 分組製作專題
+
+需要分組製作專題
+
+因為每個人擅長的領域不同
+
+分工合作就顯得重要了很多
+</t>
+<t tx="leo.20190107151132.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="leo.20190107151132.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190107151132.3">## 這門課我做了什麼?
+</t>
+<t tx="leo.20190107151132.4">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190107151132.5">## 自學 FeatureScript
+
+[簡略介紹](https://mdecadp2018.github.io/site-40623128/content/FeatureScript%E4%BB%8B%E7%B4%B9.html)</t>
+<t tx="leo.20190107151132.6">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20190107151132.7">## 六角填充程式註解
+
+[原始碼](https://mdecadp2018.github.io/site-40623128/content/%E5%85%AD%E8%A7%92%E5%A1%AB%E5%85%85.html)</t>
+<t tx="leo.20190107151649.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20190107151649.2">## 到現在我學到的精華是
+
+* 學習的衝勁 - 好奇心
+* 如何自學
+* 如何解決問題
+* 團隊合作的重要
+* 平日累積的重要</t>
+<t tx="leo.20190107152234.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190107152234.2">## 練習製作繪畫星星程式
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/d2qZ1EtTdfU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+[原始碼](https://mdecadp2018.github.io/site-40623128/content/%E8%87%AA%E8%A3%BD%E7%B9%AA%E5%9C%96%E5%8A%9F%E8%83%BD%E7%B7%B4%E7%BF%92-%E6%98%9F%E6%98%9F.html)</t>
+<t tx="leo.20190107152933.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20190107152933.2">## 運用python控制v-rep模擬
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/KqJ3erws-Ao" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+[原始碼](https://mdecadp2018.github.io/finalproject-ag4/content/3D-Printer-Python-Control.html)</t>
+<t tx="leo.20190107153255.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20190107153255.2">## 與組員進行專題製作
+
+[3D-Printer](https://mdecadp2018.github.io/finalproject-ag4/content/index.html)
+
+&lt;img src="../images/3D.png"  width="400px"&gt;</t>
+<t tx="leo.20190107154640.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20190107154640.2">## 心得
+
+上完這門課
+
+不管是繪圖、寫程式、還是專題製作
+
+我都從過程中學習到很多經驗
+
+或許有些結果不盡理想
+
+但都有得到成長
+
+接下來要學的東西還很多
+
+把所學到的經驗運用到接下來的課程
+
+一定可以更加順遂</t>
 </tnodes>
 </leo_file>

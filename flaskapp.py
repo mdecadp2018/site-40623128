@@ -1918,6 +1918,7 @@ window.location= 'https://' + location.host + location.pathname + location.searc
 <li><a href="sitemap.html"> 網站檢索</a></li>
 <li><a href="./../reveal/index.html">投影片</a></li>
 <li><a href="./../reveal/index2.html">勵志短語</a></li>
+<li><a href="./../reveal/index3.html">個人期末簡報</a></li>
 <li><a href="./../blog/index.html">部落格</a></li>
 <li><a href="https://www.onshape.com/"> Onshape</a></li>
 <li><a href="https://www.merriam-webster.com/"> Dictionary</a></li>
