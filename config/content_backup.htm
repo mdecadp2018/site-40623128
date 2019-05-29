@@ -1,0 +1,2019 @@
+<h1>簡介</h1>
+<p>2018年四設計二甲40623128 張華倞 電腦輔助設計實習的倉儲.</p>
+<p>倉儲:<a href="https://github.com/mdecadp2018/site-40623128">https://github.com/mdecadp2018/site-40623128</a></p>
+<p>期末分組網站:<a href="https://mdecadp2018.github.io/finalproject-ag4">https://mdecadp2018.github.io/finalproject-ag4</a></p>
+<p>期末分組倉儲:<a href="https://github.com/mdecadp2018/finalproject-ag4">https://github.com/mdecadp2018/finalproject-ag4</a></p>
+<p></p>
+<h1>手足球</h1>
+<h2>期中前</h2>
+<p>期中前完成機器對打程式，再來目標更改為影像辨識。</p>
+<h3>自動回擊</h3>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/i1pA_CwlQ98" width="560"></iframe></p>
+<p>vrep檔案位置:<a href="https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/tree/master/v-rep/40623128/TableFootBall/v-rep/tablefootball.ttt">tablefootball.ttt</a></p>
+<p></p>
+<p>python原始碼:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import vrep
+from time import sleep
+import sys, math
+ 
+vrep.simxFinish(-1)
+ 
+clientID = vrep.simxStart('127.0.0.1', 19997, True, True, 5000, 5)
+KickBallV = 90      #手把轉速設定(度/秒)
+Move_Minus =-0.1          #手把水平移速(m/s)
+Move_Plus =0.1
+n=1
+R_KickBallVel = (math.pi/180)*KickBallV
+B_KickBallVel = -(math.pi/180)*KickBallV
+if clientID!= -1:
+    print("Connected to remote server")
+else:
+    print('Connection not successful')
+    sys.exit('Could not connect')
+ 
+errorCode,Sphere_handle=vrep.simxGetObjectHandle(clientID,'Sphere',vrep.simx_opmode_oneshot_wait)
+errorCode,BRod_handle=vrep.simxGetObjectHandle(clientID,'BRod',vrep.simx_opmode_oneshot_wait)
+errorCode,BRev_handle=vrep.simxGetObjectHandle(clientID,'BRev',vrep.simx_opmode_oneshot_wait)
+errorCode,BMo_handle=vrep.simxGetObjectHandle(clientID,'BMo',vrep.simx_opmode_oneshot_wait)
+errorCode,RRev_handle=vrep.simxGetObjectHandle(clientID,'RRev',vrep.simx_opmode_oneshot_wait)
+errorCode,RMo_handle=vrep.simxGetObjectHandle(clientID,'RMo',vrep.simx_opmode_oneshot_wait)
+
+if errorCode == -1:
+    print('Can not find left or right motor')
+    sys.exit()
+    
+def stop():
+    errorCode = vrep.simxStopSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+    
+def start():
+    errorCode = vrep.simxStartSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+    
+def pause():
+    errorCode = vrep.simxPauseSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+
+def getballposition():
+    errorCode,position_P=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_D=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+    vv =position_D[1] - position_P[1]
+    vvv =position_D[2] - position_P[2]
+    while (n == 1):
+        
+        if vv &lt;= 0 and vvv &lt;= 0.01:
+            errorCode,position_P=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_D=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            vv =position_D[1]- position_P[1]
+            vvv =position_D[0] - position_P[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+        
+        elif vv &gt; 0 and vvv &lt;= 0.01:
+            errorCode,position_P=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_D=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            vv =position_D[1]- position_P[1]
+            vvv =position_D[0] - position_P[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,0,vrep.simx_opmode_oneshot_wait)
+            
+        elif vv &lt;= 0 and vvv &gt; 0.01:
+            errorCode,position_P=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_D=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            vv =position_D[1]- position_P[1]
+            vvv =position_D[0] - position_P[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,0,vrep.simx_opmode_oneshot_wait)
+        
+        elif vv &gt; 0 and vvv &gt; 0.01:
+            errorCode,position_P=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_D=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            vv =position_D[1]- position_P[1]
+            vvv =position_D[0] - position_P[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,0,vrep.simx_opmode_oneshot_wait)
+        
+        
+        vrep.simxSetJointTargetVelocity(clientID,BMo_handle,vv,vrep.simx_opmode_oneshot_wait)
+vrep.simxSetJointTargetVelocity(clientID,BRev_handle,0,vrep.simx_opmode_oneshot_wait)
+vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+vrep.simxSetJointTargetVelocity(clientID,RMo_handle,0,vrep.simx_opmode_oneshot_wait)
+
+start()
+getballposition()
+stop()
+
+
+
+
+
+</pre>
+<h3>手足球手控與電腦對打</h3>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/G6hB6AbP7NA" width="560"></iframe></p>
+<p><span>vrep檔案位置:</span><a href="https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/tree/master/v-rep/40623128/TableFootBall/v-rep/tablefootball.ttt">tablefootball.ttt</a></p>
+<p>python原始碼:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import vrep
+import keyboard
+from time import sleep
+import sys, math
+# child threaded script: 
+# 內建使用 port 19997 若要加入其他 port, 在  serve 端程式納入
+#simExtRemoteApiStart(19999)
+ 
+vrep.simxFinish(-1)
+ 
+clientID = vrep.simxStart('127.0.0.1', 19997, True, True, 5000, 5)
+KickBallV = 90    
+Move_Minus =-0.1         
+Move_Plus =0.1
+n=1
+R_KickBallVel = (math.pi/180)*KickBallV
+B_KickBallVel = -(math.pi/180)*KickBallV
+if clientID!= -1:
+    print("Connected to remote server")
+else:
+    print('Connection not successful')
+    sys.exit('Could not connect')
+ 
+errorCode,Sphere_handle=vrep.simxGetObjectHandle(clientID,'Sphere',vrep.simx_opmode_oneshot_wait)
+errorCode,BRod_handle=vrep.simxGetObjectHandle(clientID,'BRod',vrep.simx_opmode_oneshot_wait)
+errorCode,BRev_handle=vrep.simxGetObjectHandle(clientID,'BRev',vrep.simx_opmode_oneshot_wait)
+errorCode,BMo_handle=vrep.simxGetObjectHandle(clientID,'BMo',vrep.simx_opmode_oneshot_wait)
+errorCode,RRev_handle=vrep.simxGetObjectHandle(clientID,'RRev',vrep.simx_opmode_oneshot_wait)
+errorCode,RMo_handle=vrep.simxGetObjectHandle(clientID,'RMo',vrep.simx_opmode_oneshot_wait)
+errorCode,RRod_handle=vrep.simxGetObjectHandle(clientID,'RRod',vrep.simx_opmode_oneshot_wait)
+
+if errorCode == -1:
+    print('Can not find left or right motor')
+    sys.exit()
+    
+def stop():
+    errorCode = vrep.simxStopSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+    
+def start():
+    errorCode = vrep.simxStartSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+
+def pause():
+    errorCode = vrep.simxPauseSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+
+def setting():
+    errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+    Bv =position_S[1]- position_BR[1]
+    BBv =position_S[2] - position_BR[2]
+    Rv =position_S[1]- position_RR[1]
+    RRv =position_RR[2]-position_S[2]
+
+def getballposition():
+    errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+    Bv =position_S[1] - position_BR[1]
+    BBv =position_S[2] - position_BR[2]
+    Rv =position_S[1] - position_RR[1]
+    RRv =position_S[2] - position_RR[2]
+    while True:
+        if Bv &lt;= 0 and BBv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+         
+        elif Bv &gt; 0 and BBv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+             
+        elif Bv &lt;= 0 and BBv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+         
+        elif Bv &gt; 0 and BBv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+        
+        try:
+            if keyboard.is_pressed('o'): 
+                vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            elif keyboard.is_pressed('p'):  
+                vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            elif keyboard.is_pressed('y'):  
+                vrep.simxSetJointTargetVelocity(clientID,RMo_handle,0.05,vrep.simx_opmode_oneshot_wait)
+            elif keyboard.is_pressed('u'):  
+                vrep.simxSetJointTargetVelocity(clientID,RMo_handle,0,vrep.simx_opmode_oneshot_wait)
+            elif keyboard.is_pressed('i'):  
+                vrep.simxSetJointTargetVelocity(clientID,RMo_handle,-0.05,vrep.simx_opmode_oneshot_wait)
+            else:
+                pass
+        except:
+            break 
+            
+        
+        MMMB = Bv*2
+        vrep.simxSetJointTargetVelocity(clientID,BMo_handle,MMMB,vrep.simx_opmode_oneshot_wait)
+    
+vrep.simxSetJointTargetVelocity(clientID,BRev_handle,0,vrep.simx_opmode_oneshot_wait)
+vrep.simxSetJointTargetVelocity(clientID,RRev_handle,0,vrep.simx_opmode_oneshot_wait)
+vrep.simxSetJointTargetVelocity(clientID,RMo_handle,0,vrep.simx_opmode_oneshot_wait)
+
+start()
+getballposition()
+stop()</pre>
+<p></p>
+<h3>手足球電腦對電腦</h3>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/e4sEH5GBXBk" width="560"></iframe></p>
+<p><span>vrep檔案位置:</span><a href="https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/tree/master/v-rep/40623128/TableFootBall/v-rep/tablefootball.ttt">tablefootball.ttt</a></p>
+<p></p>
+<p>python控制程式:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import vrep
+from time import sleep
+import sys, math
+# child threaded script: 
+# 內建使用 port 19997 若要加入其他 port, 在  serve 端程式納入
+#simExtRemoteApiStart(19999)
+ 
+vrep.simxFinish(-1)
+ 
+clientID = vrep.simxStart('127.0.0.1', 19997, True, True, 5000, 5)
+KickBallV = 45     #手把轉速設定(度/秒)
+Move_Minus =-0.1          #手把水平移速(m/s)
+Move_Plus =0.1
+n=1
+R_KickBallVel = (math.pi/180)*KickBallV
+B_KickBallVel = -(math.pi/180)*KickBallV
+if clientID!= -1:
+    print("Connected to remote server")
+else:
+    print('Connection not successful')
+    sys.exit('Could not connect')
+ 
+errorCode,Sphere_handle=vrep.simxGetObjectHandle(clientID,'Sphere',vrep.simx_opmode_oneshot_wait)
+errorCode,BRod_handle=vrep.simxGetObjectHandle(clientID,'BRod',vrep.simx_opmode_oneshot_wait)
+errorCode,BRev_handle=vrep.simxGetObjectHandle(clientID,'BRev',vrep.simx_opmode_oneshot_wait)
+errorCode,BMo_handle=vrep.simxGetObjectHandle(clientID,'BMo',vrep.simx_opmode_oneshot_wait)
+errorCode,RRev_handle=vrep.simxGetObjectHandle(clientID,'RRev',vrep.simx_opmode_oneshot_wait)
+errorCode,RMo_handle=vrep.simxGetObjectHandle(clientID,'RMo',vrep.simx_opmode_oneshot_wait)
+errorCode,RRod_handle=vrep.simxGetObjectHandle(clientID,'RRod',vrep.simx_opmode_oneshot_wait)
+
+if errorCode == -1:
+    print('Can not find left or right motor')
+    sys.exit()
+    
+def stop():
+    errorCode = vrep.simxStopSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+    
+def start():
+    errorCode = vrep.simxStartSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+    
+def pause():
+    errorCode = vrep.simxPauseSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+
+def setting():
+    errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+    Bv =position_S[1]- position_BR[1]
+    BBv =position_S[0] - position_BR[0]
+    Rv =position_S[1]- position_RR[1]
+    RRv =position_RR[0]-position_S[0]
+
+def getballposition():
+    #for i in range(steps):
+    errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+    Bv =position_S[1] - position_BR[1]
+    BBv =position_S[0] - position_BR[0]
+    Rv =position_S[1] - position_RR[1]
+    RRv =position_S[0] - position_RR[0]
+    while (n == 1):
+        
+        if Bv &lt;= 0 and BBv &lt;= 0.02 and Rv&lt;=0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &lt;= 0.02 and Rv&lt;=0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &gt; 0.02 and Rv&lt;=0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &gt; 0.02 and Rv&lt;=0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &lt;= 0.02 and Rv&gt;0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &lt;= 0.02 and Rv&gt;0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &gt; 0.02 and Rv&gt;0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &gt; 0.02 and Rv&gt;0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &lt;= 0.02 and Rv&lt;=0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &lt;= 0.02 and Rv&lt;=0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &gt; 0.02 and Rv&lt;=0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &gt; 0.02 and Rv&lt;=0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &lt;= 0.02 and Rv&gt;0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &lt;= 0.02 and Rv&gt;0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &gt; 0.02 and Rv&gt;0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &gt; 0.02 and Rv&gt;0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        else:
+                pass
+        MMMB = Bv*1.2 
+        MMMR = Rv*1.2
+        
+        vrep.simxSetJointTargetVelocity(clientID,BMo_handle,MMMB,vrep.simx_opmode_oneshot_wait)
+        vrep.simxSetJointTargetVelocity(clientID,RMo_handle,MMMR,vrep.simx_opmode_oneshot_wait)
+        #print(BBv)
+vrep.simxSetJointTargetVelocity(clientID,BRev_handle,0,vrep.simx_opmode_oneshot_wait)
+vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+vrep.simxSetJointTargetVelocity(clientID,RMo_handle,0,vrep.simx_opmode_oneshot_wait)
+
+start()
+getballposition()
+stop()</pre>
+<p></p>
+<h3>手足球雙人對打</h3>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/V1aZ9RahfXk" width="560"></iframe></p>
+<p><span>vrep檔案位置:</span><a href="https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/tree/master/v-rep/40623128/TableFootBall/v-rep/tablefootball.ttt">tablefootball.ttt</a></p>
+<p>python控制程式</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import vrep
+import keyboard
+from time import sleep
+import sys, math
+# child threaded script: 
+# 內建使用 port 19997 若要加入其他 port, 在  serve 端程式納入
+#simExtRemoteApiStart(19999)
+ 
+vrep.simxFinish(-1)
+ 
+clientID = vrep.simxStart('127.0.0.1', 19997, True, True, 5000, 5)
+KickBallV = 90    
+Move_Minus =-0.1         
+Move_Plus =0.1
+n=1
+R_KickBallVel = (math.pi/180)*KickBallV
+B_KickBallVel = -(math.pi/180)*KickBallV
+if clientID!= -1:
+    print("Connected to remote server")
+else:
+    print('Connection not successful')
+    sys.exit('Could not connect')
+ 
+errorCode,Sphere_handle=vrep.simxGetObjectHandle(clientID,'Sphere',vrep.simx_opmode_oneshot_wait)
+errorCode,BRod_handle=vrep.simxGetObjectHandle(clientID,'BRod',vrep.simx_opmode_oneshot_wait)
+errorCode,BRev_handle=vrep.simxGetObjectHandle(clientID,'BRev',vrep.simx_opmode_oneshot_wait)
+errorCode,BMo_handle=vrep.simxGetObjectHandle(clientID,'BMo',vrep.simx_opmode_oneshot_wait)
+errorCode,RRev_handle=vrep.simxGetObjectHandle(clientID,'RRev',vrep.simx_opmode_oneshot_wait)
+errorCode,RMo_handle=vrep.simxGetObjectHandle(clientID,'RMo',vrep.simx_opmode_oneshot_wait)
+errorCode,RRod_handle=vrep.simxGetObjectHandle(clientID,'RRod',vrep.simx_opmode_oneshot_wait)
+
+if errorCode == -1:
+    print('Can not find left or right motor')
+    sys.exit()
+    
+def stop():
+    errorCode = vrep.simxStopSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+    
+def start():
+    errorCode = vrep.simxStartSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+    
+def pause():
+    errorCode = vrep.simxPauseSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+
+def setting():
+    errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+    Bv =position_S[1]- position_BR[1]
+    BBv =position_S[0] - position_BR[0]
+    Rv =position_S[1]- position_RR[1]
+    RRv =position_RR[0]-position_S[0]
+
+def getballposition():
+    errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+    Bv =position_S[1] - position_BR[1]
+    BBv =position_S[2] - position_BR[2]
+    Rv =position_S[1] - position_RR[1]
+    RRv =position_S[2] - position_RR[2]
+    while True:
+        try:
+            if keyboard.is_pressed('v'):
+                vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            elif keyboard.is_pressed('b'):
+                vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            elif keyboard.is_pressed('z'):
+                vrep.simxSetJointTargetVelocity(clientID,BMo_handle,0.05,vrep.simx_opmode_oneshot_wait)
+            elif keyboard.is_pressed('x'):
+                vrep.simxSetJointTargetVelocity(clientID,BMo_handle,0,vrep.simx_opmode_oneshot_wait)
+            elif keyboard.is_pressed('c'):
+                vrep.simxSetJointTargetVelocity(clientID,BMo_handle,-0.05,vrep.simx_opmode_oneshot_wait)
+            
+            elif keyboard.is_pressed('o'): 
+                vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            elif keyboard.is_pressed('p'):  
+                vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            elif keyboard.is_pressed('y'):  
+                vrep.simxSetJointTargetVelocity(clientID,RMo_handle,0.05,vrep.simx_opmode_oneshot_wait)
+            elif keyboard.is_pressed('u'):  
+                vrep.simxSetJointTargetVelocity(clientID,RMo_handle,0,vrep.simx_opmode_oneshot_wait)
+            elif keyboard.is_pressed('i'):  
+                vrep.simxSetJointTargetVelocity(clientID,RMo_handle,-0.05,vrep.simx_opmode_oneshot_wait)
+            else:
+                pass
+        except:
+            break 
+        MMMB = Bv*2
+        MMMR = Rv*2
+    vrep.simxSetJointTargetVelocity(clientID,BMo_handle,MMMB,vrep.simx_opmode_oneshot_wait)
+    vrep.simxSetJointTargetVelocity(clientID,RMo_handle,MMMR,vrep.simx_opmode_oneshot_wait)
+    
+vrep.simxSetJointTargetVelocity(clientID,BRev_handle,0,vrep.simx_opmode_oneshot_wait)
+vrep.simxSetJointTargetVelocity(clientID,RRev_handle,0,vrep.simx_opmode_oneshot_wait)
+vrep.simxSetJointTargetVelocity(clientID,RMo_handle,0,vrep.simx_opmode_oneshot_wait)
+
+start()
+getballposition()
+stop()</pre>
+<p></p>
+<h2>期末前</h2>
+<p>把既有程式更改為更符合實際可行的影像辨識。</p>
+<h3>影像辨識尋找球和桿子位置</h3>
+<p>利用影像辨識系統尋找紅方、藍方和綠球的位置。</p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/C947PvvFDiw" width="560"></iframe></p>
+<p>程式利用<a href="https://github.com/nemilya/vrep-api-python-opencv">https://github.com/nemilya/vrep-api-python-opencv</a>改編而成</p>
+<p>vrep設定檔:<a href="https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/blob/master/v-rep/40623128/TableFootBall/v-rep/tablefootball%20-%200507.ttt">https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/blob/master/v-rep/40623128/TableFootBall/v-rep/tablefootball - 0507.ttt</a></p>
+<p>程式檔:<a href="https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/blob/master/v-rep/40623128/TableFootBall/v-rep/Image_Detection_RGB.py">https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/blob/master/v-rep/40623128/TableFootBall/v-rep/Image_Detection_RGB.py</a></p>
+<p>程式碼:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import vrep
+import time
+
+from PIL import Image as I
+import array
+
+import cv2, numpy
+
+# function based on: 
+#   https://github.com/simondlevy/OpenCV-Python-Hacks/blob/master/greenball_tracker.py
+def track_green_object(image):
+    # Blur the image to reduce noise100
+    blur = cv2.GaussianBlur(image, (5,5),0)
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    # Threshold the HSV image for only green colors
+    range = 15
+    lower_green = numpy.array([60-range,100,100])
+    upper_green = numpy.array([60+range,255,255])
+    # Threshold the HSV image to get only green colors
+    mask = cv2.inRange(hsv, lower_green, upper_green)
+    # Blur the mask
+    bmask = cv2.GaussianBlur(mask, (5,5),0)
+    # Take the moments to get the centroid
+    moments = cv2.moments(bmask)
+    m00 = moments['m00']
+    centroid_x, centroid_y = None, None
+    if m00 != 0:
+        centroid_x = int(moments['m10']/m00)
+        centroid_y = int(moments['m01']/m00)
+    # Assume no centroid
+    ctr = None
+    # Use centroid if it exists
+    if centroid_x != None and centroid_y != None:
+        ctr = (centroid_x, centroid_y)
+    return ctr
+
+def track_blue_object(image):
+    # Blur the image to reduce noise100
+    blur = cv2.GaussianBlur(image, (5,5),0)
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    # Threshold the HSV image for only green colors
+    range = 15
+    lower_red = numpy.array([0-range,100,100])
+    upper_red = numpy.array([0+range,255,255])
+    # Threshold the HSV image to get only green colors
+    mask = cv2.inRange(hsv, lower_red, upper_red)
+    # Blur the mask
+    bmask = cv2.GaussianBlur(mask, (5,5),0)
+    # Take the moments to get the centroid
+    moments = cv2.moments(bmask)
+    m00 = moments['m00']
+    centroid_x, centroid_y = None, None
+    if m00 != 0:
+        centroid_x = int(moments['m10']/m00)
+        centroid_y = int(moments['m01']/m00)
+    # Assume no centroid
+    ctr = None
+    # Use centroid if it exists
+    if centroid_x != None and centroid_y != None:
+        ctr = (centroid_x, centroid_y)
+    return ctr
+    
+def track_red_object(image):
+    # Blur the image to reduce noise100
+    blur = cv2.GaussianBlur(image, (5,5),0)
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    # Threshold the HSV image for only green colors
+    range = 15
+    lower_blue = numpy.array([120-range,100,100])
+    upper_blue = numpy.array([120+range,255,255])
+    # Threshold the HSV image to get only green colors
+    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    # Blur the mask
+    bmask = cv2.GaussianBlur(mask, (5,5),0)
+    # Take the moments to get the centroid
+    moments = cv2.moments(bmask)
+    m00 = moments['m00']
+    centroid_x, centroid_y = None, None
+    if m00 != 0:
+        centroid_x = int(moments['m10']/m00)
+        centroid_y = int(moments['m01']/m00)
+    # Assume no centroid
+    ctr = None
+    # Use centroid if it exists
+    if centroid_x != None and centroid_y != None:
+        ctr = (centroid_x, centroid_y)
+    return ctr
+
+vrep.simxFinish(-1)
+clientID = vrep.simxStart('127.0.0.1', 19997, True, True, 5000, 5)
+
+if clientID!=-1:
+  print('Connected to remote API server')
+  # get vision sensor objects
+  res, v0 = vrep.simxGetObjectHandle(clientID, 'vs1', vrep.simx_opmode_oneshot_wait)
+  res, v1 = vrep.simxGetObjectHandle(clientID, 'vs2', vrep.simx_opmode_oneshot_wait)
+  err, resolution, image = vrep.simxGetVisionSensorImage(clientID, v0, 0, vrep.simx_opmode_streaming)
+  time.sleep(1)
+  while (vrep.simxGetConnectionId(clientID) != -1):
+    # get image from vision sensor 'v0'
+    err, resolution, image = vrep.simxGetVisionSensorImage(clientID, v0, 0, vrep.simx_opmode_buffer)
+    if err == vrep.simx_return_ok:
+        image_byte_array = array.array('b', image)
+        #print(image_byte_array)
+        image_buffer = I.frombuffer("RGB", (resolution[0],resolution[1]), bytes(image_byte_array), "raw", "RGB", 0, 1)
+        img2 = numpy.asarray(image_buffer)
+      # try to find something green
+        ret_green = track_green_object(img2)
+        ret_red = track_red_object(img2)
+        ret_blue = track_blue_object(img2)
+      # overlay rectangle marker if something is found by OpenCV
+        if ret_green:
+            cv2.rectangle(img2,(ret_green[0]-5,ret_green[1]-5), (ret_green[0]+5,ret_green[1]+5), (0x99,0xff,0x33), 1)
+          # return image to sensor 'v1'
+        if ret_red:
+            cv2.rectangle(img2,(ret_red[0]-3,ret_red[1]-5), (ret_red[0]+3,ret_red[1]+5), (0xff,0x33,0x33), 1)
+        if ret_blue:
+            cv2.rectangle(img2,(ret_blue[0]-3,ret_blue[1]-5), (ret_blue[0]+3,ret_blue[1]+5), (0x33,0xcc,0xff), 1)
+        img2 = img2.ravel()
+        #print('B=',ret_blue[0],ret_blue[1])
+        #print('R=',ret_red[0],ret_red[1])
+        #print('G=',ret_green[0],ret_green[1])
+        vrep.simxSetVisionSensorImage(clientID, v1, img2, 0, vrep.simx_opmode_oneshot)
+    elif err == vrep.simx_return_novalue_flag:
+      print("no image yet")
+      pass
+    else:
+      print(err)
+else:
+  print("Failed to connect to remote API Server")
+  vrep.simxFinish(clientID)</pre>
+<h3>影像辨識機器對打</h3>
+<p>利用影像辨識抓取球與操作桿位置並使之對打，</p>
+<p>由於影像需要處理時間，所以模擬速度越快抓取位置越不精確。</p>
+<p>已知錯誤:</p>
+<p>如果球打到桿子後方會無法回擊。</p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/Nv5ppem_j_8" width="560"></iframe></p>
+<p>vrep設定檔:<a href="https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/blob/master/v-rep/40623128/TableFootBall/v-rep/tablefootball%20-%200507.ttt">tablefootball - 0507.ttt</a></p>
+<p>程式檔:<a href="https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/blob/master/v-rep/40623128/TableFootBall/v-rep/Image_Detection_play.py">Image_Detection_play.py</a></p>
+<p>程式碼:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import vrep
+import time
+
+from PIL import Image as I
+import array
+
+import cv2, numpy
+
+# function based on: 
+#   https://github.com/simondlevy/OpenCV-Python-Hacks/blob/master/greenball_tracker.py
+def speed(handle,speed):
+    vrep.simxSetJointTargetVelocity(clientID,handle,speed,vrep.simx_opmode_oneshot_wait)
+def track_green_object(image):
+    # Blur the image to reduce noise100
+    blur = cv2.GaussianBlur(image, (5,5),0)
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    # Threshold the HSV image for only green colors
+    range = 15
+    lower_green = numpy.array([60-range,100,100])
+    upper_green = numpy.array([60+range,255,255])
+    # Threshold the HSV image to get only green colors
+    mask = cv2.inRange(hsv, lower_green, upper_green)
+    # Blur the mask
+    bmask = cv2.GaussianBlur(mask, (5,5),0)
+    # Take the moments to get the centroid
+    moments = cv2.moments(bmask)
+    m00 = moments['m00']
+    centroid_x, centroid_y = None, None
+    if m00 != 0:
+        centroid_x = int(moments['m10']/m00)
+        centroid_y = int(moments['m01']/m00)
+    # Assume no centroid
+    ctr = None
+    # Use centroid if it exists
+    if centroid_x != None and centroid_y != None:
+        ctr = (centroid_x, centroid_y)
+    return ctr
+
+def track_blue_object(image):
+    # Blur the image to reduce noise100
+    blur = cv2.GaussianBlur(image, (5,5),0)
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    # Threshold the HSV image for only green colors
+    range = 15
+    lower_red = numpy.array([0-range,100,100])
+    upper_red = numpy.array([0+range,255,255])
+    # Threshold the HSV image to get only green colors
+    mask = cv2.inRange(hsv, lower_red, upper_red)
+    # Blur the mask
+    bmask = cv2.GaussianBlur(mask, (5,5),0)
+    # Take the moments to get the centroid
+    moments = cv2.moments(bmask)
+    m00 = moments['m00']
+    centroid_x, centroid_y = None, None
+    if m00 != 0:
+        centroid_x = int(moments['m10']/m00)
+        centroid_y = int(moments['m01']/m00)
+    # Assume no centroid
+    ctr = None
+    # Use centroid if it exists
+    if centroid_x != None and centroid_y != None:
+        ctr = (centroid_x, centroid_y)
+    return ctr
+    
+def track_red_object(image):
+    # Blur the image to reduce noise100
+    blur = cv2.GaussianBlur(image, (5,5),0)
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    # Threshold the HSV image for only green colors
+    range = 15
+    lower_blue = numpy.array([120-range,100,100])
+    upper_blue = numpy.array([120+range,255,255])
+    # Threshold the HSV image to get only green colors
+    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    # Blur the mask
+    bmask = cv2.GaussianBlur(mask, (5,5),0)
+    # Take the moments to get the centroid
+    moments = cv2.moments(bmask)
+    m00 = moments['m00']
+    centroid_x, centroid_y = None, None
+    if m00 != 0:
+        centroid_x = int(moments['m10']/m00)
+        centroid_y = int(moments['m01']/m00)
+    # Assume no centroid
+    ctr = None
+    # Use centroid if it exists
+    if centroid_x != None and centroid_y != None:
+        ctr = (centroid_x, centroid_y)
+    return ctr
+
+vrep.simxFinish(-1)
+clientID = vrep.simxStart('127.0.0.1', 19997, True, True, 5000, 5)
+
+if clientID!=-1:
+  print('Connected to remote API server')
+  # get vision sensor objects
+  res, v0 = vrep.simxGetObjectHandle(clientID, 'vs1', vrep.simx_opmode_oneshot_wait)
+  res, v1 = vrep.simxGetObjectHandle(clientID, 'vs2', vrep.simx_opmode_oneshot_wait)
+  err, resolution, image = vrep.simxGetVisionSensorImage(clientID, v0, 0, vrep.simx_opmode_streaming)
+  err,Sphere_handle=vrep.simxGetObjectHandle(clientID,'Sphere',vrep.simx_opmode_oneshot_wait)
+  err,BRod_handle=vrep.simxGetObjectHandle(clientID,'BRod',vrep.simx_opmode_oneshot_wait)
+  err,BRev_handle=vrep.simxGetObjectHandle(clientID,'BRev',vrep.simx_opmode_oneshot_wait)
+  err,BMo_handle=vrep.simxGetObjectHandle(clientID,'BMo',vrep.simx_opmode_oneshot_wait)
+  err,RRev_handle=vrep.simxGetObjectHandle(clientID,'RRev',vrep.simx_opmode_oneshot_wait)
+  err,RMo_handle=vrep.simxGetObjectHandle(clientID,'RMo',vrep.simx_opmode_oneshot_wait)
+  err,RRod_handle=vrep.simxGetObjectHandle(clientID,'RRod',vrep.simx_opmode_oneshot_wait)
+  time.sleep(1)
+  while (vrep.simxGetConnectionId(clientID) != -1):
+    # get image from vision sensor 'v0'
+    err, resolution, image = vrep.simxGetVisionSensorImage(clientID, v0, 0, vrep.simx_opmode_buffer)
+    if err == vrep.simx_return_ok:
+        image_byte_array = array.array('b', image)
+        #print(image_byte_array)
+        image_buffer = I.frombuffer("RGB", (resolution[0],resolution[1]), bytes(image_byte_array), "raw", "RGB", 0, 1)
+        img2 = numpy.asarray(image_buffer)
+      # try to find something green
+        ret_green = track_green_object(img2)
+        ret_red = track_red_object(img2)
+        ret_blue = track_blue_object(img2)
+        #print('B=',ret_blue[1],ret_blue[0])#y軸座標為0 x軸座標為1
+        #print('R=',ret_red[1],ret_red[0])
+        #print('G=',ret_green[1],ret_green[0])
+        if ret_green != None and ret_red != None and ret_blue != None:
+            Bv = float(ret_green[0])-float(ret_blue[0])
+            BBv=float(ret_green[1])-float(ret_blue[1])
+            Rv = float(ret_green[0])-float(ret_red[0])
+            RRv=float(ret_green[1])-float(ret_red[1])
+            if Bv&lt;0.0:
+                speed(BMo_handle,Bv*-0.02)
+            elif Bv&gt;0.0:
+                speed(BMo_handle,Bv*-0.02)
+            else:
+                speed(BMo_handle,0)
+            if Rv&lt;0.0:
+                speed(RMo_handle,Rv*-0.02)
+            elif Rv&gt;0.0:
+                speed(RMo_handle,Rv*-0.02)
+            else:
+                speed(RMo_handle,0)
+            if RRv&lt;-10.0:
+                speed(RRev_handle,-2)
+            elif RRv&gt;-10.0:
+                speed(RRev_handle,2)
+            else:
+                pass
+            if BBv&lt;10.0:
+                speed(BRev_handle,-2)
+            elif BBv&gt;10.0:
+                speed(BRev_handle,2)
+            else:
+                pass
+      # overlay rectangle marker if something is found by OpenCV
+        if ret_green:
+            cv2.rectangle(img2,(ret_green[0]-5,ret_green[1]-5), (ret_green[0]+5,ret_green[1]+5), (0x99,0xff,0x33), 1)
+          # return image to sensor 'v1'
+        if ret_red:
+            cv2.rectangle(img2,(ret_red[0]-3,ret_red[1]-5), (ret_red[0]+3,ret_red[1]+5), (0xff,0x33,0x33), 1)
+        if ret_blue:
+            cv2.rectangle(img2,(ret_blue[0]-3,ret_blue[1]-5), (ret_blue[0]+3,ret_blue[1]+5), (0x33,0xcc,0xff), 1)
+        img2 = img2.ravel()
+        vrep.simxSetVisionSensorImage(clientID, v1, img2, 0, vrep.simx_opmode_oneshot)
+    elif err == vrep.simx_return_novalue_flag:
+      print("no image yet")
+      pass
+    else:
+      print(err)
+else:
+  print("Failed to connect to remote API Server")
+  vrep.simxFinish(clientID)</pre>
+<p></p>
+<h3><span>影像辨識機器對打修正版</span></h3>
+<p>解決了上週若球至桿子後方將無法回擊的問題</p>
+<p>影片:</p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/vXuvJptDWkA" width="560"></iframe></p>
+<p>vrep設定檔:<a href="https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/blob/master/v-rep/40623128/TableFootBall/v-rep/tablefootball%20-%200507.ttt">tablefootball - 0507.ttt</a></p>
+<p>程式檔:<a href="https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/blob/master/v-rep/40623128/TableFootBall/v-rep/Image_Detection_play_v2.py">Image_Detection_play_v2.py</a></p>
+<p>程式碼:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import vrep
+import time
+
+from PIL import Image as I
+import array
+
+import cv2, numpy
+
+# function based on: 
+#   https://github.com/simondlevy/OpenCV-Python-Hacks/blob/master/greenball_tracker.py
+def speed(handle,speed):
+    vrep.simxSetJointTargetVelocity(clientID,handle,speed,vrep.simx_opmode_oneshot_wait)
+        
+def track_green_object(image):
+    # Blur the image to reduce noise100
+    blur = cv2.GaussianBlur(image, (5,5),0)
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    # Threshold the HSV image for only green colors
+    range = 15
+    lower_green = numpy.array([60-range,100,100])
+    upper_green = numpy.array([60+range,255,255])
+    # Threshold the HSV image to get only green colors
+    mask = cv2.inRange(hsv, lower_green, upper_green)
+    # Blur the mask
+    bmask = cv2.GaussianBlur(mask, (5,5),0)
+    # Take the moments to get the centroid
+    moments = cv2.moments(bmask)
+    m00 = moments['m00']
+    centroid_x, centroid_y = None, None
+    if m00 != 0:
+        centroid_x = int(moments['m10']/m00)
+        centroid_y = int(moments['m01']/m00)
+    # Assume no centroid
+    ctr = None
+    # Use centroid if it exists
+    if centroid_x != None and centroid_y != None:
+        ctr = (centroid_x, centroid_y)
+    return ctr
+
+def track_blue_object(image):
+    # Blur the image to reduce noise100
+    blur = cv2.GaussianBlur(image, (5,5),0)
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    # Threshold the HSV image for only green colors
+    range = 15
+    lower_red = numpy.array([0-range,100,100])
+    upper_red = numpy.array([0+range,255,255])
+    # Threshold the HSV image to get only green colors
+    mask = cv2.inRange(hsv, lower_red, upper_red)
+    # Blur the mask
+    bmask = cv2.GaussianBlur(mask, (5,5),0)
+    # Take the moments to get the centroid
+    moments = cv2.moments(bmask)
+    m00 = moments['m00']
+    centroid_x, centroid_y = None, None
+    if m00 != 0:
+        centroid_x = int(moments['m10']/m00)
+        centroid_y = int(moments['m01']/m00)
+    # Assume no centroid
+    ctr = None
+    # Use centroid if it exists
+    if centroid_x != None and centroid_y != None:
+        ctr = (centroid_x, centroid_y)
+    return ctr
+    
+def track_red_object(image):
+    # Blur the image to reduce noise100
+    blur = cv2.GaussianBlur(image, (5,5),0)
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    # Threshold the HSV image for only green colors
+    range = 15
+    lower_blue = numpy.array([120-range,100,100])
+    upper_blue = numpy.array([120+range,255,255])
+    # Threshold the HSV image to get only green colors
+    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    # Blur the mask
+    bmask = cv2.GaussianBlur(mask, (5,5),0)
+    # Take the moments to get the centroid
+    moments = cv2.moments(bmask)
+    m00 = moments['m00']
+    centroid_x, centroid_y = None, None
+    if m00 != 0:
+        centroid_x = int(moments['m10']/m00)
+        centroid_y = int(moments['m01']/m00)
+    # Assume no centroid
+    ctr = None
+    # Use centroid if it exists
+    if centroid_x != None and centroid_y != None:
+        ctr = (centroid_x, centroid_y)
+    return ctr
+
+vrep.simxFinish(-1)
+clientID = vrep.simxStart('127.0.0.1', 19997, True, True, 5000, 5)
+
+if clientID!=-1:
+  print('Connected to remote API server')
+  # get vision sensor objects
+  res, v0 = vrep.simxGetObjectHandle(clientID, 'vs1', vrep.simx_opmode_oneshot_wait)
+  res, v1 = vrep.simxGetObjectHandle(clientID, 'vs2', vrep.simx_opmode_oneshot_wait)
+  err, resolution, image = vrep.simxGetVisionSensorImage(clientID, v0, 0, vrep.simx_opmode_streaming)
+  err,Sphere_handle=vrep.simxGetObjectHandle(clientID,'Sphere',vrep.simx_opmode_oneshot_wait)
+  err,BRod_handle=vrep.simxGetObjectHandle(clientID,'BRod',vrep.simx_opmode_oneshot_wait)
+  err,BRev_handle=vrep.simxGetObjectHandle(clientID,'BRev',vrep.simx_opmode_oneshot_wait)
+  err,BMo_handle=vrep.simxGetObjectHandle(clientID,'BMo',vrep.simx_opmode_oneshot_wait)
+  err,RRev_handle=vrep.simxGetObjectHandle(clientID,'RRev',vrep.simx_opmode_oneshot_wait)
+  err,RMo_handle=vrep.simxGetObjectHandle(clientID,'RMo',vrep.simx_opmode_oneshot_wait)
+  err,RRod_handle=vrep.simxGetObjectHandle(clientID,'RRod',vrep.simx_opmode_oneshot_wait)
+  time.sleep(1)
+  while (vrep.simxGetConnectionId(clientID) != -1):
+    # get image from vision sensor 'v0'
+    err, resolution, image = vrep.simxGetVisionSensorImage(clientID, v0, 0, vrep.simx_opmode_buffer)
+    if err == vrep.simx_return_ok:
+        image_byte_array = array.array('b', image)
+        #print(image_byte_array)
+        image_buffer = I.frombuffer("RGB", (resolution[0],resolution[1]), bytes(image_byte_array), "raw", "RGB", 0, 1)
+        img2 = numpy.asarray(image_buffer)
+      # try to find something green
+        ret_green = track_green_object(img2)
+        ret_red = track_red_object(img2)
+        ret_blue = track_blue_object(img2)
+        #print('B=',ret_blue[1],ret_blue[0])#y軸座標為0 x軸座標為1
+        #print('R=',ret_red[1],ret_red[0])
+        #print('G=',ret_green[1],ret_green[0])
+        #'''
+        if ret_green != None and ret_red != None and ret_blue != None:
+            Bv = float(ret_green[0])-float(ret_blue[0])
+            BBv=float(ret_green[1])-float(ret_blue[1])
+            Rv = float(ret_green[0])-float(ret_red[0])
+            RRv=float(ret_green[1])-float(ret_red[1])
+            if Bv&lt;0.0:
+                speed(BMo_handle,Bv*-0.02)
+            elif Bv&gt;0.0:
+                speed(BMo_handle,Bv*-0.02)
+            else:
+                pass
+                
+                
+            if Rv&lt;0.0:
+                speed(RMo_handle,Rv*-0.02)
+            elif Rv&gt;0.0:
+                speed(RMo_handle,Rv*-0.02)
+            else:
+                pass
+                
+                
+            if  ret_blue[1] &gt;=18 and ret_green[1] &lt;= 17:
+                if ret_green[0] &gt;62.5:
+                    speed(BMo_handle,2)
+                    time.sleep(0.1)
+                    speed(BRev_handle,20)
+                    time.sleep(0.1)
+                    if ret_green[1] != ret_blue[1]:
+                        Bv = float(ret_green[0])-float(ret_blue[0])
+                        if Bv&lt;0.0:
+                            speed(BMo_handle,Bv*-0.02)
+                        elif Bv&gt;0.0:
+                            speed(BMo_handle,Bv*-0.02)
+                        else:
+                            pass
+                    else:
+                        speed(BRev_handle,2)
+                    
+                elif ret_green[0] &lt;62.5:
+                    speed(BMo_handle,-2)
+                    time.sleep(0.1)
+                    speed(BRev_handle,20)
+                    time.sleep(0.1)
+                    if ret_green[1] != ret_blue[1]:
+                        Bv = float(ret_green[0])-float(ret_blue[0])
+                        if Bv&lt;0.0:
+                            speed(BMo_handle,Bv*-0.02)
+                        elif Bv&gt;0.0:
+                            speed(BMo_handle,Bv*-0.02)
+                        else:
+                            pass
+                    else:
+                        speed(BRev_handle,2)
+            elif ret_green[0]-ret_blue[0] &gt;= -3 and ret_green[0]-ret_blue[0] &lt;= 3:
+                if BBv&lt;10.0:
+                    speed(BRev_handle,-2)
+                elif BBv&gt;10.0:
+                    speed(BRev_handle,2)
+                else:
+                    pass
+                    
+            
+            if  ret_red[1] &lt;=236 and ret_green[1] &gt;= 237:
+                if ret_green[0] &gt;62.5:
+                    speed(RMo_handle,2)
+                    time.sleep(0.1)
+                    speed(RRev_handle,-20)
+                    time.sleep(0.1)
+                    if ret_green[1] != ret_red[1]:
+                        Rv = float(ret_green[0])-float(ret_red[0])
+                        if Rv&lt;0.0:
+                            speed(RMo_handle,Rv*-0.02)
+                        elif Rv&gt;0.0:
+                            speed(RMo_handle,Rv*-0.02)
+                        else:
+                            pass
+                    else:
+                        speed(RRev_handle,2)
+                    
+                elif ret_green[0] &lt;62.5:
+                    speed(RMo_handle,-2)
+                    time.sleep(0.1)
+                    speed(RRev_handle,-20)
+                    time.sleep(0.1)
+                    if ret_green[1] != ret_red[1]:
+                        Rv = float(ret_green[0])-float(ret_red[0])
+                        if Rv&lt;0.0:
+                            speed(RMo_handle,Rv*-0.02)
+                        elif Rv&gt;0.0:
+                            speed(RMo_handle,Rv*-0.02)
+                        else:
+                            pass
+                    else:
+                        speed(RRev_handle,2)
+            elif ret_green[0]-ret_red[0] &gt;= -3 and ret_green[0]-ret_red[0] &lt;= 3:
+                if RRv&lt;-10.0:
+                    speed(RRev_handle,-2)
+                elif RRv&gt;-10.0:
+                    speed(RRev_handle,2)
+                else:
+                    pass
+                    
+            #'''
+      # overlay rectangle marker if something is found by OpenCV
+        if ret_green:
+            cv2.rectangle(img2,(ret_green[0]-5,ret_green[1]-5), (ret_green[0]+5,ret_green[1]+5), (0x99,0xff,0x33), 1)
+          # return image to sensor 'v1'
+        if ret_red:
+            cv2.rectangle(img2,(ret_red[0]-3,ret_red[1]-5), (ret_red[0]+3,ret_red[1]+5), (0xff,0x33,0x33), 1)
+        if ret_blue:
+            cv2.rectangle(img2,(ret_blue[0]-3,ret_blue[1]-5), (ret_blue[0]+3,ret_blue[1]+5), (0x33,0xcc,0xff), 1)
+        img2 = img2.ravel()
+        vrep.simxSetVisionSensorImage(clientID, v1, img2, 0, vrep.simx_opmode_oneshot)
+    elif err == vrep.simx_return_novalue_flag:
+      print("no image yet")
+      pass
+    else:
+      print(err)
+else:
+  print("Failed to connect to remote API Server")
+  vrep.simxFinish(clientID)</pre>
+<h3><span>更改影像辨識方式</span></h3>
+<p>此程式目前只有尋找藍色物件位置</p>
+<p><img alt="" height="221" src="/images/vrep_2019-05-26_17-56-43.png" width="477"/></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import vrep
+import time
+import random as rng
+from PIL import Image as I
+import array
+
+import cv2, numpy
+
+# function based on: 
+#   https://github.com/simondlevy/OpenCV-Python-Hacks/blob/master/greenball_tracker.py
+def speed(handle,speed):
+    vrep.simxSetJointTargetVelocity(clientID,handle,speed,vrep.simx_opmode_oneshot_wait)
+
+def track_blue_object(image):
+    # Blur the image to reduce noise100
+    blur = cv2.GaussianBlur(image, (3,3),0)
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    # Threshold the HSV image for only blue colors
+    ran = 20
+    lower_blue = numpy.array([0-ran,100,100])
+    upper_blue = numpy.array([0+ran,255,255])
+    # Threshold the HSV image to get only blue colors
+    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    # Blur the mask
+    bmask = cv2.GaussianBlur(mask, (5,5),0)
+    
+    threshold = 100
+    canny_output = cv2.Canny(bmask, threshold,threshold*2)
+    contours, _ = cv2.findContours(canny_output, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    # Get the moments
+    mu = [None]*len(contours)
+    for i in range(len(contours)):
+        mu[i] = cv2.moments(contours[i])
+    # Get the mass centers
+    mc = [None]*len(contours)
+    for i in range(len(contours)):
+        # add 1e-5 to avoid division by zero
+        mc[i] = (mu[i]['m10'] / (mu[i]['m00'] + 1e-5), mu[i]['m01'] / (mu[i]['m00'] + 1e-5))
+    return mc
+
+vrep.simxFinish(-1)
+clientID = vrep.simxStart('127.0.0.1', 19997, True, True, 5000, 5)
+
+if clientID!=-1:
+  print('Connected to remote API server')
+  # get vision sensor objects
+  res, v0 = vrep.simxGetObjectHandle(clientID, 'vs1', vrep.simx_opmode_oneshot_wait)
+  res, v1 = vrep.simxGetObjectHandle(clientID, 'vs2', vrep.simx_opmode_oneshot_wait)
+  err, resolution, image = vrep.simxGetVisionSensorImage(clientID, v0, 0, vrep.simx_opmode_streaming)
+  err,Sphere_handle=vrep.simxGetObjectHandle(clientID,'Sphere',vrep.simx_opmode_oneshot_wait)
+  err,BRod_handle=vrep.simxGetObjectHandle(clientID,'BRod',vrep.simx_opmode_oneshot_wait)
+  err,BRev_handle=vrep.simxGetObjectHandle(clientID,'BRev',vrep.simx_opmode_oneshot_wait)
+  err,BMo_handle=vrep.simxGetObjectHandle(clientID,'BMo',vrep.simx_opmode_oneshot_wait)
+  err,RRev_handle=vrep.simxGetObjectHandle(clientID,'RRev',vrep.simx_opmode_oneshot_wait)
+  err,RMo_handle=vrep.simxGetObjectHandle(clientID,'RMo',vrep.simx_opmode_oneshot_wait)
+  err,RRod_handle=vrep.simxGetObjectHandle(clientID,'RRod',vrep.simx_opmode_oneshot_wait)
+  time.sleep(1)
+  while (vrep.simxGetConnectionId(clientID) != -1):
+    # get image from vision sensor 'v0'
+    err, resolution, image = vrep.simxGetVisionSensorImage(clientID, v0, 0, vrep.simx_opmode_buffer)
+    if err == vrep.simx_return_ok:
+        image_byte_array = array.array('b', image)
+        image_buffer = I.frombuffer("RGB", (resolution[0],resolution[1]), bytes(image_byte_array), "raw", "RGB", 0, 1)
+        img2 = numpy.asarray(image_buffer)
+        # try to find something blue
+        ret_blue = track_blue_object(img2)
+        ret_blue_odd = ret_blue[::2]
+        # get the position of blue Object
+        for i in range(len(ret_blue_odd)):
+            if ret_blue_odd[i][1] &gt;=13 and ret_blue_odd[i][1] &lt;=20:
+                blue00 = (ret_blue_odd[i][0], ret_blue_odd[i][1])
+                
+            elif ret_blue_odd[i][1] &gt;= 57 and ret_blue_odd[i][1] &lt;=64:
+                if ret_blue_odd[i][0] &lt; ret_blue_odd[i+1][0]:
+                    blue01 = (ret_blue_odd[i][0], ret_blue_odd[i][1])
+                elif ret_blue[i][0] &gt;= ret_blue[i+1][0]:
+                    blue02 = (ret_blue_odd[i][0], ret_blue_odd[i][1])
+        # blue00 is first rod object position
+        # blue01 is  second rod and left object position
+        # blue02 is second rod and right object position
+        
+        
+        if ret_blue:
+            for i in range(len(ret_blue)):
+                cv2.rectangle(img2,(int(ret_blue[i][0] - 2),int(ret_blue[i][1] - 5)), (int(ret_blue[i][0] + 2),int(ret_blue[i][1] + 5)), (0x33,0xcc,0xff), 1)
+        img2 = img2.ravel()
+        vrep.simxSetVisionSensorImage(clientID, v1, img2, 0, vrep.simx_opmode_oneshot)
+    elif err == vrep.simx_return_novalue_flag:
+      print("no image yet")
+      pass
+    else:
+      print(err)
+else:
+  print("Failed to connect to remote API Server")
+  vrep.simxFinish(clientID)</pre>
+<p></p>
+<h1>OnShape操作內容</h1><h2>W1</h2>
+<h3>W1操作影片</h3>
+<p><a href="https://www.youtube.com/watch?v=uoONqs_QQdY">影片位置</a></p>
+<p><iframe allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen" frameborder="0" height="510" src="//www.youtube.com/embed/uoONqs_QQdY" width="960"></iframe></p>
+<h3>單位設定</h3>
+<p>步驟如下圖</p>
+<p><img alt="" height="513" src="/images/設定單位.png" width="604"/></p>
+<p></p>
+<p><img alt="" height="685" src="/images/工作區單位.png" width="1128"/></p>
+<p><img alt="" height="340" src="/images/工作區單位設定.png" width="190"/></p>
+<h3>W1單字</h3>
+<p><a href="https://www.merriam-webster.com/dictionary/account">account</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/navigating">navigating</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/foundational">foundational</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/gestures">gestures</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/intro">intro</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/visualization">visualization</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/curriculum">curriculum</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/course">course</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/instructor">instructor</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/introduces">introduce</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/manufacture">manufacture</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/divided">divided</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/assessment">assessment</a></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<h2>W2</h2>
+<h3>W2操作影片</h3>
+<p><iframe allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen" frameborder="0" height="510" src="https://www.youtube.com/embed/Qbu8EIs1Gos" width="960"></iframe>w</p>
+<h2>W3</h2>
+<h3>W3操作影片</h3>
+<p><iframe allowfullscreen="allowfullscreen" height="510" src="//www.youtube.com/embed/vanqfJZ5kp0" width="910"></iframe>z</p>
+<h2>W4</h2>
+<h3>W4操作影片</h3>
+<p>學習各零件之間利用自由度限制進行組裝</p>
+<p><iframe allowfullscreen="allowfullscreen" height="510" src="//www.youtube.com/embed/TZGAPkIk2e4" width="910"></iframe></p>
+<h3>W4單字</h3>
+<p><span style="background-color: #ffffff;"><a href="https://www.merriam-webster.com/dictionary/assemblies" style="background-color: #ffffff;">assemblies</a></span></p>
+<p><span style="background-color: #ffffff;"><a href="https://www.merriam-webster.com/dictionary/manipulating">manipulating</a><a href="https://www.merriam-webster.com/dictionary/discuss"></a></span></p>
+<p><span style="background-color: #ffffff;"><a href="https://www.merriam-webster.com/dictionary/discuss">discuss</a></span></p>
+<p><span style="background-color: #ffffff;"><a href="https://www.merriam-webster.com/dictionary/dynamic">dynamic</a></span></p>
+<p><span style="background-color: #ffffff;"><a href="https://www.merriam-webster.com/dictionary/critical">critical</a></span></p>
+<p><span style="background-color: #ffffff;"><a href="https://www.merriam-webster.com/dictionary/utilizes">utilizes</a></span></p>
+<p><span style="background-color: #ffffff;"><a href="https://www.merriam-webster.com/dictionary/constraints">constraints</a></span></p>
+<p><span style="background-color: #ffffff;"><a href="https://www.merriam-webster.com/dictionary/entities">entities</a></span></p>
+<p><span style="background-color: #ffffff;"><a href="https://www.merriam-webster.com/dictionary/unconstrained">unconstrained</a></span></p>
+<p><span style="background-color: #ffffff;"><a href="https://www.merriam-webster.com/dictionary/typically">Typically</a></span></p>
+<p><a href="https://www.merriam-webster.com/dictionary/orientation">orientation</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/preventing">preventing</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/norm">norm</a></p>
+<p><a href="https://www.merriam-webster.com/dictionary/cantilever">Cantilever</a></p>
+<p></p>
+<p><span style="background-color: #ffffff;"></span></p>
+<p><span style="background-color: #ffffff;"></span></p>
+<p><span style="background-color: #ffffff;"></span></p>
+<h1>git功能</h1>
+<p>git status (展示目前狀態)</p>
+<p>git branch 分支名 (創建新分支)</p>
+<p><span>git log --oneline --graph --all (檢查各提交間的關聯)</span></p>
+<p>git checkout 分支名 (轉換分支)</p>
+<p><span> git merge 分支名 (合併分支)</span></p>
+<p><span>git log (查看版次)</span></p>
+<h1>CSS編輯</h1>
+<h2>css參考資料</h2>
+<p>語法參考:<a href="https://www.1keydata.com/css-tutorial/tw/">https://www.1keydata.com/css-tutorial/tw/</a></p>
+<p>協助工具一:<a href="https://www.css3maker.com/">https://www.css3maker.com/</a></p>
+<p>協助工具二:google瀏覽器F12功能</p>
+<p>背景圖來源:<a href="https://www.pexels.com/photo/silhouette-of-mountains-1323550/">https://www.pexels.com/photo/silhouette-of-mountains-1323550/</a></p>
+<p>顏色選擇:<a href="https://color.adobe.com/zh/create/color-wheel/">https://color.adobe.com/zh/create/color-wheel/</a></p>
+<h1>FeatureScript介紹</h1>
+<p><a href="https://mdecadp2018.github.io/site-40623128/content/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E8%87%AA%E8%A8%82%E7%BE%A9%E7%9A%84%E5%8A%9F%E8%83%BD.html">如何使用自訂義的功能</a></p>
+<p><a href="https://mdecadp2018.github.io/site-40623128/content/%E5%A6%82%E4%BD%95%E9%96%8B%E5%95%9F%E6%96%B0%E7%9A%84Feature%20studio.html">如何開啟新的Feature studio</a></p>
+<p><a href="https://mdecadp2018.github.io/site-40623128/content/%E5%BB%BA%E7%AB%8B%E8%BC%B8%E5%85%A5%E8%A1%A8%E5%96%AE%E4%BB%8B%E7%B4%B9.html">建立表單介紹</a></p>
+<p><a href="https://mdecadp2018.github.io/site-40623128/content/%E8%87%AA%E8%A3%BD%E7%B9%AA%E5%9C%96%E5%8A%9F%E8%83%BD%E7%B7%B4%E7%BF%92-%E6%98%9F%E6%98%9F.html">自製繪圖功能練習-星星</a></p>
+<h2>如何使用自訂義的功能</h2>
+<p>在零件圖功能區的最右端處點選即可使用。</p>
+<p><img alt="" height="673" src="/images/開啟位置.png" width="880"/></p>
+<h2>如何開啟新的Feature studio</h2>
+<p>首先至新的圖檔，左下角加號處</p>
+<p>如下圖</p>
+<p><img alt="" height="600" src="/images/程式開啟.png" width="839"/></p>
+<h2>建立輸入表單介紹</h2>
+<p>快捷指令列</p>
+<p><img alt="" height="600" src="/images/快捷.png" width="839"/></p>
+<p>首先使用第一個New Feature建立新的特徵</p>
+<p><img alt="" height="600" src="/images/新增特徵.png" width="839"/></p>
+<p>功能主要是建立一個特徵功能的架構如下圖</p>
+<p><img alt="" height="677" src="/images/特徵格式.png" width="947"/></p>
+<p>可以藉由輸入程式於下圖紅框處，製作表單與繪畫功能</p>
+<p><img alt="" height="677" src="/images/特徵編輯.png" width="947"/></p>
+<p>建立表單的各項輸入項目，可以於下圖位置點選所需項目。</p>
+<p><img alt="" height="572" src="/images/表單功能1.png" width="800"/></p>
+<p>舉例如下圖使用第一個長度參數</p>
+<p><img alt="" height="433" src="/images/Length.png" width="791"/></p>
+<p>程式新增於表單輸入項目，如以下</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">FeatureScript 975;
+import(path : "onshape/std/geometry.fs", version : "975.0");
+
+
+annotation { "Feature Type Name" : "My Feature" }
+export const myFeature = defineFeature(function(context is Context, id is Id, definition is map)
+    precondition
+    {
+        annotation { "Name" : "My Length" }
+        isLength(definition.myLength, LENGTH_BOUNDS);
+        
+    }
+    {
+        
+    });</pre>
+<p>使用該功能就會出現長度輸入欄。</p>
+<p><img alt="" height="79" src="/images/長度表單.png" width="223"/></p>
+<p>程式最後寫的LENGHT_BOUNDS是限制輸入值</p>
+<p>詳細內容可至以下連結運用Ctrl+F尋找<a href="https://cad.onshape.com/FsDoc/library.html#module-valueBounds.fs">valueBounds</a>查詢</p>
+<p><a href="https://cad.onshape.com/FsDoc/library.html#category-Modeling">https://cad.onshape.com/FsDoc/library.html#category-Modeling</a></p>
+<h2>自製繪圖功能練習-星星</h2>
+<p>測試影片:</p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/d2qZ1EtTdfU" width="560"></iframe></p>
+<p>原始碼:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">FeatureScript 975;
+import(path : "onshape/std/geometry.fs", version : "975.0");
+
+
+annotation { "Feature Type Name" : "star" }
+export const myFeature = defineFeature(function(context is Context, id is Id, definition is map)
+    precondition
+    {
+        annotation { "Name" : "Length" }
+        isLength(definition.myLength, LENGTH_BOUNDS);
+        
+        annotation { "Name" : "Number of sides" }
+        isInteger(definition.myCount, COUNT_BOUNDS);
+        
+        
+        
+        
+    }
+    {
+        var N = definition.myCount;         //星星角數
+        var InAngle = 180 * (N-2) / N;      //內角角度
+        var HalfInAngle = InAngle / 2;      //內半角角度
+        var OutAngle = 90 - HalfInAngle;    //外角角度
+        var HalfOutAngle = OutAngle / 2;    //外半角角度
+        var Angle = 360 / N ;               //多邊形中心至各角連線間隔角
+        var HalfAngle = Angle / 2 ;         //多邊形中心至各角連線間隔角的一半
+        
+        var L = definition.myLength / meter;    //邊長
+        var Length = L * cos(HalfOutAngle * degree) + (L * sin(HalfOutAngle * degree)) / tan(OutAngle * degree);//外頂點至中心距
+        var SmallLength = L * sin(HalfOutAngle * degree) / sin(OutAngle * degree);//內頂點至中心距
+        var xO = makeArray(N); //定義數列 xO (N個值)
+        var yO = makeArray(N); //定義數列 yO (N個值)
+        var xI = makeArray(N); //定義數列 xI (N個值)
+        var yI = makeArray(N); //定義數列 yI (N個值)
+        
+        for (var i = 0; i &lt; N; i += 1)      //for迴圈執行N次
+        {
+            var ang = i * Angle; //定義ang 第1次計算為Angle*1 第2次計算為Angle*2 ....
+            xO[i] = Length * cos((90 + ang) * degree); //星星外頂點x座標
+            yO[i] = Length * sin((90 + ang) * degree); //星星外頂點y座標
+            xI[i] = SmallLength * cos((90 - HalfAngle + ang) * degree); //星星內頂點x座標
+            yI[i] = SmallLength * sin((90- HalfAngle + ang) * degree);  //星星內頂點y座標
+        }
+
+        // create the plane on which to generate the sketch  用上視圖創建草圖 草圖名稱 sketchstar
+        var starsketch = newSketch(context, id + "sketchstar", {
+                "sketchPlane" : qCreatedBy(makeId("Top"), EntityType.FACE)
+        });
+        
+        for (var i = 0; i &lt; N; i += 1) //for迴圈執行N次
+        {
+            
+            var LineStart = vector([xO[i], yO[i]]) * meter; //定義線段起始點座標
+            var LineEnd = vector([xI[i],yI[i]]) * meter;    //定義線段結束點座標
+            var LineID = "line" ~ "-" ~ i;                  //線段名稱定義
+            
+            skLineSegment(starsketch, LineID, {             //繪製線段
+                "start" : LineStart,                        //線段開始點
+                "end" : LineEnd                             //線段結束點
+                });
+        }
+        for (var i = 0; i &lt; (N-1); i += 1) //for迴圈
+        {
+            
+            var LineStart = vector([xI[i+1], yI[i+1]]) * meter; //定義線段起始點座標
+            var LineEnd = vector([xO[i],yO[i]]) * meter;        //定義線段結束點座標
+            var LineID = "line2" ~ "-" ~ i;                     //線段名稱定義
+            
+            skLineSegment(starsketch, LineID, {                 //繪製線段
+                "start" : LineStart,                            //線段開始點
+                "end" : LineEnd                                 //線段結束點
+                });
+        }
+        skLineSegment(starsketch, "Line3", {                 //繪製線段
+                "start" : vector([xI[0], yI[0]]) * meter,    //線段開始點
+                "end" : vector([xO[(N-1)],yO[(N-1)]]) * meter//線段結束點
+                });
+                
+        skSolve(starsketch);            //結束草圖
+        
+            
+            
+    });
+    
+    const COUNT_BOUNDS =            //定義值域參數
+{
+    (unitless) : [4, 5, 1e2]        //限定最小4 預設5 最大100
+} as IntegerBoundSpec;
+</pre>
+<h2>參考資料</h2>
+<p><span>Onshape Featurescript:</span></p>
+<p><a href="https://www.onshape.com/features/custom-features" rel="nofollow">https://www.onshape.com/features/custom-features</a></p>
+<p><br/><span>內建功能原始碼:</span></p>
+<p><br/><a href="https://cad.onshape.com/documents/12312312345abcabcabcdeff" rel="nofollow">https://cad.onshape.com/documents/12312312345abcabcabcdeff</a></p>
+<p><span>教學:</span></p>
+<p><a href="https://cad.onshape.com/FsDoc/index.html" rel="nofollow">https://cad.onshape.com/FsDoc/index.html</a></p>
+<p><a href="https://cadlab.mde.tw/post/tag/featurescript.html" rel="nofollow">https://cadlab.mde.tw/post/tag/featurescript.html</a></p>
+<h1>FeatureScript</h1>
+<h2>六角填充</h2>
+<p>六角填充註解</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">FeatureScript 336;
+import(path : "onshape/std/geometry.fs", version : "336.0");
+
+// 設定填充百分比範圍為1~100，預設10
+export const INFILL_BOUNDS =   ///設定值域
+{
+            "min"        : 1,
+            "max"        : 100,
+            (unitless)   : [1, 10, 100]
+        } as IntegerBoundSpec;  //限定整數
+
+// parameter values (real numbers) in various document unit systems with defaults
+export const HEX_BOUNDS =
+{
+            "min"        : 1 * millimeter,
+            "max"        : 100 * millimeter,
+            (meter)      : [0.0, 0.025, 500],
+            (centimeter) : 0.5,
+            (millimeter) : [1, 5, 100],
+            (inch)       : .25,
+            (foot)       : 0.015,
+            (yard)       : 0.005
+        } as LengthBoundSpec; //限定整數
+        
+//-----------------        
+
+annotation { "Feature Type Name" : "HexInfill" }
+export const HexInfill = defineFeature(function(context is Context, id is Id, definition is map)
+    precondition
+    {
+        annotation { "Name" : "Part To Hex Infill", "Filter" : EntityType.BODY, "MaxNumberOfPicks" : 1 }  //表單名稱:Part To Hex Infill,可選項目:實體,最大選擇數:1
+        definition.PartToInfill is Query;               //把所選項目定義為PartToInfill之後要用到只要輸入definition.PartToInfill就代表所選的實體
+
+        annotation { "Name" : "Wall Thickness" }        //表單名稱:Wall Thickness
+        isLength(definition.WallThickness, HEX_BOUNDS); //輸入長度且基礎設定由HEX_BOUNDS輸入
+
+        annotation { "Name" : "Hex Width" }             //表單名稱:Hex Width
+        isLength(definition.HexWidth, HEX_BOUNDS);
+
+        annotation { "Name" : "% InFill" }             //表單名稱:% InFill
+        isInteger(definition.InFill, INFILL_BOUNDS);
+
+        annotation { "Name" : "HexPreview", "Default" : true }//表單名稱:HexPreview 預設:是
+        definition.HexPreview is boolean;                     //設定輸出為布林值(輸出1或0判斷是或否)
+    }
+
+//-----------------
+
+    {
+        // get the limits of the bounding box
+        var boundingBox is Box3d = evBox3d(context, { "topology" : definition.PartToInfill }); //運用所選實體找出邊界框
+        var bbx1 = boundingBox.minCorner[0];            //定義所選實體中最小x座標為bbx1
+        var bby1 = boundingBox.minCorner[1];            //定義所選實體中最小y座標為bby1
+        var bbz1 = boundingBox.minCorner[2];            //定義所選實體中最小z座標為bbz1
+        var bbx2 = boundingBox.maxCorner[0];            //定義所選實體中最大x座標為bbx2
+        var bby2 = boundingBox.maxCorner[1];            //定義所選實體中最大y座標為bby2
+
+        // from the hex width, define some other variables
+        var FullWidthDimless = (definition.HexWidth) / meter;    //六角形內接圓直徑
+        var HalfWidthDimless = (definition.HexWidth / 2) / meter;//六角形內接圓半徑
+        var LongArm = HalfWidthDimless / cos(30 * degree);       //六角形外接圓半徑
+        var Flat = (HalfWidthDimless * tan(30 * degree)) * 2;    //六角形邊長
+        var Yincrement = LongArm + (Flat / 2);                   //兩六角形連心線至上方六角型垂直距離
+
+        var TotalXcells = ceil((bbx2 - bbx1) / definition.HexWidth) + 1;   //定義x方向六邊形總數 (ceil 大於某數的最大整數)
+        var TotalYcells = ceil((bby2 - bby1) / (Yincrement * meter)) + 1;  //定義y方向六邊形總數
+
+        var AreaOfHex = (6 * (HalfWidthDimless * HalfWidthDimless)) / (sqrt(3)); //六邊形面積     (6*三角形面積)
+        var ReducedArea = AreaOfHex * ((100 - definition.InFill) / 100);         //六邊形縮小後面積 (由表單瑱入% InFill之值決定縮小多少)
+        var ReducedHalfWidth = sqrt((sqrt(3) * ReducedArea) / 6);                //反推縮小面積後的外接圓半徑
+        var ThickenAmount = (FullWidthDimless - (ReducedHalfWidth * 2)) / 2;     //邊長縮小長度
+
+        LongArm -= ThickenAmount; // this is the 'radius' of the reduced (infilled) hex 把縮小長度轉為負數
+
+        // define some variables that we will use to create the hex sketch 定義製作六邊形草圖的數值
+        var Origin = vector([0, 0, bbz1]) * meter; // origin (lower z bounding box) 原點位置
+        var Normal = vector([0, 0, 1]);            // sketch normal (z+)    草圖法線方向
+        var Xdir   = vector([1, 0, 0]);            // define x direction in the new sketch 新草圖中的x方向
+
+        // create the plane on which to generate the sketch  創建用來生成草圖的平面
+        var HexPlane is Plane = plane(Origin, Normal, Xdir);
+
+        // create sketch  創建草圖
+        var HexSketch = newSketchOnPlane(context, id + "HexSketch", {
+                "sketchPlane" : HexPlane    //草圖平面為HexPlane
+            });
+
+        // all the hexes are the same size so we only have to calculate the 6 node locations (relative to the hex center) one time
+        var x1 = makeArray(6);  //定義數列 x1 (6個值)
+        var y1 = makeArray(6);  //定義數列 y1 (6個值)
+        var x2 = makeArray(6);  //定義數列 x2 (6個值)
+        var y2 = makeArray(6);  //定義數列 y2 (6個值)
+
+        for (var i = 0; i &lt; 6; i += 1)  //for迴圈 
+        {
+            var ang = i * 60;                           //定義ang 第1次計算為60 第2次計算為120 ....
+            x1[i] = LongArm * cos((ang - 30) * degree); //直線繪製六邊形起始點x座標
+            y1[i] = LongArm * sin((ang - 30) * degree); //直線繪製六邊形起始點y座標
+            x2[i] = LongArm * cos((ang + 30) * degree); //直線繪製六邊形結束點x座標
+            y2[i] = LongArm * sin((ang + 30) * degree); //直線繪製六邊形結束點y座標
+        }
+
+        // Begin loop to draw hex line entities 開始繪製六邊形
+
+        for ( var y = 0; y &lt; TotalYcells; y += 1)    //重複執行(Y軸六邊形總數)次
+        {
+            var Xcenter = (bbx1 - definition.HexWidth) / meter;        //最小x座標-內接圓直徑
+            var Ycenter = (bby1 + (y * (Yincrement * meter))) / meter;//最小y座標+(兩六角形連心線至上方六角型垂直距離)
+
+            if (y % 2 != 0) // odd row           y/2餘數不為0時
+                Xcenter += (FullWidthDimless / 2); //Xcenter的值 增加六角形內接圓半徑
+
+            for (var x = 0; x &lt; TotalXcells; x += 1) //重複執行(X軸六邊形總數)次
+            {
+                Xcenter += FullWidthDimless;          //Xcenter的值 增加六角形內接圓直徑
+
+                for (var i = 0; i &lt; 6; i += 1)
+                {
+                    var LineStart = vector([Xcenter + x1[i], Ycenter + y1[i]]) * meter; //各線段起點座標
+                    var LineEnd   = vector([Xcenter + x2[i], Ycenter + y2[i]]) * meter; //各線段終點座標
+
+                    // generate a unique id for every line entity in the sketch
+                    var LineID = "line"~"-"~x~"-"~y~"-"~i;
+
+                    // draw a line 
+                    skLineSegment(HexSketch, LineID, {
+                                "start" : LineStart,
+                                "end"   : LineEnd
+                            });
+                }
+            }
+        }
+
+        // End line drawing loop 草圖繪畫結束
+
+        skSolve(HexSketch); // solve the sketch. Must solve the sketch before you can do anything else. 結束草圖
+
+        // do this only if the 'preview' option is un-checked 只在取消預覽時執行以下
+        if (!definition.HexPreview)
+        {
+            // make a copy of the original part 複製所選實體
+            transform(context, id + "CopyOfOriginal", {
+                        "entities"      : definition.PartToInfill,
+                        "transformType" : TransformType.COPY,
+                        "makeCopy"      : true });
+
+            // cut extrude the entire sketch through the copy of the original part 切除擠出部分
+            extrude(context, id + "HexCuts", {
+                        "entities"      : qSketchRegion(id + "HexSketch"),
+                        "endBound"      : BoundingType.THROUGH_ALL,
+                        "operationType" : NewBodyOperationType.REMOVE,
+                        "defaultScope"  : false,
+                        "booleanScope"  : qCreatedBy(id + "CopyOfOriginal", EntityType.BODY)
+                    });
+
+            // this debug statement shows a graphical preview of the result of the hex-removed-copy
+            debug(context, qCreatedBy(id + "CopyOfOriginal", EntityType.BODY));
+
+            // shell (hollow) the original part - if this is not possible (fails) then show error message and exit 如果無法執行則跳出錯誤訊息並結束
+            try
+            {
+                shell(context, id + "shell", {
+                            "parts"     : definition.PartToInfill,
+                            "thickness" : definition.WallThickness,
+                            "isHollow"  : true
+                        });
+            }
+            
+            catch
+            {
+                throw regenError("Unable to shell this part with the current wall thickness");
+            }
+
+            // querry that returns the hex-removed-copy and the shelled (hollow) original part
+            // note: it is the first item in the querry that retains its identity (name, color etc)
+            var PartAndHex = qUnion([definition.PartToInfill, qCreatedBy(id + "CopyOfOriginal", EntityType.BODY)]);
+
+            //boolean union of shelled (hollow) part and hex-removed-copy
+            opBoolean(context, id + "BooleanUnion", {
+                        "tools"         : PartAndHex,
+                        "operationType" : BooleanOperationType.UNION
+                    });
+
+            //querry that returns all the entities in the hex sketch
+            var StuffInSketch = qCreatedBy(id + "HexSketch", EntityType.BODY);
+            
+            // delete all the sketch entities
+            opDeleteBodies(context, id + "DeleteSketchContents", { "entities" : StuffInSketch });
+
+        }
+        // endif HexPreview
+
+    });
+    
+//-----------------
+</pre>
+<h2>六角填充第二版</h2>
+<h3>表單</h3>
+<p>由原本的</p>
+<p><img alt="" height="209" src="/images/20181224.png" width="219"/></p>
+<p>更改為下拉式可選所需類型</p>
+<p><img alt="" height="218" src="/images/2018-12-24_21-12-16.gif" width="222"/></p>
+<p>原始碼:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">FeatureScript 975;
+import(path : "onshape/std/geometry.fs", version : "975.0");
+  
+        
+
+annotation { "Feature Type Name" : "Hex In fill" }
+
+export const HexInfill2 = defineFeature(function(context is Context, id is Id, definition is map)
+    precondition
+    {
+        annotation { "Name" : "Part To Hex Infill", "Filter" : EntityType.BODY, "MaxNumberOfPicks" : 1 }  //表單名稱:Part To Hex Infill,可選項目:實體,最大選擇數:1
+        definition.PartToInfill is Query;               //把所選項目定義為PartToInfill之後要用到只要輸入definition.PartToInfill就代表所選的實體
+        
+        annotation { "Name" : "Input type" }
+        definition.HexInputType is HexInputType;
+        
+        //長度表單開始處
+        if (definition.HexInputType == HexInputType.length)
+        {
+            annotation { "Name" : "Wall Thickness" }        //表單名稱:Wall Thickness
+            isLength(definition.WallThickness, HEX_BOUNDS);
+        }
+        
+        if (definition.HexInputType == HexInputType.length)
+        {
+            annotation { "Name" : "Hex Width" }             //表單名稱:Hex Width
+            isLength(definition.HexWidth, HEX_BOUNDS);
+        }
+        
+        if (definition.HexInputType == HexInputType.length)
+        {
+            annotation { "Name" : "% InFill" }              //表單名稱:% InFill
+            isInteger(definition.InFill, INFILL_BOUNDS);
+        }
+        //長度表單結束
+        
+        //外力表單開始處
+        if (definition.HexInputType == HexInputType.force)
+        {
+            annotation { "Name" : "Force (N)" }             //表單名稱:Force (N)
+            isReal(definition.Force, POSITIVE_REAL_BOUNDS); 
+        }
+        
+        if (definition.HexInputType == HexInputType.force)
+        {
+            annotation { "Name" : "Compressive Strength (Mpa)" }        //表單名稱:Compressive Strength (Mpa)
+            isInteger(definition.Compressive, POSITIVE_COUNT_BOUNDS);   //所填數值必需&gt;0
+        }
+        
+        if (definition.HexInputType == HexInputType.force)
+        {
+            annotation { "Name" : "Safety Factor" }        //表單名稱:Compressive Strength (Mpa)
+            isInteger(definition.SafetyFactor, POSITIVE_COUNT_BOUNDS);  //所填數值必需&gt;0
+        }
+        //外力表單結束
+        
+        annotation { "Name" : "HexPreview", "Default" : true }//表單名稱:HexPreview 預設:是
+        definition.HexPreview is boolean;                     //設定輸出為布林值(輸出1或0判斷是或否)
+    }
+    
+    
+    
+    {
+        
+
+    });
+    
+export enum HexInputType
+{
+    annotation { "Name" : "Length" }
+    length,
+    annotation { "Name" : "Force" }
+    force
+}
+
+
+export const INFILL_BOUNDS =   ///設定值域
+{
+            (unitless)   : [1, 10, 100]
+        } as IntegerBoundSpec;  //限定整數
+    
+export const HEX_BOUNDS =
+{
+            (millimeter) : [1, 5, 100],
+        } as LengthBoundSpec; //限定整數</pre>
+<p></p>
+<h3>繪圖功能長度版本</h3>
+<p>繪製長度版本內六角形</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">FeatureScript 975;
+import(path : "onshape/std/geometry.fs", version : "975.0");
+  
+        
+
+annotation { "Feature Type Name" : "Hex In fill" }
+
+export const HexInfill2 = defineFeature(function(context is Context, id is Id, definition is map)
+    precondition
+    {
+        annotation { "Name" : "Part To Hex Infill", "Filter" : EntityType.BODY, "MaxNumberOfPicks" : 1 }  //表單名稱:Part To Hex Infill,可選項目:實體,最大選擇數:1
+        definition.PartToInfill is Query;               //把所選項目定義為PartToInfill之後要用到只要輸入definition.PartToInfill就代表所選的實體
+        
+        annotation { "Name" : "Input type" }
+        definition.HexInputType is HexInputType;
+        
+        //長度表單開始處
+        if (definition.HexInputType == HexInputType.length)
+        {
+            annotation { "Name" : "Wall Thickness" }        //表單名稱:Wall Thickness
+            isLength(definition.WallThickness, HEX_BOUNDS);
+        }
+        
+        if (definition.HexInputType == HexInputType.length)
+        {
+            annotation { "Name" : "Hex Width" }             //表單名稱:Hex Width
+            isLength(definition.HexWidth, HEX_BOUNDS);
+        }
+        
+        if (definition.HexInputType == HexInputType.length)
+        {
+            annotation { "Name" : "% InFill" }              //表單名稱:% InFill
+            isInteger(definition.InFill, INFILL_BOUNDS);
+        }
+        //長度表單結束
+        
+        //外力表單開始處
+        if (definition.HexInputType == HexInputType.force)
+        {
+            annotation { "Name" : "Force (N)" }             //表單名稱:Force (N)
+            isReal(definition.Force, POSITIVE_REAL_BOUNDS); 
+        }
+        
+        if (definition.HexInputType == HexInputType.force)
+        {
+            annotation { "Name" : "Compressive Strength (Mpa)" }        //表單名稱:Compressive Strength (Mpa)
+            isInteger(definition.Compressive, POSITIVE_COUNT_BOUNDS);   //所填數值必需&gt;0
+        }
+        
+        if (definition.HexInputType == HexInputType.force)
+        {
+            annotation { "Name" : "Safety Factor" }        //表單名稱:Compressive Strength (Mpa)
+            isInteger(definition.SafetyFactor, POSITIVE_COUNT_BOUNDS);  //所填數值必需&gt;0
+        }
+        //外力表單結束
+        
+        annotation { "Name" : "HexPreview", "Default" : true }//表單名稱:HexPreview 預設:是
+        definition.HexPreview is boolean;                     //設定輸出為布林值(輸出1或0判斷是或否)
+    }
+    
+    
+    
+    {
+        // get the limits of the bounding box
+        var boundingBox is Box3d = evBox3d(context, { "topology" : definition.PartToInfill }); //運用所選實體找出邊界框
+        var bbx1 = boundingBox.minCorner[0];            //定義所選實體中最小x座標為bbx1
+        var bby1 = boundingBox.minCorner[1];            //定義所選實體中最小y座標為bby1
+        var bbz1 = boundingBox.minCorner[2];            //定義所選實體中最小z座標為bbz1
+        var bbx2 = boundingBox.maxCorner[0];            //定義所選實體中最大x座標為bbx2
+        var bby2 = boundingBox.maxCorner[1];            //定義所選實體中最大y座標為bby2
+
+        // from the hex width, define some other variables
+        var FullWidthDimless = (definition.HexWidth) / meter;    //六角形內接圓直徑
+        var HalfWidthDimless = (definition.HexWidth / 2) / meter;//六角形內接圓半徑
+        var LongArm = HalfWidthDimless / cos(30 * degree);       //六角形外接圓半徑
+        var Flat = (HalfWidthDimless * tan(30 * degree)) * 2;    //六角形邊長
+        var Yincrement = LongArm + (Flat / 2);                   //兩六角形連心線至上方六角型垂直距離
+
+        var TotalXcells = ceil((bbx2 - bbx1) / definition.HexWidth) + 1;   //定義x方向六邊形總數 (ceil 大於某數的最大整數)
+        var TotalYcells = ceil((bby2 - bby1) / (Yincrement * meter)) + 1;  //定義y方向六邊形總數
+
+        var AreaOfHex = (6 * (HalfWidthDimless * HalfWidthDimless)) / (sqrt(3)); //六邊形面積     (6*三角形面積)
+        var ReducedArea = AreaOfHex * ((100 - definition.InFill) / 100);         //六邊形縮小後面積 (由表單瑱入% InFill之值決定縮小多少)
+        var ReducedHalfWidth = sqrt((sqrt(3) * ReducedArea) / 6);                //反推縮小面積後的外接圓半徑
+        var ThickenAmount = (FullWidthDimless - (ReducedHalfWidth * 2)) / 2;     //邊長縮小長度
+
+        LongArm -= ThickenAmount; // this is the 'radius' of the reduced (infilled) hex 把縮小長度轉為負數
+
+        // define some variables that we will use to create the hex sketch 定義製作六邊形草圖的數值
+        var Origin = vector([0, 0, bbz1]) * meter; // origin (lower z bounding box) 原點位置
+        var Normal = vector([0, 0, 1]);            // sketch normal (z+)    草圖法線方向
+        var Xdir   = vector([1, 0, 0]);            // define x direction in the new sketch 新草圖中的x方向
+
+        // create the plane on which to generate the sketch  創建用來生成草圖的平面
+        var HexPlane is Plane = plane(Origin, Normal, Xdir);
+
+        // create sketch  創建草圖
+        var HexSketch = newSketchOnPlane(context, id + "HexSketch", {
+                "sketchPlane" : HexPlane    //草圖平面為HexPlane
+            });
+
+        // all the hexes are the same size so we only have to calculate the 6 node locations (relative to the hex center) one time
+        var x1 = makeArray(6);  //定義數列 x1 (6個值)
+        var y1 = makeArray(6);  //定義數列 y1 (6個值)
+        var x2 = makeArray(6);  //定義數列 x2 (6個值)
+        var y2 = makeArray(6);  //定義數列 y2 (6個值)
+
+        for (var i = 0; i &lt; 6; i += 1)  //for迴圈 
+        {
+            var ang = i * 60;                           //定義ang 第1次計算為60 第2次計算為120 ....
+            x1[i] = LongArm * cos((ang - 30) * degree); //直線繪製六邊形起始點x座標
+            y1[i] = LongArm * sin((ang - 30) * degree); //直線繪製六邊形起始點y座標
+            x2[i] = LongArm * cos((ang + 30) * degree); //直線繪製六邊形結束點x座標
+            y2[i] = LongArm * sin((ang + 30) * degree); //直線繪製六邊形結束點y座標
+        }
+
+        // Begin loop to draw hex line entities 開始繪製六邊形
+
+        for ( var y = 0; y &lt; TotalYcells; y += 1)    //重複執行(Y軸六邊形總數)次
+        {
+            var Xcenter = (bbx1 - definition.HexWidth) / meter;        //最小x座標-內接圓直徑
+            var Ycenter = (bby1 + (y * (Yincrement * meter))) / meter;//最小y座標+(兩六角形連心線至上方六角型垂直距離)
+
+            if (y % 2 != 0) // odd row           y/2餘數不為0時
+                Xcenter += (FullWidthDimless / 2); //Xcenter的值 增加六角形內接圓半徑
+
+            for (var x = 0; x &lt; TotalXcells; x += 1) //重複執行(X軸六邊形總數)次
+            {
+                Xcenter += FullWidthDimless;          //Xcenter的值 增加六角形內接圓直徑
+
+                for (var i = 0; i &lt; 6; i += 1)
+                {
+                    var LineStart = vector([Xcenter + x1[i], Ycenter + y1[i]]) * meter; //各線段起點座標
+                    var LineEnd   = vector([Xcenter + x2[i], Ycenter + y2[i]]) * meter; //各線段終點座標
+
+                    // generate a unique id for every line entity in the sketch
+                    var LineID = "line"~"-"~x~"-"~y~"-"~i;
+
+                    // draw a line 
+                    skLineSegment(HexSketch, LineID, {
+                                "start" : LineStart,
+                                "end"   : LineEnd
+                            });
+                }
+            }
+        }
+
+        // End line drawing loop 草圖繪畫結束
+
+        skSolve(HexSketch); // solve the sketch. Must solve the sketch before you can do anything else. 結束草圖
+
+        // do this only if the 'preview' option is un-checked 只在取消預覽時執行以下
+        if (!definition.HexPreview)
+        {
+            // make a copy of the original part 複製所選實體
+            transform(context, id + "CopyOfOriginal", {
+                        "entities"      : definition.PartToInfill,
+                        "transformType" : TransformType.COPY,
+                        "makeCopy"      : true });
+
+            // cut extrude the entire sketch through the copy of the original part 切除擠出部分
+            extrude(context, id + "HexCuts", {
+                        "entities"      : qSketchRegion(id + "HexSketch"),
+                        "endBound"      : BoundingType.THROUGH_ALL,
+                        "operationType" : NewBodyOperationType.REMOVE,
+                        "defaultScope"  : false,
+                        "booleanScope"  : qCreatedBy(id + "CopyOfOriginal", EntityType.BODY)
+                    });
+
+            // this debug statement shows a graphical preview of the result of the hex-removed-copy
+            debug(context, qCreatedBy(id + "CopyOfOriginal", EntityType.BODY));
+
+            // shell (hollow) the original part - if this is not possible (fails) then show error message and exit 如果無法執行則跳出錯誤訊息並結束
+            try
+            {
+                shell(context, id + "shell", {
+                            "parts"     : definition.PartToInfill,
+                            "thickness" : definition.WallThickness,
+                            "isHollow"  : true
+                        });
+            }
+            
+            catch
+            {
+                throw regenError("Unable to shell this part with the current wall thickness");
+            }
+
+            // querry that returns the hex-removed-copy and the shelled (hollow) original part
+            // note: it is the first item in the querry that retains its identity (name, color etc)
+            var PartAndHex = qUnion([definition.PartToInfill, qCreatedBy(id + "CopyOfOriginal", EntityType.BODY)]);
+
+            //boolean union of shelled (hollow) part and hex-removed-copy
+            opBoolean(context, id + "BooleanUnion", {
+                        "tools"         : PartAndHex,
+                        "operationType" : BooleanOperationType.UNION
+                    });
+
+            //querry that returns all the entities in the hex sketch
+            var StuffInSketch = qCreatedBy(id + "HexSketch", EntityType.BODY);
+            
+            // delete all the sketch entities
+            opDeleteBodies(context, id + "DeleteSketchContents", { "entities" : StuffInSketch });
+
+        }
+        // endif HexPreview
+
+    });
+    
+export enum HexInputType
+{
+    annotation { "Name" : "Length" }
+    length,
+    annotation { "Name" : "Force" }
+    force
+}
+
+
+export const INFILL_BOUNDS =   ///設定值域
+{
+            (unitless)   : [1, 10, 100]
+        } as IntegerBoundSpec;  //限定整數
+    
+export const HEX_BOUNDS =
+{
+            (millimeter) : [1, 5, 100],
+        } as LengthBoundSpec; //限定整數</pre>
+<h3>繪圖功能外力版本</h3>
+<h2>FeatureScript參考資料</h2>
+<p><span>Onshape Featurescript:</span></p>
+<p><a href="https://www.onshape.com/features/custom-features" rel="nofollow">https://www.onshape.com/features/custom-features</a></p>
+<p><br/><span>內建功能原始碼:</span></p>
+<p><br/><a href="https://cad.onshape.com/documents/12312312345abcabcabcdeff" rel="nofollow">https://cad.onshape.com/documents/12312312345abcabcabcdeff</a></p>
+<p><span>教學:</span></p>
+<p><a href="https://cad.onshape.com/FsDoc/index.html" rel="nofollow">https://cad.onshape.com/FsDoc/index.html</a></p>
+<p><a href="https://cadlab.mde.tw/post/tag/featurescript.html" rel="nofollow">https://cadlab.mde.tw/post/tag/featurescript.html</a></p>
+<p>外力公式:</p>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0020768313002205#e0030">https://www.sciencedirect.com/science/article/pii/S0020768313002205#e0030</a></p>

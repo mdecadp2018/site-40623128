@@ -1,0 +1,332 @@
+<!doctype html>
+<html><head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>計算機程式教材</title> <link rel="stylesheet" type="text/css" href="./../static/cmsimply.css">
+
+<script type="text/javascript" src="./../static/syntaxhighlighter/shCore.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushJScript.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushJava.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushPython.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushSql.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushXml.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushPhp.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushLua.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushCpp.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushCss.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushCSharp.js"></script>
+<link type="text/css" rel="stylesheet" href="./../static/syntaxhighlighter/css/shCoreDefault.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- for LaTeX equations 暫時不用
+<script src="https://scrum-3.github.io/web/math/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+<script type="text/javascript">
+init_mathjax = function() {
+    if (window.MathJax) {
+        // MathJax loaded
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+            },
+            displayAlign: 'left', // Change this to 'center' to center equations.
+            "HTML-CSS": {
+                styles: {'.MathJax_Display': {"margin": 0}}
+            }
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    }
+}
+init_mathjax();
+</script>
+-->
+<!-- 暫時不用
+<script src="./../static/fengari-web.js"></script>
+<script type="text/javascript" src="./../static/Cango-13v08-min.js"></script>
+<script type="text/javascript" src="./../static/CangoAxes-4v01-min.js"></script>
+<script type="text/javascript" src="./../static/gearUtils-05.js"></script>
+-->
+<!-- for Brython 暫時不用
+<script src="https://scrum-3.github.io/web/brython/brython.js"></script>
+<script src="https://scrum-3.github.io/web/brython/brython_stdlib.js"></script>
+-->
+
+<script src="./../static/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+    $("ul.topmenu> li:has(ul) > a").append('<div class="arrow-right"></div>');
+    $("ul.topmenu > li ul li:has(ul) > a").append('<div class="arrow-right"></div>');
+});
+</script>
+
+</head><header><h1>40623128 - 個人網站</h1> <confmenu>
+<ul>
+<li><a href="index.html">主頁</a></li>
+<li><a href="sitemap.html"> 網站檢索</a></li>
+<li><a href="./../reveal/index.html">投影片</a></li>
+<li><a href="./../reveal/index4.html">期中簡報</a></li>
+<li><a href="./../blog/index.html">部落格</a></li>
+<li><a href="https://www.onshape.com/"> Onshape</a></li>
+<li><a href="https://www.merriam-webster.com/"> Dictionary</a></li>
+
+</ul>
+</confmenu></header>
+<div class='container'><nav><ul id='css3menu1' class='topmenu'><li><a href='簡介.html'>簡介</a><li><a href='手足球.html'>手足球</a><ul><li><a href='期中前.html'>期中前</a><ul><li><a href='自動回擊.html'>自動回擊</a><li><a href='手足球手控與電腦對打.html'>手足球手控與電腦對打</a><li><a href='手足球電腦對電腦.html'>手足球電腦對電腦</a><li><a href='手足球雙人對打.html'>手足球雙人對打</a></li></ul><li><a href='期末前.html'>期末前</a><ul><li><a href='影像辨識尋找球和桿子位置.html'>影像辨識尋找球和桿子位置</a><li><a href='影像辨識機器對打.html'>影像辨識機器對打</a><li><a href='影像辨識機器對打修正版.html'>影像辨識機器對打修正版</a><li><a href='更改影像辨識方式.html'>更改影像辨識方式</a></li></ul><li><a href='遭遇問題與解決方式.html'>遭遇問題與解決方式</a></li></ul><li><a href='OnShape操作內容.html'>OnShape操作內容</a><ul><li><a href='W1.html'>W1</a><ul><li><a href='W1操作影片.html'>W1操作影片</a><li><a href='單位設定.html'>單位設定</a><li><a href='W1單字.html'>W1單字</a></li></ul><li><a href='W2.html'>W2</a><ul><li><a href='W2操作影片.html'>W2操作影片</a></li></ul><li><a href='W3.html'>W3</a><ul><li><a href='W3操作影片.html'>W3操作影片</a></li></ul><li><a href='W4.html'>W4</a><ul><li><a href='W4操作影片.html'>W4操作影片</a><li><a href='W4單字.html'>W4單字</a></li></li></ul></ul><li><a href='git功能.html'>git功能</a><li><a href='CSS編輯.html'>CSS編輯</a><ul><li><a href='css參考資料.html'>css參考資料</a></li></ul><li><a href='FeatureScript介紹.html'>FeatureScript介紹</a><ul><li><a href='如何使用自訂義的功能.html'>如何使用自訂義的功能</a><li><a href='如何開啟新的Feature studio.html'>如何開啟新的Feature studio</a><li><a href='建立輸入表單介紹.html'>建立輸入表單介紹</a><li><a href='自製繪圖功能練習-星星.html'>自製繪圖功能練習-星星</a><li><a href='參考資料.html'>參考資料</a></li></ul><li><a href='FeatureScript.html'>FeatureScript</a><ul><li><a href='六角填充.html'>六角填充</a><li><a href='六角填充第二版.html'>六角填充第二版</a><ul><li><a href='表單.html'>表單</a><li><a href='繪圖功能長度版本.html'>繪圖功能長度版本</a><li><a href='繪圖功能外力版本.html'>繪圖功能外力版本</a></li></ul><li><a href='FeatureScript參考資料.html'>FeatureScript參考資料</a></li></ul></nav><section>手足球手控與電腦對打 << <a href='手足球手控與電腦對打.html'>Previous</a> <a href='手足球雙人對打.html'>Next</a> >> 手足球雙人對打<br /><h1>手足球電腦對電腦</h1>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/e4sEH5GBXBk" width="560"></iframe></p>
+<p><span>vrep檔案位置:</span><a href="https://github.com/mdecadp2018/tree/gh-pages/TableFootBall/v-rep/tablefootball.ttt">tablefootball.ttt</a></p>
+<p></p>
+<p>python控制程式:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import vrep
+from time import sleep
+import sys, math
+# child threaded script: 
+# 內建使用 port 19997 若要加入其他 port, 在  serve 端程式納入
+#simExtRemoteApiStart(19999)
+ 
+vrep.simxFinish(-1)
+ 
+clientID = vrep.simxStart('127.0.0.1', 19997, True, True, 5000, 5)
+KickBallV = 45     #手把轉速設定(度/秒)
+Move_Minus =-0.1          #手把水平移速(m/s)
+Move_Plus =0.1
+n=1
+R_KickBallVel = (math.pi/180)*KickBallV
+B_KickBallVel = -(math.pi/180)*KickBallV
+if clientID!= -1:
+    print("Connected to remote server")
+else:
+    print('Connection not successful')
+    sys.exit('Could not connect')
+ 
+errorCode,Sphere_handle=vrep.simxGetObjectHandle(clientID,'Sphere',vrep.simx_opmode_oneshot_wait)
+errorCode,BRod_handle=vrep.simxGetObjectHandle(clientID,'BRod',vrep.simx_opmode_oneshot_wait)
+errorCode,BRev_handle=vrep.simxGetObjectHandle(clientID,'BRev',vrep.simx_opmode_oneshot_wait)
+errorCode,BMo_handle=vrep.simxGetObjectHandle(clientID,'BMo',vrep.simx_opmode_oneshot_wait)
+errorCode,RRev_handle=vrep.simxGetObjectHandle(clientID,'RRev',vrep.simx_opmode_oneshot_wait)
+errorCode,RMo_handle=vrep.simxGetObjectHandle(clientID,'RMo',vrep.simx_opmode_oneshot_wait)
+errorCode,RRod_handle=vrep.simxGetObjectHandle(clientID,'RRod',vrep.simx_opmode_oneshot_wait)
+
+if errorCode == -1:
+    print('Can not find left or right motor')
+    sys.exit()
+    
+def stop():
+    errorCode = vrep.simxStopSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+    
+def start():
+    errorCode = vrep.simxStartSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+    
+def pause():
+    errorCode = vrep.simxPauseSimulation(clientID,vrep.simx_opmode_oneshot_wait)
+
+def setting():
+    errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+    Bv =position_S[1]- position_BR[1]
+    BBv =position_S[0] - position_BR[0]
+    Rv =position_S[1]- position_RR[1]
+    RRv =position_RR[0]-position_S[0]
+
+def getballposition():
+    #for i in range(steps):
+    errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+    errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+    Bv =position_S[1] - position_BR[1]
+    BBv =position_S[0] - position_BR[0]
+    Rv =position_S[1] - position_RR[1]
+    RRv =position_S[0] - position_RR[0]
+    while (n == 1):
+        
+        if Bv &lt;= 0 and BBv &lt;= 0.02 and Rv&lt;=0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &lt;= 0.02 and Rv&lt;=0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &gt; 0.02 and Rv&lt;=0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &gt; 0.02 and Rv&lt;=0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &lt;= 0.02 and Rv&gt;0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &lt;= 0.02 and Rv&gt;0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &gt; 0.02 and Rv&gt;0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &gt; 0.02 and Rv&gt;0 and RRv &lt;= 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &lt;= 0.02 and Rv&lt;=0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &lt;= 0.02 and Rv&lt;=0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &gt; 0.02 and Rv&lt;=0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &gt; 0.02 and Rv&lt;=0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &lt;= 0.02 and Rv&gt;0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &lt;= 0.02 and Rv&gt;0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &lt;= 0 and BBv &gt; 0.02 and Rv&gt;0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        elif Bv &gt; 0 and BBv &gt; 0.02 and Rv&gt;0 and RRv &gt; 0.02:
+            errorCode,position_BR=vrep.simxGetObjectPosition(clientID,BRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_RR=vrep.simxGetObjectPosition(clientID,RRod_handle,-1,vrep.simx_opmode_oneshot)
+            errorCode,position_S=vrep.simxGetObjectPosition(clientID,Sphere_handle,-1,vrep.simx_opmode_oneshot)
+            Bv =position_S[1]- position_BR[1]
+            BBv =position_S[0] - position_BR[0]
+            Rv =position_S[1]- position_RR[1]
+            RRv =position_RR[0]-position_S[0]
+            vrep.simxSetJointTargetVelocity(clientID,BRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            vrep.simxSetJointTargetVelocity(clientID,RRev_handle,B_KickBallVel,vrep.simx_opmode_oneshot_wait)
+            #print(RRv)
+        else:
+                pass
+        MMMB = Bv*1.2 
+        MMMR = Rv*1.2
+        
+        vrep.simxSetJointTargetVelocity(clientID,BMo_handle,MMMB,vrep.simx_opmode_oneshot_wait)
+        vrep.simxSetJointTargetVelocity(clientID,RMo_handle,MMMR,vrep.simx_opmode_oneshot_wait)
+        #print(BBv)
+vrep.simxSetJointTargetVelocity(clientID,BRev_handle,0,vrep.simx_opmode_oneshot_wait)
+vrep.simxSetJointTargetVelocity(clientID,RRev_handle,R_KickBallVel,vrep.simx_opmode_oneshot_wait)
+vrep.simxSetJointTargetVelocity(clientID,RMo_handle,0,vrep.simx_opmode_oneshot_wait)
+
+start()
+getballposition()
+stop()</pre>
+<p></p><br />手足球手控與電腦對打 << <a href='手足球手控與電腦對打.html'>Previous</a> <a href='手足球雙人對打.html'>Next</a> >> 手足球雙人對打</section></div></body></html>
