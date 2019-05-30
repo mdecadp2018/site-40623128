@@ -199,6 +199,53 @@
 </v>
 </v>
 </v>
+<v t="leo.20190530171313.1"><vh>@clean index5.html</vh>
+<v t="leo.20190530171313.2"><vh>html</vh>
+<v t="leo.20190530171313.3"><vh>head</vh></v>
+<v t="leo.20190530171313.4"><vh>body</vh>
+<v t="leo.20190530171313.5"><vh>reveal div</vh>
+<v t="leo.20190530171313.6"><vh>slides div</vh>
+<v t="leo.20190530171313.7"><vh>封面投影片</vh>
+<v t="leo.20190530171313.8"><vh>封面投影片內容</vh></v>
+</v>
+<v t="leo.20190530172743.1"><vh>第一列</vh>
+<v t="leo.20190530172743.2"><vh>影像辨識尋找桿子與球</vh>
+<v t="leo.20190530172743.3"><vh>內容</vh></v>
+</v>
+<v t="leo.20190530172743.4"><vh>影像辨識機器對打</vh>
+<v t="leo.20190530172743.5"><vh>內容</vh></v>
+</v>
+<v t="leo.20190530172743.6"><vh>影像辨識機器對打修正版</vh>
+<v t="leo.20190530172743.7"><vh>內容</vh></v>
+</v>
+<v t="leo.20190530184334.1"><vh>程式架構</vh>
+<v t="leo.20190530184334.2"><vh>內容</vh></v>
+</v>
+</v>
+<v t="leo.20190530172746.1"><vh>第二列</vh>
+<v t="leo.20190530172746.2"><vh>影像辨識尋找桿子與球</vh>
+<v t="leo.20190530172746.3"><vh>內容</vh></v>
+</v>
+</v>
+<v t="leo.20190530171313.15"><vh>快捷鍵</vh>
+<v t="leo.20190530171313.16"><vh>投影片快捷鍵</vh></v>
+</v>
+<v t="leo.20190530171313.17"><vh>各式內容引用範例</vh>
+<v t="leo.20190530171313.18"><vh>導入數學符號與方程式</vh>
+<v t="leo.20190530171313.19"><vh>LaTeX 格式方程式</vh></v>
+</v>
+<v t="leo.20190530171313.20"><vh>導入縮排程式碼</vh>
+<v t="leo.20190530171313.21"><vh>引用程式碼</vh></v>
+</v>
+<v t="leo.20190530171313.22"><vh>導入影片</vh>
+<v t="leo.20190530171313.23"><vh>iframe 導入影片</vh></v>
+</v>
+</v>
+</v>
+</v>
+</v>
+</v>
+</v>
 </v>
 </v>
 </vnodes>
@@ -1432,6 +1479,307 @@ Created by [40623128](https://github.com/40623128)
 [手控與電腦](https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g3_1/content/%E6%89%8B%E8%B6%B3%E7%90%83%E6%89%8B%E6%8E%A7%E8%88%87%E9%9B%BB%E8%85%A6%E5%B0%8D%E6%89%93.html)
 
 
+
+
+
+</t>
+<t tx="leo.20190530171313.1">@language xml
+@tabwidth -4
+@others
+
+</t>
+<t tx="leo.20190530171313.15">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20190530171313.16"># 投影片快捷鍵
+
+* 利用箭頭上下前後換頁
+* 按 f 鍵進入全螢幕模式 (full screen)
+* 按 s 鍵可以顯示投影片筆記 (show)
+* 按 o 鍵可以切換單張或全域檢視 (overview)
+* 按 b 或 . 鍵可以切換螢幕黑屏 (black)
+* 按 Esc 可以退出全螢幕或全域檢視 (Escape)
+
+</t>
+<t tx="leo.20190530171313.17">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="leo.20190530171313.18">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190530171313.19"># 數學符號與方程式
+
+Inline math equations go in like so: $\omega = d\phi / dt$. Display
+math should get its own line and be put in in double-dollarsigns:
+
+$$I = \int \rho R^{2} dV$$
+</t>
+<t tx="leo.20190530171313.2">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+@others
+&lt;/html&gt;
+</t>
+<t tx="leo.20190530171313.20">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190530171313.21">## 利用 Markdown 寫投影片
+以下利用 Markdown 格式展示 Python 程式碼:
+```
+@language python
+# use threading and subprocess to threading the make process
+import os
+import subprocess
+import threading
+
+def domake():
+    
+    path = "../exposed/api/exposed"
+    ubuntu = "../Ubuntu"
+    
+    # create obj path
+    
+    if not os.path.exists(path+"/../obj"):
+        os.makedirs(path+"/../obj")
+    
+    subprocess.call(["make", "clean"], cwd=path)
+    subprocess.call("make", cwd=path)
+    subprocess.call(["cp", "{libslvs.so, _slvs.so, slvs.py}", ubuntu], cwd=path)
+    subprocess.call(["python3", "circle_ex.py"], cwd=path+"/"+ubuntu)
+    
+make = threading.Thread(target=domake)
+make.start()
+```
+</t>
+<t tx="leo.20190530171313.22">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20190530171313.23">## 使用 iframe 導入影片
+
+### 導入影片 template
+
+&lt;iframe src="https://player.vimeo.com/video/183950627" width="640" height="492" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+</t>
+<t tx="leo.20190530171313.3">&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+&lt;title&gt;
+2019 Spring 投影片
+&lt;/title&gt;
+    &lt;meta name="description" content="A framework for easily creating beautiful presentations using HTML"&gt;
+    &lt;meta name="author" content="Hakim El Hattab"&gt;
+    
+    &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+    &lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;
+    
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
+    
+    &lt;link rel="stylesheet" href="css/reveal.css"&gt;
+    &lt;link rel="stylesheet" href="css/theme/black.css" id="theme"&gt;
+    
+    &lt;!-- Theme used for syntax highlighting of code --&gt;
+    &lt;link rel="stylesheet" href="lib/css/zenburn.css"&gt;
+
+    &lt;!-- Printing and PDF exports --&gt;
+    &lt;script&gt;
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    &lt;/script&gt;
+
+    &lt;!--[if lt IE 9]&gt;
+    &lt;script src="lib/js/html5shiv.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+&lt;/head&gt;
+
+</t>
+<t tx="leo.20190530171313.4">&lt;body&gt;
+@others
+&lt;script src="lib/js/head.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/reveal.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true },
+                { src: 'plugin/notes/notes.js', async: true },
+                { src: 'plugin/math/math.js', async: true }
+            ]
+        });
+&lt;/script&gt;
+&lt;/body&gt;
+
+</t>
+<t tx="leo.20190530171313.5">&lt;div class="reveal"&gt;
+@others
+&lt;/div&gt;
+
+</t>
+<t tx="leo.20190530171313.6">&lt;!-- Any section element inside of this container is displayed as a slide --&gt;
+&lt;div class="slides"&gt;
+@others
+&lt;/div&gt;
+
+</t>
+<t tx="leo.20190530171313.7">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20190530171313.8">## 2019 Spring 投影片
+
+### 虎科大機械設計工程系
+
+#### 協同產品設計實習期末投影片
+&lt;small&gt;
+Created by [40623128](https://github.com/40623128)
+&lt;/small&gt;
+
+[小組網站](https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g3_1/content/index.html)
+
+
+</t>
+<t tx="leo.20190530172743.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="leo.20190530172743.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190530172743.3">## 手足球製作內容
+### 影像辨識(只能辨識各顏色單個物件)
+[影像辨識尋找桿子與球](https://mdecadp2018.github.io/site-40623128/content/%E5%BD%B1%E5%83%8F%E8%BE%A8%E8%AD%98%E5%B0%8B%E6%89%BE%E7%90%83%E5%92%8C%E6%A1%BF%E5%AD%90%E4%BD%8D%E7%BD%AE.html)
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/C947PvvFDiw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+
+</t>
+<t tx="leo.20190530172743.4">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190530172743.5">[影像辨識機器對打](https://mdecadp2018.github.io/site-40623128/content/%E5%BD%B1%E5%83%8F%E8%BE%A8%E8%AD%98%E6%A9%9F%E5%99%A8%E5%B0%8D%E6%89%93.html)
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/Nv5ppem_j_8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;
+</t>
+<t tx="leo.20190530172743.6">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190530172743.7">[影像辨識機器對打修正版](https://mdecadp2018.github.io/site-40623128/content/%E5%BD%B1%E5%83%8F%E8%BE%A8%E8%AD%98%E6%A9%9F%E5%99%A8%E5%B0%8D%E6%89%93%E4%BF%AE%E6%AD%A3%E7%89%88.html)
+
+修正球桿擊出但無擊中球，使球跑到桿子後面時，無法回擊的問題。
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/vXuvJptDWkA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+
+</t>
+<t tx="leo.20190530172746.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="leo.20190530172746.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190530172746.3">### 影像辨識第二版(可辨識出多個物件)
+[影像辨識尋找桿子與球](https://mdecadp2018.github.io/site-40623128/content/%E6%9B%B4%E6%94%B9%E5%BD%B1%E5%83%8F%E8%BE%A8%E8%AD%98%E6%96%B9%E5%BC%8F.html)
+
+&lt;img src="../images/vrep_2019-05-26_17-34-25.png"  width="400px"&gt;
+
+&lt;img src="../images/vrep_2019-05-26_17-56-43.png"  width="400px"&gt;
+</t>
+<t tx="leo.20190530184334.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190530184334.2">程式架構
+
+&lt;img src="../images/Untitled Diagram.png"  width="400px"&gt;
 
 
 

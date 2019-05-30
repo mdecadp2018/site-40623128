@@ -2385,6 +2385,7 @@ window.location= 'https://' + location.host + location.pathname + location.searc
 &lt;li&gt;&lt;a href="sitemap.html"&gt; 網站檢索&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="./../reveal/index.html"&gt;投影片&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="./../reveal/index4.html"&gt;期中簡報&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="./../reveal/index5.html"&gt;產品協同期末簡報&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="./../blog/index.html"&gt;部落格&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.onshape.com/"&gt; Onshape&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.merriam-webster.com/"&gt; Dictionary&lt;/a&gt;&lt;/li&gt;
