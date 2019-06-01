@@ -68,29 +68,30 @@ def track_red_object(image):
 #影像尋找綠色物件
 def track_green_object(image):
     # Blur the image to reduce noise100
-    blur = cv2.GaussianBlur(image, (3,3),0)
+    blur = cv2.GaussianBlur(image, (5,5),0)
     # Convert BGR to HSV
     hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
-    # Threshold the HSV image for only blue colors
-    ran = 20
-    lower_blue = numpy.array([60-ran,100,100])
-    upper_blue = numpy.array([60+ran,255,255])
-    # Threshold the HSV image to get only blue colors
-    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    # Threshold the HSV image for only green colors
+    range = 15
+    lower_green = numpy.array([60-range,100,100])
+    upper_green = numpy.array([60+range,255,255])
+    # Threshold the HSV image to get only green colors
+    mask = cv2.inRange(hsv, lower_green, upper_green)
     # Blur the mask
     bmask = cv2.GaussianBlur(mask, (5,5),0)
-    threshold = 100
-    canny_output = cv2.Canny(bmask, threshold,threshold*2)
-    contours, _ = cv2.findContours(canny_output, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    # Get the moments
-    mu = [None]*len(contours)
-    for i in range(len(contours)):
-        mu[i] = cv2.moments(contours[i])
-    # Get the mass centers
-    mc = [None]*len(contours)
-    for i in range(len(contours)):
-        mc[i] = (mu[i]['m10'] / (mu[i]['m00']), mu[i]['m01'] / (mu[i]['m00']))
-    return mc
+    # Take the moments to get the centroid
+    moments = cv2.moments(bmask)
+    m00 = moments['m00']
+    centroid_x, centroid_y = None, None
+    if m00 != 0:
+        centroid_x = int(moments['m10']/m00)
+        centroid_y = int(moments['m01']/m00)
+    # Assume no centroid
+    ctr = None
+    # Use centroid if it exists
+    if centroid_x != None and centroid_y != None:
+        ctr = (centroid_x, centroid_y)
+    return ctr
     
 vrep.simxFinish(-1)
 clientID = vrep.simxStart('127.0.0.1', 19997, True, True, 5000, 5)
@@ -132,11 +133,6 @@ if clientID!=-1:
             for i in range(0,times_of_del_ret_blue):
                 if ret_blue[i][1] - ret_blue[i+1][1] <= 1:
                     del ret_blue[i]
-            '''
-            for i in range(0,times_of_del_ret_green):
-                if ret_green[i][1] - ret_green[i+1][1] <= 1:
-                    del ret_green[i]
-            '''        
             #藍球員座標命名
             for i in range(len(ret_blue)):
                 if ret_blue[i][1] >=10 and ret_blue[i][1] <=25:
@@ -224,129 +220,7 @@ if clientID!=-1:
                             red31 = (ret_red_odd[i][0], ret_red_odd[i][1])
                         elif red30 == None:
                             red30 = (ret_red_odd[i][0], ret_red_odd[i][1])
-            #對打程式開始
-            Bv = ret_green[0][0] - blue00[0]
-            BBv=ret_green[0][1] - blue00[1]
-            Rv = ret_green[0][0] - red00[0]
-            RRv=ret_green[0][1] - red00[1]
-            #藍守門員移動
-            if Bv<0.0:
-                speed(BMo_handle,Bv*-0.02)
-            elif Bv>0.0:
-                speed(BMo_handle,Bv*-0.02)
-            else:
-                pass
-            #紅守門員移動
-            if Rv<0.0:
-                speed(RMo_handle,Rv*-0.02)
-            elif Rv>0.0:
-                speed(RMo_handle,Rv*-0.02)
-            else:
-                pass
-            #藍桿一移動
-            B10v = ret_green[0][0] - blue10[0]
-            B11v = ret_green[0][0] - blue11[0]
-            if abs(B10v) <= abs(B11v):
-                if ret_green[0][0] < 147 :
-                    if B10v < 0:
-                        speed(BMo0_handle,B10v*-0.02)
-                    elif B10v > 0:
-                        speed(BMo0_handle,B10v*-0.02)
-                    else:
-                        pass
-                else:
-                    speed(BMo0_handle,0.5)
-            elif abs(B10v) > abs(B11v):
-                if ret_green[0][0] >108:
-                    if B11v < 0:
-                        speed(BMo0_handle,B11v*-0.02)
-                    elif B11v > 0:
-                        speed(BMo0_handle,B11v*-0.02)
-                    else:
-                        pass
-                else:
-                    speed(BMo0_handle,-0.5)
-            #藍守門員踢球
-            if  blue00[1] >=18 and ret_green[0][1] <= 17:
-                if ret_green[0] >62.5:
-                    speed(BMo_handle,2)
-                    time.sleep(0.1)
-                    speed(BRev_handle,20)
-                    time.sleep(0.1)
-                    if ret_green[1] != blue00[1]:
-                        Bv = ret_green[0]-blue00[0]
-                        if Bv<0.0:
-                            speed(BMo_handle,Bv*-0.02)
-                        elif Bv>0.0:
-                            speed(BMo_handle,Bv*-0.02)
-                        else:
-                            pass
-                    else:
-                        speed(BRev_handle,2)
-                    
-                elif ret_green[0] <62.5:
-                    speed(BMo_handle,-2)
-                    time.sleep(0.1)
-                    speed(BRev_handle,20)
-                    time.sleep(0.1)
-                    if ret_green[1] != blue00[1]:
-                        Bv = ret_green[0] - blue00[0]
-                        if Bv<0.0:
-                            speed(BMo_handle,Bv*-0.02)
-                        elif Bv>0.0:
-                            speed(BMo_handle,Bv*-0.02)
-                        else:
-                            pass
-                    else:
-                        speed(BRev_handle,2)
-            elif ret_green[0][0] - blue00[0] >= -3 and ret_green[0][0] - blue00[0] <= 3:
-                if BBv<10.0:
-                    speed(BRev_handle,-2)
-                elif BBv>10.0:
-                    speed(BRev_handle,2)
-                else:
-                    pass
-            #紅守門員踢球   
-            if  red00[1] <=236 and ret_green[0][1] >= 237:
-                if ret_green[0][0] >62.5:
-                    speed(RMo_handle,2)
-                    time.sleep(0.1)
-                    speed(RRev_handle,-20)
-                    time.sleep(0.1)
-                    if ret_green[0][1] != ret_red[1]:
-                        Rv = ret_green[0][0] - red00[0]
-                        if Rv < 0.0:
-                            speed(RMo_handle,Rv*-0.02)
-                        elif Rv>0.0:
-                            speed(RMo_handle,Rv*-0.02)
-                        else:
-                            pass
-                    else:
-                        speed(RRev_handle,2)
-                    
-                elif ret_green[0][0] <62.5:
-                    speed(RMo_handle,-2)
-                    time.sleep(0.1)
-                    speed(RRev_handle,-20)
-                    time.sleep(0.1)
-                    if ret_green[0][1] != red00[1]:
-                        Rv = ret_green[0][0] - red00[0]
-                        if Rv<0.0:
-                            speed(RMo_handle,Rv*-0.02)
-                        elif Rv>0.0:
-                            speed(RMo_handle,Rv*-0.02)
-                        else:
-                            pass
-                    else:
-                        speed(RRev_handle,2)
-            elif ret_green[0][0] - red00[0] >= -3 and ret_green[0][0] - red00[0] <= 3:
-                if RRv<-10.0:
-                    speed(RRev_handle,-2)
-                elif RRv>-10.0:
-                    speed(RRev_handle,2)
-                else:
-                    pass
-        #對打程式結束
+        print('0 =',ret_green)
         #影像加框處理
         if ret_blue:
             for i in range(len(ret_blue)):
@@ -355,8 +229,7 @@ if clientID!=-1:
             for i in range(len(ret_red)):
                 cv2.rectangle(img2,(int(ret_red[i][0] - 2),int(ret_red[i][1] - 5)), (int(ret_red[i][0] + 2),int(ret_red[i][1] + 5)), (0xff,0x33,0x33), 1)
         if ret_green:
-            for i in range(len(ret_green)):
-                cv2.rectangle(img2,(int(ret_green[i][0] - 5),int(ret_green[i][1] - 5)), (int(ret_green[i][0] + 5),int(ret_green[i][1] + 5)), (0x99,0xff,0x33), 1)
+            cv2.rectangle(img2,(ret_green[0]-5,ret_green[1]-5), (ret_green[0]+5,ret_green[1]+5), (0x99,0xff,0x33), 1)
         img2 = img2.ravel()
         #影像回傳
         vrep.simxSetVisionSensorImage(clientID, v1, img2, 0, vrep.simx_opmode_oneshot)

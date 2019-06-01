@@ -68,29 +68,30 @@ def track_red_object(image):
 #影像尋找綠色物件
 def track_green_object(image):
     # Blur the image to reduce noise100
-    blur = cv2.GaussianBlur(image, (3,3),0)
+    blur = cv2.GaussianBlur(image, (5,5),0)
     # Convert BGR to HSV
     hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
-    # Threshold the HSV image for only blue colors
-    ran = 20
-    lower_blue = numpy.array([60-ran,100,100])
-    upper_blue = numpy.array([60+ran,255,255])
-    # Threshold the HSV image to get only blue colors
-    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    # Threshold the HSV image for only green colors
+    range = 15
+    lower_green = numpy.array([60-range,100,100])
+    upper_green = numpy.array([60+range,255,255])
+    # Threshold the HSV image to get only green colors
+    mask = cv2.inRange(hsv, lower_green, upper_green)
     # Blur the mask
     bmask = cv2.GaussianBlur(mask, (5,5),0)
-    threshold = 100
-    canny_output = cv2.Canny(bmask, threshold,threshold*2)
-    contours, _ = cv2.findContours(canny_output, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    # Get the moments
-    mu = [None]*len(contours)
-    for i in range(len(contours)):
-        mu[i] = cv2.moments(contours[i])
-    # Get the mass centers
-    mc = [None]*len(contours)
-    for i in range(len(contours)):
-        mc[i] = (mu[i]['m10'] / (mu[i]['m00']), mu[i]['m01'] / (mu[i]['m00']))
-    return mc
+    # Take the moments to get the centroid
+    moments = cv2.moments(bmask)
+    m00 = moments['m00']
+    centroid_x, centroid_y = None, None
+    if m00 != 0:
+        centroid_x = int(moments['m10']/m00)
+        centroid_y = int(moments['m01']/m00)
+    # Assume no centroid
+    ctr = None
+    # Use centroid if it exists
+    if centroid_x != None and centroid_y != None:
+        ctr = (centroid_x, centroid_y)
+    return ctr
     
 vrep.simxFinish(-1)
 clientID = vrep.simxStart('127.0.0.1', 19997, True, True, 5000, 5)
@@ -104,8 +105,10 @@ if clientID!=-1:
   err, resolution, image = vrep.simxGetVisionSensorImage(clientID, v0, 0, vrep.simx_opmode_streaming)
   err,BRev_handle=vrep.simxGetObjectHandle(clientID,'BRev',vrep.simx_opmode_oneshot_wait)
   err,BRev0_handle=vrep.simxGetObjectHandle(clientID,'BRev0',vrep.simx_opmode_oneshot_wait)
+  err,BRev1_handle=vrep.simxGetObjectHandle(clientID,'BRev1',vrep.simx_opmode_oneshot_wait)
   err,BMo_handle=vrep.simxGetObjectHandle(clientID,'BMo',vrep.simx_opmode_oneshot_wait)
   err,BMo0_handle=vrep.simxGetObjectHandle(clientID,'BMo0',vrep.simx_opmode_oneshot_wait)
+  err,BMo1_handle=vrep.simxGetObjectHandle(clientID,'BMo1',vrep.simx_opmode_oneshot_wait)
   err,RRev_handle=vrep.simxGetObjectHandle(clientID,'RRev',vrep.simx_opmode_oneshot_wait)
   err,RMo_handle=vrep.simxGetObjectHandle(clientID,'RMo',vrep.simx_opmode_oneshot_wait)
   time.sleep(1)
@@ -132,20 +135,15 @@ if clientID!=-1:
             for i in range(0,times_of_del_ret_blue):
                 if ret_blue[i][1] - ret_blue[i+1][1] <= 1:
                     del ret_blue[i]
-            '''
-            for i in range(0,times_of_del_ret_green):
-                if ret_green[i][1] - ret_green[i+1][1] <= 1:
-                    del ret_green[i]
-            '''        
             #藍球員座標命名
             for i in range(len(ret_blue)):
                 if ret_blue[i][1] >=10 and ret_blue[i][1] <=25:
                     blue00 = (ret_blue[i][0], ret_blue[i][1])
-                elif ret_blue[i][1] >= 50 and ret_blue[i][1] <=64:
+                elif ret_blue[i][1] >= 40 and ret_blue[i][1] <=70:
                     blue10_pos = (ret_blue[i][0], ret_blue[i][1])
                     if blue11_pos== None:
                         blue11_pos= (ret_blue[i][0], ret_blue[i][1])
-                elif ret_blue[i][1] >=101 and ret_blue[i][1] <=120:
+                elif ret_blue[i][1] >=90 and ret_blue[i][1] <=130:
                     if blue20_pos == None:
                         if blue22_pos == None:
                             blue22_pos = (ret_blue[i][0], ret_blue[i][1])
@@ -153,7 +151,7 @@ if clientID!=-1:
                             blue21_pos = (ret_blue[i][0], ret_blue[i][1])
                         elif blue20_pos == None:
                             blue20_pos = (ret_blue[i][0], ret_blue[i][1])
-                elif ret_blue[i][1] >=152 and ret_blue[i][1] <=172:
+                elif ret_blue[i][1] >=140 and ret_blue[i][1] <=180:
                     if blue30_pos == None:
                         if blue32_pos == None:
                             blue32_pos = (ret_blue[i][0], ret_blue[i][1])
@@ -180,7 +178,7 @@ if clientID!=-1:
                     blue21 = blue21_pos
                     blue22 = blue20_pos
                 #0>2>1
-                elif blue22_pos[0] < blue20_pos[0] and blue22_pos[0] > blue21_pos:
+                elif blue22_pos[0] < blue20_pos[0] and blue22_pos[0] > blue21_pos[0]:
                     blue20 = blue21_pos
                     blue21 = blue22_pos
                     blue22 = blue20_pos
@@ -225,10 +223,10 @@ if clientID!=-1:
                         elif red30 == None:
                             red30 = (ret_red_odd[i][0], ret_red_odd[i][1])
             #對打程式開始
-            Bv = ret_green[0][0] - blue00[0]
-            BBv=ret_green[0][1] - blue00[1]
-            Rv = ret_green[0][0] - red00[0]
-            RRv=ret_green[0][1] - red00[1]
+            Bv = ret_green[0] - blue00[0]
+            BBv=ret_green[1] - blue00[1]
+            Rv = ret_green[0] - red00[0]
+            RRv=ret_green[1] - red00[1]
             #藍守門員移動
             if Bv<0.0:
                 speed(BMo_handle,Bv*-0.02)
@@ -244,10 +242,10 @@ if clientID!=-1:
             else:
                 pass
             #藍桿一移動
-            B10v = ret_green[0][0] - blue10[0]
-            B11v = ret_green[0][0] - blue11[0]
+            B10v = ret_green[0] - blue10[0]
+            B11v = ret_green[0] - blue11[0]
             if abs(B10v) <= abs(B11v):
-                if ret_green[0][0] < 147 :
+                if ret_green[0] < 147 :
                     if B10v < 0:
                         speed(BMo0_handle,B10v*-0.02)
                     elif B10v > 0:
@@ -257,7 +255,7 @@ if clientID!=-1:
                 else:
                     speed(BMo0_handle,0.5)
             elif abs(B10v) > abs(B11v):
-                if ret_green[0][0] >108:
+                if ret_green[0] >108:
                     if B11v < 0:
                         speed(BMo0_handle,B11v*-0.02)
                     elif B11v > 0:
@@ -266,8 +264,34 @@ if clientID!=-1:
                         pass
                 else:
                     speed(BMo0_handle,-0.5)
+            #藍桿二移動
+            B20v = ret_green[0] - blue20[0]
+            B21v = ret_green[0] - blue21[0]
+            B22v = ret_green[0] - blue22[0]
+            #108 146
+            if abs(B20v) <= abs(B21v) and abs(B20v) <= abs(B22v):
+                if B10v < 0:
+                    speed(BMo1_handle,B20v*-0.02)
+                elif B10v > 0:
+                    speed(BMo1_handle,B20v*-0.02)
+                else:
+                    pass
+            elif abs(B21v) <= abs(B20v) and abs(B21v) <= abs(B22v):
+                if B11v < 0:
+                    speed(BMo1_handle,B21v*-0.02)
+                elif B11v > 0:
+                    speed(BMo1_handle,B11v*-0.02)
+                else:
+                    pass
+            elif abs(B22v) <= abs(B20v) and abs(B22v) <= abs(B21v):
+                if B11v < 0:
+                    speed(BMo1_handle,B22v*-0.02)
+                elif B11v > 0:
+                    speed(BMo1_handle,B11v*-0.02)
+                else:
+                    pass
             #藍守門員踢球
-            if  blue00[1] >=18 and ret_green[0][1] <= 17:
+            if  blue00[1] >=18 and ret_green[1] <= 17:
                 if ret_green[0] >62.5:
                     speed(BMo_handle,2)
                     time.sleep(0.1)
@@ -299,7 +323,7 @@ if clientID!=-1:
                             pass
                     else:
                         speed(BRev_handle,2)
-            elif ret_green[0][0] - blue00[0] >= -3 and ret_green[0][0] - blue00[0] <= 3:
+            elif ret_green[0] - blue00[0] >= -3 and ret_green[0] - blue00[0] <= 3:
                 if BBv<10.0:
                     speed(BRev_handle,-2)
                 elif BBv>10.0:
@@ -307,14 +331,14 @@ if clientID!=-1:
                 else:
                     pass
             #紅守門員踢球   
-            if  red00[1] <=236 and ret_green[0][1] >= 237:
-                if ret_green[0][0] >62.5:
+            if  red00[1] <=236 and ret_green[1] >= 237:
+                if ret_green[0] >62.5:
                     speed(RMo_handle,2)
                     time.sleep(0.1)
                     speed(RRev_handle,-20)
                     time.sleep(0.1)
-                    if ret_green[0][1] != ret_red[1]:
-                        Rv = ret_green[0][0] - red00[0]
+                    if ret_green[1] != ret_red[1]:
+                        Rv = ret_green[0] - red00[0]
                         if Rv < 0.0:
                             speed(RMo_handle,Rv*-0.02)
                         elif Rv>0.0:
@@ -324,13 +348,13 @@ if clientID!=-1:
                     else:
                         speed(RRev_handle,2)
                     
-                elif ret_green[0][0] <62.5:
+                elif ret_green[0] <62.5:
                     speed(RMo_handle,-2)
                     time.sleep(0.1)
                     speed(RRev_handle,-20)
                     time.sleep(0.1)
-                    if ret_green[0][1] != red00[1]:
-                        Rv = ret_green[0][0] - red00[0]
+                    if ret_green[1] != red00[1]:
+                        Rv = ret_green[0] - red00[0]
                         if Rv<0.0:
                             speed(RMo_handle,Rv*-0.02)
                         elif Rv>0.0:
@@ -339,13 +363,20 @@ if clientID!=-1:
                             pass
                     else:
                         speed(RRev_handle,2)
-            elif ret_green[0][0] - red00[0] >= -3 and ret_green[0][0] - red00[0] <= 3:
+            elif ret_green[0] - red00[0] >= -3 and ret_green[0] - red00[0] <= 3:
                 if RRv<-10.0:
                     speed(RRev_handle,-2)
                 elif RRv>-10.0:
                     speed(RRev_handle,2)
                 else:
                     pass
+            #藍桿一踢球
+            if ret_green[1] <= 70 and ret_green[1] >= 55:
+                speed(BRev0_handle,-2)
+                speed(BRev1_handle,-2)
+            else:
+                speed(BRev0_handle,2)
+                speed(BRev1_handle,2)
         #對打程式結束
         #影像加框處理
         if ret_blue:
@@ -355,8 +386,7 @@ if clientID!=-1:
             for i in range(len(ret_red)):
                 cv2.rectangle(img2,(int(ret_red[i][0] - 2),int(ret_red[i][1] - 5)), (int(ret_red[i][0] + 2),int(ret_red[i][1] + 5)), (0xff,0x33,0x33), 1)
         if ret_green:
-            for i in range(len(ret_green)):
-                cv2.rectangle(img2,(int(ret_green[i][0] - 5),int(ret_green[i][1] - 5)), (int(ret_green[i][0] + 5),int(ret_green[i][1] + 5)), (0x99,0xff,0x33), 1)
+            cv2.rectangle(img2,(ret_green[0]-5,ret_green[1]-5), (ret_green[0]+5,ret_green[1]+5), (0x99,0xff,0x33), 1)
         img2 = img2.ravel()
         #影像回傳
         vrep.simxSetVisionSensorImage(clientID, v1, img2, 0, vrep.simx_opmode_oneshot)

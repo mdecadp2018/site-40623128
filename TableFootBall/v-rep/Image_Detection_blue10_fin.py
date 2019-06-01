@@ -122,24 +122,21 @@ if clientID!=-1:
         ret_green = track_green_object(img2)
         
         if ret_green != None:
-            #各球員座標命名方式
+            #各球員座標命名
             # blue(x)(y) x = 第幾根桿子(0~3) y = 左邊數來第幾個人(0~2)
             # red(x)(y) x = 第幾根桿子(0~3) y = 左邊數來第幾個人(0~2)
             ret_red_odd = ret_red[::2]
             #刪除重複的座標
             times_of_del_ret_blue = int(len(ret_blue)/2)
-            #times_of_del_ret_green = int(len(ret_green)/2)
+            times_of_del_ret_green = int(len(ret_green)/2)
             for i in range(0,times_of_del_ret_blue):
                 if ret_blue[i][1] - ret_blue[i+1][1] <= 1:
                     del ret_blue[i]
-            '''
             for i in range(0,times_of_del_ret_green):
                 if ret_green[i][1] - ret_green[i+1][1] <= 1:
                     del ret_green[i]
-            '''        
-            #藍球員座標命名
             for i in range(len(ret_blue)):
-                if ret_blue[i][1] >=10 and ret_blue[i][1] <=25:
+                if ret_blue[i][1] >=13 and ret_blue[i][1] <=25:
                     blue00 = (ret_blue[i][0], ret_blue[i][1])
                 elif ret_blue[i][1] >= 50 and ret_blue[i][1] <=64:
                     blue10_pos = (ret_blue[i][0], ret_blue[i][1])
@@ -224,6 +221,8 @@ if clientID!=-1:
                             red31 = (ret_red_odd[i][0], ret_red_odd[i][1])
                         elif red30 == None:
                             red30 = (ret_red_odd[i][0], ret_red_odd[i][1])
+            print('blue10 =',blue10)
+            print('blue11 =',blue11)
             #對打程式開始
             Bv = ret_green[0][0] - blue00[0]
             BBv=ret_green[0][1] - blue00[1]
@@ -346,8 +345,8 @@ if clientID!=-1:
                     speed(RRev_handle,2)
                 else:
                     pass
-        #對打程式結束
-        #影像加框處理
+            #對打程式結束
+            #影像加框處理
         if ret_blue:
             for i in range(len(ret_blue)):
                 cv2.rectangle(img2,(int(ret_blue[i][0] - 2),int(ret_blue[i][1] - 5)), (int(ret_blue[i][0] + 2),int(ret_blue[i][1] + 5)), (0x33,0xcc,0xff), 1)
@@ -358,7 +357,6 @@ if clientID!=-1:
             for i in range(len(ret_green)):
                 cv2.rectangle(img2,(int(ret_green[i][0] - 5),int(ret_green[i][1] - 5)), (int(ret_green[i][0] + 5),int(ret_green[i][1] + 5)), (0x99,0xff,0x33), 1)
         img2 = img2.ravel()
-        #影像回傳
         vrep.simxSetVisionSensorImage(clientID, v1, img2, 0, vrep.simx_opmode_oneshot)
     elif err == vrep.simx_return_novalue_flag:
       print("no image yet")
