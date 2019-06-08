@@ -226,6 +226,25 @@
 <v t="leo.20190530172746.2"><vh>影像辨識尋找桿子與球</vh>
 <v t="leo.20190530172746.3"><vh>內容</vh></v>
 </v>
+<v t="leo.20190608144506.1"><vh>影像辨識對打</vh>
+<v t="leo.20190608144506.2"><vh>內容</vh></v>
+</v>
+</v>
+<v t="leo.20190608144723.1"><vh>第三列</vh>
+<v t="leo.20190608144723.2"><vh>vrep</vh>
+<v t="leo.20190608144723.3"><vh>內容</vh></v>
+</v>
+<v t="leo.20190608144723.4"><vh>onshape</vh>
+<v t="leo.20190608144723.5"><vh>內容</vh></v>
+</v>
+</v>
+<v t="leo.20190608184953.1"><vh>第三列</vh>
+<v t="leo.20190608184953.2"><vh>倉儲推送</vh>
+<v t="leo.20190608184953.3"><vh>內容</vh></v>
+</v>
+<v t="leo.20190608185410.1"><vh>自評</vh>
+<v t="leo.20190608185410.2"><vh>內容</vh></v>
+</v>
 </v>
 <v t="leo.20190530171313.15"><vh>快捷鍵</vh>
 <v t="leo.20190530171313.16"><vh>投影片快捷鍵</vh></v>
@@ -1784,5 +1803,112 @@ Created by [40623128](https://github.com/40623128)
 
 
 </t>
+<t tx="leo.20190608144506.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190608144506.2">### 影像辨識多個球員踢球
+[影像辨識多個球員踢球](https://mdecadp2018.github.io/site-40623128/content/%E5%BD%B1%E5%83%8F%E8%BE%A8%E8%AD%98%E5%A4%9A%E5%80%8B%E7%90%83%E5%93%A1%E8%B8%A2%E7%90%83.html)
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/gV_qF544Q2k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+</t>
+<t tx="leo.20190608144723.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="leo.20190608144723.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190608144723.3">### vrep
+
+在組員進行中遇到無法處理的部分，協助完成。ex:dynamic
+
+進行最後的設定檔調整
+把圖檔調整成可以在影像辨識運行的狀態
+
+&lt;img src="../images/球桌.png"  width="400px"&gt;
+</t>
+<t tx="leo.20190608144723.4">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190608144723.5">### onshape
+
+在製作過程中提出不合理處讓其他同學修改
+
+由於模擬時發現球門球無法滾下
+
+所以修改了球門的傾斜程度
+
+&lt;img src="../images/球門.png"  width="400px"&gt;
+</t>
+<t tx="leo.20190608184953.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="leo.20190608184953.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190608184953.3">### 倉儲推送紀錄
+
+在組員進行中遇到無法處理的部分，協助完
+
+[cd2019a-task1-2019cda_t1_g3_1](https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/graphs/contributors)
+
+[scrum-1/cd2019a](https://github.com/scrum-1/cd2019a/graphs/contributors)</t>
+<t tx="leo.20190608185410.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190608185410.2">### 自評
+
+學員出席
+
+Github 倉儲管理
+
+Onshape 協同操作
+
+V-rep 模擬
+
+程式開發</t>
 </tnodes>
 </leo_file>

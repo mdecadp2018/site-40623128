@@ -157,45 +157,6 @@ if clientID!=-1:
                             blue31_pos = (ret_blue[i][0], ret_blue[i][1])
                         elif blue30_pos == None:
                             blue30_pos = (ret_blue[i][0], ret_blue[i][1])
-            #藍球員座標排列
-            if blue10_pos[0] < blue11_pos[0]:
-                blue10 = blue10_pos
-                blue11 = blue11_pos
-            elif blue10_pos[0] > blue11_pos[0]:
-                blue10 = blue11_pos
-                blue11 = blue10_pos
-            if blue20_pos[0] > blue21_pos[0]:
-                #2>0>1
-                if blue22_pos[0] > blue20_pos[0]:
-                    blue20 = blue21_pos
-                    blue21 = blue20_pos
-                    blue22 = blue22_pos
-                #0>1>2
-                elif blue22_pos[0] < blue21_pos[0]:
-                    blue20 = blue22_pos
-                    blue21 = blue21_pos
-                    blue22 = blue20_pos
-                #0>2>1
-                elif blue22_pos[0] < blue20_pos[0] and blue22_pos[0] > blue21_pos:
-                    blue20 = blue21_pos
-                    blue21 = blue22_pos
-                    blue22 = blue20_pos
-            elif blue20_pos[0] < blue21_pos[0]:
-                #2>1>0
-                if blue22_pos[0] > blue21_pos[0]:
-                    blue20 = blue20_pos
-                    blue21 = blue21_pos
-                    blue22 = blue22_pos
-                #1>0>2
-                elif blue22_pos[0] < blue20_pos[0]:
-                    blue20 = blue22_pos
-                    blue21 = blue20_pos
-                    blue22 = blue21_pos
-                #1>2>0
-                elif blue22_pos[0] > blue20_pos[0] and blue22_pos[0] < blue21_pos[0]:
-                    blue20 = blue20_pos
-                    blue21 = blue22_pos
-                    blue22 = blue21_pos
             #紅球員座標命名
             for i in range(len(ret_red_odd)):
                 if ret_red_odd[i][1] >=230 and ret_red_odd[i][1] <=250:
@@ -220,7 +181,7 @@ if clientID!=-1:
                             red31 = (ret_red_odd[i][0], ret_red_odd[i][1])
                         elif red30 == None:
                             red30 = (ret_red_odd[i][0], ret_red_odd[i][1])
-        print('0 =',ret_green)
+        print('0 =',ret_red)
         #影像加框處理
         if ret_blue:
             for i in range(len(ret_blue)):
