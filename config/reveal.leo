@@ -208,6 +208,11 @@
 <v t="leo.20190530171313.7"><vh>封面投影片</vh>
 <v t="leo.20190530171313.8"><vh>封面投影片內容</vh></v>
 </v>
+<v t="leo.20190609172100.1"><vh>大綱</vh>
+<v t="leo.20190609172100.8"><vh>內容</vh>
+<v t="leo.20190609172100.9"><vh>內容</vh></v>
+</v>
+</v>
 <v t="leo.20190530172743.1"><vh>第一列</vh>
 <v t="leo.20190530172743.2"><vh>影像辨識尋找桿子與球</vh>
 <v t="leo.20190530172743.3"><vh>內容</vh></v>
@@ -226,6 +231,9 @@
 <v t="leo.20190530172746.2"><vh>影像辨識尋找桿子與球</vh>
 <v t="leo.20190530172746.3"><vh>內容</vh></v>
 </v>
+<v t="leo.20190609170955.1"><vh>影像辨識尋找桿子與球</vh>
+<v t="leo.20190609170955.2"><vh>內容</vh></v>
+</v>
 <v t="leo.20190608144506.1"><vh>影像辨識對打</vh>
 <v t="leo.20190608144506.2"><vh>內容</vh></v>
 </v>
@@ -238,9 +246,12 @@
 <v t="leo.20190608144723.5"><vh>內容</vh></v>
 </v>
 </v>
-<v t="leo.20190608184953.1"><vh>第三列</vh>
+<v t="leo.20190608184953.1"><vh>第四列</vh>
 <v t="leo.20190608184953.2"><vh>倉儲推送</vh>
 <v t="leo.20190608184953.3"><vh>內容</vh></v>
+</v>
+<v t="leo.20190609164307.1"><vh>在小組與班上的貢獻</vh>
+<v t="leo.20190609164307.2"><vh>內容</vh></v>
 </v>
 <v t="leo.20190608185410.1"><vh>自評</vh>
 <v t="leo.20190608185410.2"><vh>內容</vh></v>
@@ -1720,7 +1731,7 @@ Created by [40623128](https://github.com/40623128)
 
 						
 </t>
-<t tx="leo.20190530172743.3">## 手足球製作內容
+<t tx="leo.20190530172743.3">## 手足球系統功能
 ### 影像辨識(只能辨識各顏色單個物件)
 [影像辨識尋找桿子與球](https://mdecadp2018.github.io/site-40623128/content/%E5%BD%B1%E5%83%8F%E8%BE%A8%E8%AD%98%E5%B0%8B%E6%89%BE%E7%90%83%E5%92%8C%E6%A1%BF%E5%AD%90%E4%BD%8D%E7%BD%AE.html)
 
@@ -1835,7 +1846,7 @@ Created by [40623128](https://github.com/40623128)
 
 						
 </t>
-<t tx="leo.20190608144723.3">### vrep
+<t tx="leo.20190608144723.3">### vrep模擬
 
 在組員進行中遇到無法處理的部分，協助完成。ex:dynamic
 
@@ -1883,11 +1894,11 @@ Created by [40623128](https://github.com/40623128)
 </t>
 <t tx="leo.20190608184953.3">### 倉儲推送紀錄
 
-在組員進行中遇到無法處理的部分，協助完
-
 [cd2019a-task1-2019cda_t1_g3_1](https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1/graphs/contributors)
 
-[scrum-1/cd2019a](https://github.com/scrum-1/cd2019a/graphs/contributors)</t>
+[scrum-1/cd2019a](https://github.com/scrum-1/cd2019a/graphs/contributors)
+
+</t>
 <t tx="leo.20190608185410.1">&lt;section data-markdown&gt;
     &lt;script type="text/template"&gt;
 &lt;!-- 請注意, @others 不可以內縮 --&gt;
@@ -1901,14 +1912,104 @@ Created by [40623128](https://github.com/40623128)
 </t>
 <t tx="leo.20190608185410.2">### 自評
 
-學員出席
+學員出席(20%) 20分
 
-Github 倉儲管理
+Github 倉儲管理(20%) 20分
 
-Onshape 協同操作
+Onshape 協同操作(20%) 14分
 
-V-rep 模擬
+V-rep 模擬(20%) 20分
 
-程式開發</t>
+程式開發(20%) 20分
+
+總分:94分</t>
+<t tx="leo.20190609164307.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190609164307.2">### 在小組與班上的貢獻
+
+小組上我負責解決一些他們遇到的問題
+
+ex:提供修改圖檔的意見或v-rep設定上的問題
+
+我也負責我們小組的程式開發，把對打程式修改為影像辨識的方式
+
+我在班上的貢獻:班上電腦回擊的程式全都來自我。</t>
+<t tx="leo.20190609170955.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190609170955.2">### 主要程式碼
+
+```
+@language python
+def track_blue_object(image):
+    # Blur the image to reduce noise100
+    blur = cv2.GaussianBlur(image, (3,3),0)
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    # Threshold the HSV image for only blue colors
+    ran = 20
+    lower_blue = numpy.array([0-ran,100,100])
+    upper_blue = numpy.array([0+ran,255,255])
+    # Threshold the HSV image to get only blue colors
+    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    # Blur the mask
+    bmask = cv2.GaussianBlur(mask, (5,5),0)
+     
+    threshold = 100
+    canny_output = cv2.Canny(bmask, threshold,threshold*2)
+    contours, _ = cv2.findContours(canny_output, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    # Get the moments
+    mu = [None]*len(contours)
+    for i in range(len(contours)):
+        mu[i] = cv2.moments(contours[i])
+    # Get the mass centers
+    mc = [None]*len(contours)
+    for i in range(len(contours)):
+        # add 1e-5 to avoid division by zero
+        mc[i] = (mu[i]['m10'] / (mu[i]['m00'] + 1e-5), mu[i]['m01'] / (mu[i]['m00'] + 1e-5))
+    return mc
+```
+</t>
+<t tx="leo.20190609172100.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="leo.20190609172100.8">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+&lt;!-- 請注意, @others 不可以內縮 --&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+
+						
+</t>
+<t tx="leo.20190609172100.9">## 大綱
+
+* 手足球系統功能
+* vrep模擬
+* onshape
+* 倉儲推送紀錄
+* 在小組與班上的貢獻
+* 自評</t>
 </tnodes>
 </leo_file>
