@@ -5,7 +5,10 @@
 <p>電腦輔助設計實習-期末分組倉儲:<a href="https://github.com/mdecadp2018/finalproject-ag4">https://github.com/mdecadp2018/finalproject-ag4</a></p>
 <p>協同產品設計實習-期末分組網站:<a href="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g3_1/content/index.html">https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g3_1/content/index.html</a></p>
 <p>協同產品設計實習-期末分組倉儲:<a href="https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1">https://github.com/mdekmol/cd2019a-task1-2019cda_t1_g3_1</a></p>
-<p></p><h1>手足球</h1>
+<p></p>
+<h1>協同產品設計實習期末報告影片</h1>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/8ZDN8SKGK3c" width="560"></iframe></p>
+<h1>手足球</h1>
 <h2>期中前</h2>
 <p>期中前完成機器對打程式，再來目標更改為影像辨識。</p>
 <h3>自動回擊</h3>
@@ -101,7 +104,8 @@ stop()
 
 
 
-</pre><h3>手足球手控與電腦對打</h3>
+</pre>
+<h3>手足球手控與電腦對打</h3>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/G6hB6AbP7NA" width="560"></iframe></p>
 <p><span>vrep檔案位置:</span><a href="https://github.com/mdecadp2018/tree/gh-pages/TableFootBall/v-rep/tablefootball.ttt">tablefootball.ttt</a></p>
 <p>python原始碼:</p>
@@ -222,7 +226,8 @@ vrep.simxSetJointTargetVelocity(clientID,RMo_handle,0,vrep.simx_opmode_oneshot_w
 start()
 getballposition()
 stop()</pre>
-<p></p><h3>手足球電腦對電腦</h3>
+<p></p>
+<h3>手足球電腦對電腦</h3>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/e4sEH5GBXBk" width="560"></iframe></p>
 <p><span>vrep檔案位置:</span><a href="https://github.com/mdecadp2018/tree/gh-pages/TableFootBall/v-rep/tablefootball.ttt">tablefootball.ttt</a></p>
 <p></p>
@@ -481,7 +486,8 @@ vrep.simxSetJointTargetVelocity(clientID,RMo_handle,0,vrep.simx_opmode_oneshot_w
 start()
 getballposition()
 stop()</pre>
-<p></p><h3>手足球雙人對打</h3>
+<p></p>
+<h3>手足球雙人對打</h3>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/V1aZ9RahfXk" width="560"></iframe></p>
 <p><span>vrep檔案位置:</span><a href="https://github.com/mdecadp2018/tree/gh-pages/TableFootBall/v-rep/tablefootball.ttt">tablefootball.ttt</a></p>
 <p>python控制程式</p>
@@ -585,7 +591,8 @@ vrep.simxSetJointTargetVelocity(clientID,RMo_handle,0,vrep.simx_opmode_oneshot_w
 start()
 getballposition()
 stop()</pre>
-<p></p><h2>期末前</h2>
+<p></p>
+<h2>期末前</h2>
 <p>把既有程式更改為更符合實際可行的影像辨識。</p>
 <h3>影像辨識尋找球和桿子位置</h3>
 <p>利用影像辨識系統尋找紅方、藍方和綠球的位置。</p>
@@ -727,7 +734,8 @@ if clientID!=-1:
       print(err)
 else:
   print("Failed to connect to remote API Server")
-  vrep.simxFinish(clientID)</pre><h3>影像辨識機器對打</h3>
+  vrep.simxFinish(clientID)</pre>
+<h3>影像辨識機器對打</h3>
 <p>利用影像辨識抓取球與操作桿位置並使之對打，</p>
 <p>由於影像需要處理時間，所以模擬速度越快抓取位置越不精確。</p>
 <p>已知錯誤:</p>
@@ -908,7 +916,8 @@ if clientID!=-1:
 else:
   print("Failed to connect to remote API Server")
   vrep.simxFinish(clientID)</pre>
-<p></p><h3>影像辨識機器對打修正版</h3>
+<p></p>
+<h3>影像辨識機器對打修正版</h3>
 <p>解決了上週若球至桿子後方將無法回擊的問題</p>
 <p>影片:</p>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/vXuvJptDWkA" width="560"></iframe></p>
@@ -1162,7 +1171,8 @@ if clientID!=-1:
       print(err)
 else:
   print("Failed to connect to remote API Server")
-  vrep.simxFinish(clientID)</pre><h3>更改影像辨識方式</h3>
+  vrep.simxFinish(clientID)</pre>
+<h3>更改影像辨識方式</h3>
 <p>此程式目前只有尋找藍色物件位置</p>
 <p><img alt="" height="221" src="/images/vrep_2019-05-26_17-56-43.png" width="477"/></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import vrep
@@ -1657,7 +1667,8 @@ if clientID!=-1:
 else:
   print("Failed to connect to remote API Server")
   vrep.simxFinish(clientID)</pre>
-<p></p><h2>遭遇問題與解決方式</h2>
+<p></p>
+<h2>遭遇問題與解決方式</h2>
 <p><span style="background-color: #00ff00;">問題:</span></p>
 <p>第十三週-影像辨識機器對打</p>
 <p>如果球打到桿子後方會無法回擊<br/><br/></p>
@@ -1689,7 +1700,9 @@ for i in range(len(ret_blue_odd)):
 # blue00 is first rod object position
 # blue01 is  second rod and left object position
 # blue02 is second rod and right object position</pre>
-<p></p><h1>OnShape操作內容</h1><h2>W1</h2>
+<p></p>
+<h1>OnShape操作內容</h1>
+<h2>W1</h2>
 <h3>W1操作影片</h3>
 <p><a href="https://www.youtube.com/watch?v=uoONqs_QQdY">影片位置</a></p>
 <p><iframe allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen" frameborder="0" height="510" src="//www.youtube.com/embed/uoONqs_QQdY" width="960"></iframe></p>
